@@ -98,7 +98,9 @@ print(test_line_wrap("This is a simple example.", 10,
 
 In modern tools, such as word processors (shown in {numref}`wordprocessor`), an algorithm handles the line wrap. Such an algorithm takes care of choosing when there is enough space to put that word in the current line. Generally speaking, we can describe the problem in the following manner:
 
-**Computational problem:** break a text into lines to fit in the available width of a page.
+```{admonition} Computational problem
+Break a text into lines to fit in the available width of a page.
+```
 
 A greedy approach is very efficient and effective for addressing the aforementioned computational problem. It will proceed as follows:
 

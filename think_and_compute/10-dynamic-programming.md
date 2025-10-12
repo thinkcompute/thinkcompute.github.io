@@ -73,7 +73,9 @@ In the next section, we show a divide and conquer implementation of a computatio
 
 In Section {ref}`sec-fibonacci`, we have introduced a particular sequence of integer numbers, i.e. the Fibonacci sequence, that has been used by Fibonacci himself for providing a theoretical and approximated way for describing the evolution of a population of rabbits during months. The sequence, of course, is composed of specific numbers, and the calculation of these numbers is the particular problem we want to solve in this section:
 
-**Computational problem:** calculate the Fibonacci number at one specific month.
+```{admonition} Computational problem
+Calculate the Fibonacci number at one specific month.
+```
 
 As shown in Section {ref}`sec-fibonacci`, each number in the Fibonacci sequence is defined recursively as the sum of the previous two numbers in the same sequence. Thus, this definition seems to suggest that it would be possible to write a divide and conquer algorithm to address this problem effectively. In this case, we use, as base cases, the Fibonacci number calculated for the months *0* and *1* that returns *0* and *1*, respectively. {numref}`fibonacci-dc` shows the execution of an algorithm for calculating the Fibonacci number. In particular, it takes month *4* as input. Then, it executes recursively the same algorithm on smaller input data as defined by the definition of Fibonacci numbers until it reaches the base case.
 
@@ -86,14 +88,14 @@ The application of a divide and conquer approach for obtaining the 4<sup>th</sup
 ```
 
 
-As shown in {numref}`fibonacci-dc`, however, a lot of calculations are repeated multiple times. For instance, we run twice the executions of *fib(2)* and *fib(0)*, while we execute three times *fib(1)*. The implementation of this algorithm in Python, shown in [Listing 1](#bookmark=id.spkbg6dfua1g), is described by the following steps:
+As shown in {numref}`fibonacci-dc`, however, a lot of calculations are repeated multiple times. For instance, we run twice the executions of *fib(2)* and *fib(0)*, while we execute three times *fib(1)*. The implementation of this algorithm in Python, shown in {numref}`py-fib_dc`, is described by the following steps:
 
 1. **[base case]** if the input number for which to find the Fibonacci number is *0* or *1*, then return such input number; otherwise
 2. **[divide]** obtain the two input numbers according to the Fibonacci definition;
 3. **[conquer]** run the same algorithm recursively for each of the numbers obtained in the previous step;
 4. **[combine]** sum the results of the partial solutions obtained by running the two executions of the algorithm recursively.
 
-One can avoid repeating previously-computed solutions by adopting a dynamic programming approach. Part of the body of such an algorithm is very similar to the divide and conquer one mentioned above. The real difference is in two additional steps. In the first step, we check for the existence of a previously-calculated solution to the problem. The last step stores a new solution in memory for reusing it. [Figure 3](#bookmark=id.e0srjfx140vk) describes the algorithm’s execution to find the Fibonacci number at month *4* by reusing solutions stored in previous calls.
+One can avoid repeating previously-computed solutions by adopting a dynamic programming approach. Part of the body of such an algorithm is very similar to the divide and conquer one mentioned above. The real difference is in two additional steps. In the first step, we check for the existence of a previously-calculated solution to the problem. The last step stores a new solution in memory for reusing it. {numref}`fibonacci-dp` describes the algorithm's execution to find the Fibonacci number at month *4* by reusing solutions stored in previous calls.
 
 
 ```{code-block} python

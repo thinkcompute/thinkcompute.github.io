@@ -120,7 +120,9 @@ However, the insertion sort is not the only algorithm proposed for ordering the 
 
 John von Neumann proposed the [merge sort](https://en.wikipedia.org/wiki/Merge_sort) (or *mergesort*) algorithm in 1945. It implements a divide a conquer approach for addressing the following computational problem (that we have already seen when we have introduced the *insertion sort*):
 
-**Computational problem:** sort all the items in a given list.
+```{admonition} Computational problem
+Sort all the items in a given list.
+```
 
 Unlike the insertion sort, the sorting approach defined by the *merge sort* is less intuitive. Still, it is more efficient, even considering an extensive list as input. In particular, the *merge sort* is a recursion-based algorithm – like any other divide and conquer approach – and uses another ancillary algorithm in its body, called *merge*. This latter algorithm is responsible for combining two ordered input lists to return a new list that contains all the elements in the input lists ordered. The following steps illustrate the loop suggested by this algorithm to create such a new list:
 

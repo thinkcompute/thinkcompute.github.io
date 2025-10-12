@@ -66,7 +66,9 @@ An example of two consecutive and valid moves on an English board. Source: [Univ
 
 The computational problem we want to address in this chapter can be defined as follows:
 
-**Computational problem:** find a sequence of moves to solve the peg solitaire.
+```{admonition} Computational problem
+Find a sequence of moves to solve the peg solitaire.
+```
 
 A reasonable approach for finding a solution to this computational problem is based entirely on backtracking. In particular, we should develop it according to the following steps:
 
