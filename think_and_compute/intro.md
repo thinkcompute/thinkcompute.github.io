@@ -6,7 +6,7 @@ In case you want to mention or cite the book in documents, please use the follow
 
 > Peroni, S., Heibi, I., Massari, A. (2025). Think and Compute: a Primer for Digital Humanists. https://thinkcompute.github.io
 
-Think and Compute: a Primer for Digital Humanists © 2025 by Silvio Peroni, Ivan Heibi, Arcangelo Massari is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>
+*Think and Compute: a Primer for Digital Humanists* © 2025 by Silvio Peroni, Ivan Heibi, Arcangelo Massari is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>.
 
 ## Table of Contents
 

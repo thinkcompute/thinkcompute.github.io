@@ -34,7 +34,7 @@ In programming languages,[ classes](https://en.wikipedia.org/wiki/Class_(compute
 
 The advantage of[ organising all these types of values as classes](https://en.wikipedia.org/wiki/Object-oriented_programming) is that each object made available a set of[ methods](https://en.wikipedia.org/wiki/Method_(computer_programming)) that allow one to interact with the object itself. A method is a particular function that can be run only if directly called via an object. Their fingertips is structured as follows: `<object>.<method>(<param_1>, <param_2>, ...)`. For instance, methods of the class *list* define all the operations we have introduced for manipulating lists, e.g. `<list>.append(<item>)`, `<list>.remove(<item>)`, etc.
 
-It is possible to create our classes and methods. However, this topic goes beyond the actual scope of this book. If interested in understanding how to create these items, please refer to the documentation provided in the [chapter "Programming languages"](https://comp-think.github.io/book/04.pdf).
+It is possible to create our classes and methods. However, this topic goes beyond the actual scope of this book. If interested in understanding how to create these items, please refer to the documentation provided in Chapter {ref}`ch_programming-languages`.
 
 
 ## Unordered structures
@@ -71,7 +71,7 @@ We can execute several operations on sets, in particular:
 name: py-first_set
 linenos: True
 caption: |
-    How Python allows us to create and handle sets – with numbers and strings. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/set_instructions.py).
+    How Python allows us to create and handle sets – with numbers and strings. The source code of this listing is available {Download}`as part of the material of the course<./python/set_instructions.py>`.
 ---
 my_first_set = set()  # this creates a new set
 
@@ -119,7 +119,7 @@ Two examples of a dictionary in natural objects are a collection of definitions 
 name: py-first_dict
 linenos: True
 caption: |
-    How Python allows us to create and handle dictionaries – with numbers and strings as keys and values of pairs. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/dictionary_instructions.py).
+    How Python allows us to create and handle dictionaries – with numbers and strings as keys and values of pairs. The source code of this listing is available {Download}`as part of the material of the course<./python/dictionary_instructions.py>`.
 ---
 my_first_dict = dict()  # this creates a new dictionary
 

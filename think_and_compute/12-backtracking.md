@@ -239,7 +239,7 @@ We need two additional functions. They take as input a move defined by a tree no
 name: py-solve
 linenos: True
 caption: |
-    The final function for looking for a sequence of moves that depicts a solution to the peg solitaire computational problem. The source code of this listing and all the previous ones is available [as part of the course material](http://comp-think.github.io/python/peg_solitaire.py) and includes the related test cases.
+    The final function for looking for a sequence of moves that depicts a solution to the peg solitaire computational problem. The source code of this listing and all the previous ones is available {Download}`as part of the material of the course<./python/peg_solitaire.py>` and includes the related test cases.
 ---
 def solve(pegs, holes, last_move):
     result = None

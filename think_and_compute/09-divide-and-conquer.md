@@ -34,7 +34,7 @@ We have introduced the [mutability and immutability](https://medium.com/@meghamo
 name: py-immutable_variables
 linenos: True
 caption: |
-    Showing the behaviour of immutable values in Python. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/immutable_values.py).
+    Showing the behaviour of immutable values in Python. The source code of this listing is available {Download}`as part of the material of the course<./python/immutable_values.py>`.
 ---
 def add_one(n):
     n = n + 1
@@ -54,7 +54,7 @@ print(result)  # 42
 name: py-mutable_variables
 linenos: True
 caption: |
-    Showing the behaviour of mutable values in Python. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/mutable_values.py).
+    Showing the behaviour of mutable values in Python. The source code of this listing is available {Download}`as part of the material of the course<./python/mutable_values.py>`.
 ---
 def append_one(lst):
     lst.append(1)
@@ -82,7 +82,7 @@ We have a similar behaviour when assigning immutable and mutable values to a par
 name: py-mutable_immutable
 linenos: True
 caption: |
-    Showing the behaviour of immutable and mutable values when assigned to variables in Python. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/immutable_and_mutable_variables.py).
+    Showing the behaviour of immutable and mutable values when assigned to variables in Python. The source code of this listing is available {Download}`as part of the material of the course<./python/immutable_and_mutable_variables.py>`.
 ---
 # Immutable objects
 my_num_1 = 41
@@ -154,7 +154,7 @@ The *merge* algorithm is used in the *merge sort* to reconstruct a solution from
 name: py-merge
 linenos: True
 caption: |
-    The ancillary function for merging two ordered lists together. The source code of this listing is available [as part of the course material](http://comp-think.github.io/python/merge.py) and includes the related test cases.
+    The ancillary function for merging two ordered lists together. The source code of this listing is available {Download}`as part of the material of the course<./python/merge.py>` and includes the related test cases.
 ---
 def merge(left_list, right_list):
     result = list()
@@ -199,7 +199,7 @@ A graphical execution of the *merge sort* algorithm, which reuses the *merge* al
 name: py-mergesort
 linenos: True
 caption: |
-    The *merge sort* algorithm implemented in Python. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/merge_sort.py) and also includes the related test cases.
+    The *merge sort* algorithm implemented in Python. The source code of this listing is available {Download}`as part of the material of the course<./python/merge_sort.py>` and also includes the related test cases.
 ---
 # Import the function 'merge' 
 # from the module 'merge' (file 'merge.py')

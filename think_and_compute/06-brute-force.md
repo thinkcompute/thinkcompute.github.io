@@ -60,7 +60,7 @@ for item in <collection>:
 name: py-foreach-example
 linenos: True
 caption: |
-    A simple function that takes a list as input and creates a stack with all the list’s values using a for-each loop. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/stack_from_list.py).
+    A simple function that takes a list as input and creates a stack with all the list’s values using a for-each loop. The source code of this listing is available {Download}`as part of the material of the course<./python/stack_from_list.py>`.
 ---
 from collections import deque
 
@@ -99,7 +99,7 @@ The while loop, instead, works in a slightly different way. Python allows us to 
 name: py-while-example
 linenos: True
 caption: |
-    Another simple algorithm that sums *1* to a starting value indefinitely. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/run_forever.py).
+    Another simple algorithm that sums *1* to a starting value indefinitely. The source code of this listing is available {Download}`as part of the material of the course<./python/run_forever.py>`.
 ---
 def run_forever():
     value = 0
@@ -153,7 +153,7 @@ Python allows one to use the function `enumerate(<list>)` for retrieving an item
 name: py-linear_search
 linenos: True
 caption: |
-    The linear search algorithm described in Python, including its test case. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/linear_search.py).
+    The linear search algorithm described in Python, including its test case. The source code of this listing is available {Download}`as part of the material of the course<./python/linear_search.py>`.
 ---
 # Test case for the algorithm
 def test_linear_search(input_list, value_to_search, expected):
@@ -256,7 +256,7 @@ The algorithm that we want to use for addressing the aforementioned computationa
 name: py-insertion_sort
 linenos: True
 caption: |
-    The insertion sort algorithm described in Python. The source code of this listing is available [as part of the course material](http://comp-think.github.io/python/insertion_sort.py) and includes the algorithm’s test case.
+    The insertion sort algorithm described in Python. The source code of this listing is available {Download}`as part of the material of the course<./python/insertion_sort.py>` and includes the algorithm’s test case.
 ---
 def insertion_sort(input_list):
     result = list()  # A new empty list where to store the result

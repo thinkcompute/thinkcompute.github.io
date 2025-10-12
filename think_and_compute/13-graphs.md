@@ -57,7 +57,7 @@ We can create an undirected graph using the constructor `Graph()`. Then, we make
 name: py-graph
 linenos: True
 caption: |
-    A simple undirected graph with four nodes and five edges. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/graph_instructions.py).
+    A simple undirected graph with four nodes and five edges. The source code of this listing is available {Download}`as part of the material of the course<./python/graph_instructions.py>`.
 ---
 from networkx import Graph
 
@@ -94,7 +94,7 @@ The NetworkX package allows us to associate an **immutable object** as a node. W
 name: py-multigraph
 linenos: True
 caption: |
-    Another undirected graph that maps precisely the situation depicted in {numref}`undirected` since it allows the creation of multiple arcs between the same two nodes. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/multigraph_instructions.py).
+    Another undirected graph that maps precisely the situation depicted in {numref}`undirected` since it allows the creation of multiple arcs between the same two nodes. The source code of this listing is available {Download}`as part of the material of the course<./python/multigraph_instructions.py>`.
 ---
 from networkx import MultiGraph
 
@@ -128,7 +128,7 @@ Two additional methods are fundamental to understanding how a graph is composed 
 name: py-graph-metadata
 linenos: True
 caption: |
-    The use of additional data for enriching nodes and edges of graphs. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/graph_attribute_instructions.py).
+    The use of additional data for enriching nodes and edges of graphs. The source code of this listing is available {Download}`as part of the material of the course<./python/graph_attribute_instructions.py>`.
 ---
 from networkx import Graph
 

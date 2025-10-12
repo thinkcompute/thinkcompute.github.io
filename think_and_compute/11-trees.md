@@ -153,7 +153,7 @@ The advantages of using *anytree* are that it makes available many facilities fo
 name: py-tree
 linenos: True
 caption: |
-    A simple tree depicting the textual structure introduced in [Figure 4](#bookmark=kix.9oy0vubf8kd1). The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/tree_instructions.py).
+    A simple tree depicting the textual structure introduced in [Figure 4](#bookmark=kix.9oy0vubf8kd1). The source code of this listing is available {Download}`as part of the material of the course<./python/tree_instructions.py>`.
 ---
 from anytree import Node
 

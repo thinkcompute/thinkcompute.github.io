@@ -103,7 +103,7 @@ One can avoid repeating previously-computed solutions by adopting a dynamic prog
 name: py-fib_dc
 linenos: True
 caption: |
-    The implementation, in Python, of the divide and conquer algorithm for calculating the Fibonacci number. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/fib_dc.py).
+    The implementation, in Python, of the divide and conquer algorithm for calculating the Fibonacci number. The source code of this listing is available {Download}`as part of the material of the course<./python/fib_dc.py>`.
 ---
 # Test case for the function
 def test_fib_dc(n, expected):
@@ -165,7 +165,7 @@ Now we have all the ingredients for creating the dynamic programming algorithm f
 name: py-fib_dp
 linenos: True
 caption: |
-    The implementation, in Python, of the dynamic programming algorithm for calculating the Fibonacci number. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/fib_dp.py).
+    The implementation, in Python, of the dynamic programming algorithm for calculating the Fibonacci number. The source code of this listing is available {Download}`as part of the material of the course<./python/fib_dp.py>`.
 ---
 # Test case for the function
 def test_fib_dp(n, d, expected):

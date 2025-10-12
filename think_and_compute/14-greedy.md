@@ -52,7 +52,7 @@ A screenshot that depicts how[ OpenOffice Writer](https://www.openoffice.org/) d
 name: py-linewrap
 linenos: True
 caption: |
-    The implementation of the algorithm for calculating the line-wrap problem in Python. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/line_wrap.py).
+    The implementation of the algorithm for calculating the line-wrap problem in Python. The source code of this listing is available {Download}`as part of the material of the course<./python/line_wrap.py>`.
 ---
 # Test case for the function
 def test_line_wrap(text, line_width, expected):

@@ -38,7 +38,7 @@ All the functions, either built-in or user-defined, can be run. Some of those ma
 name: py-add_one
 linenos: True
 caption: |
-    The definition of a simple function and its execution using *41* as the input value. The result of its execution is then stored in a variable and printed on the screen. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/define_functions.py).
+    The definition of a simple function and its execution using *41* as the input value. The result of its execution is then stored in a variable and printed on the screen. The source code of this listing is available {Download}`as part of the material of the course<./python/define_functions.py>`.
 ---
 def add_one(n):  # define a function
 	return n + 1
@@ -89,7 +89,7 @@ In {numref}`py-list-creation`, we show some examples of the use of lists in Pyth
 name: py-list-creation
 linenos: True
 caption: |
-    How Python allows us to create and handle lists – with numbers and strings. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/list_instructions.py).
+    How Python allows us to create and handle lists – with numbers and strings. The source code of this listing is available {Download}`as part of the material of the course<./python/list_instructions.py>`.
 ---
 my_first_list = list()  # this creates a new list
 
@@ -149,7 +149,7 @@ In {numref}`py-stack-creation`, we show some examples of the use of stacks in Py
 name: py-stack-creation
 linenos: True
 caption: |
-    How Python allows us to create and handle stacks – with book titles. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/stack_instructions.py).
+    How Python allows us to create and handle stacks – with book titles. The source code of this listing is available {Download}`as part of the material of the course<./python/stack_instructions.py>`.
 ---
 from collections import deque  # import statement
 
@@ -218,7 +218,7 @@ We can execute three main operations on queues:
 name: py-queue-creation
 linenos: True
 caption: |
-    How Python allows us to create and handle queues – with people. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/queue_instructions.py).
+    How Python allows us to create and handle queues – with people. The source code of this listing is available {Download}`as part of the material of the course<./python/queue_instructions.py>`.
 ---
 from collections import deque  # import statement
 

@@ -177,7 +177,7 @@ def <function>(<param_1>, <param_2>, ...):
 name: py-infinite_recursion
 linenos: True
 caption: |
-    A function that never stops created using only a recursion step. We do not use any basic case in this example. That is usually a sign that the recursive algorithm does not stop. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/run_forever_recursive.py).
+    A function that never stops created using only a recursion step. We do not use any basic case in this example. That is usually a sign that the recursive algorithm does not stop. The source code of this listing is available {Download}`as part of the material of the course<./python/run_forever_recursive.py>`.
 ---
 def run_forever_recursive():
     run_forever_recursive()
@@ -194,7 +194,7 @@ An example of a simple and complete (basic case + recursive step) recursive algo
 name: py-recursive_multiplication
 linenos: True
 caption: |
-    A recursive function for calculating the multiplication between two non-negative integers, accompanied by the related test case. The source code of this listing is available [as part of the material of the course](http://comp-think.github.io/python/multiplication.py).
+    A recursive function for calculating the multiplication between two non-negative integers, accompanied by the related test case. The source code of this listing is available {Download}`as part of the material of the course<./python/multiplication.py>`.
 ---
 # Test case for the algorithm
 def test_multiplication(int_1, int_2, expected):
