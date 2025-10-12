@@ -1,0 +1,47 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 'Think and Compute: a Primer for Digital Humanists'
+message: >-
+  If you mention this book, please cite it using the
+  metadata from this file.
+type: book
+authors:
+  - given-names: Silvio
+    family-names: Peroni
+    email: silvio.peroni@unibo.it
+    affiliation: University of Bologna
+    orcid: 'https://orcid.org/0000-0003-0530-4305'
+  - given-names: Ivan
+    family-names: Heibi
+    email: ivan.heibi2@unibo.it
+    affiliation: University of Bologna
+    orcid: 'https://orcid.org/0000-0001-5366-5194'
+  - given-names: Arcangelo
+    family-names: Massari
+    email: arcangelo.massari@unibo.it
+    affiliation: University of Bologna
+    orcid: 'https://orcid.org/0000-0002-8420-0696'
+repository-code: 'https://github.com/thinkcompute/thinkcompute.github.io'
+url: 'https://thinkcompute.github.io'
+abstract: >-
+  This is the official book written by Silvio Peroni, with
+  contributions from Ivan Heibi and Arcangelo Massari, for
+  the Computational Management of Data course of the
+  second-cycle degree in Digital Humanities and Digital
+  Knowledge of the University of Bologna. The intent of this
+  book was to provide students with open and free material
+  to learn the basics of Computational Thinking, Code
+  Programming, and Data Management in Python.
+keywords:
+  - computational thinking
+  - data science
+  - data management
+  - algorithm
+  - digital humanities
+  - data
+  - databases
+  - algorithmic techniques
+  - data structures
+license: CC-BY-4.0
