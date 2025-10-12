@@ -1,0 +1,58 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Preface
+    numbered: False
+    chapters:
+    - file: 00-preface
+  - caption: "Part 1: Basics of Computation"
+    numbered: False
+    chapters:
+    - file: 01-computational-thinking
+    - file: 02-algorithms
+    - file: 03-computability
+  - caption: "Part 2: Basics of Programming"
+    numbered: False
+    chapters:
+    - file: 04-programming-languages
+    - file: 05-ordered-structures
+    - file: 06-brute-force
+    - file: 07-unordered-structures
+    - file: 08-recursion
+  - caption: "Part 3: A Python Laboratory"
+    numbered: False
+    chapters:
+    - file: lab-01
+    - file: lab-02
+    - file: lab-03
+    - file: lab-04
+    - file: lab-05
+    - file: lab-06
+  - caption: "Part 4: Additional Algorithmic Techniques and Data Structures"
+    numbered: False
+    chapters:
+    - file: 09-divide-and-conquer
+    - file: 10-dynamic-programming
+    - file: 11-trees
+    - file: 12-backtracking
+    - file: 13-graphs
+    - file: 14-greedy
+  # - caption: "Part 5: Managing Data in Python"
+    # numbered: False
+    # chapters:
+    # - file: 15-what-is-a-datum
+    # - file: 16-data-models
+    # - file: 17-pandas
+  # - caption: "Part 6: Databases"
+    # numbered: False
+    # chapters:
+    # - file: 18-relational-database
+    # - file: 19-graph-database
+    # - file: 20-querying-databases
+  # - caption: "Part 7: Descriptive Statistics"
+    # numbered: False
+    # chapters:
+    # - file: 21-Summarise and visualise
