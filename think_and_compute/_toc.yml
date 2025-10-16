@@ -14,6 +14,7 @@ parts:
     - file: 01-computational-thinking
     - file: 02-algorithms
     - file: 03-computability
+    - file: part-1-exercises
   - caption: "Part 2: Basics of Programming"
     numbered: False
     chapters:

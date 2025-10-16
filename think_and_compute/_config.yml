@@ -22,6 +22,9 @@ bibtex_bibfiles:
 # Use Author-Year as in-text reference poitner
 sphinx:
   extra_extensions:
+    - sphinx_exercise
+    - sphinx_togglebutton
+
   config:
     bibtex_reference_style: label
     html_extra_path: ['slides']
