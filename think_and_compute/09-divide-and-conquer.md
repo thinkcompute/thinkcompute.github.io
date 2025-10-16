@@ -2,6 +2,10 @@
 # Divide and conquer algorithms
 This chapter introduces the notion of *divide and conquer* algorithms by implementing one algorithm of this kind: *merge sort*. The historic hero introduced in these notes is John von Neumann. He proposed a set of guidelines for the designing of the EDVAC named after him. These guidelines have been fundamental design principles for building the first electronic computers.
 
+```{note}
+The slides for this chapter are <a href="09-slides-divide-and-conquer.html">available</a> within the book content.
+```
+
 
 ## Historic hero: John von Neumann
 

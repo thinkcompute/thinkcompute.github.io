@@ -2,6 +2,10 @@
 # Dynamic programming algorithms
 This chapter introduces the notion of dynamic programming algorithms with the implementation of one algorithm of this kind, which calculates Fibonacci numbers. The historic hero introduced in these notes is Leonardo of Pisa, a.k.a. Fibonacci, who was one of the most prominent mathematicians of the Middle Ages.
 
+```{note}
+The slides for this chapter are <a href="10-slides-dynamic-programming.html">available</a> within the book content.
+```
+
 
 (sec-fibonacci)=
 ## Historic hero: Fibonacci

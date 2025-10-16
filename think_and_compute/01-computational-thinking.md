@@ -3,6 +3,10 @@
 
 This chapter introduces the main concepts related to computational thinking by providing a summary of relevant topics in the areas of Linguistics and Computing in the past 200 years. The historic hero introduced in these notes is Noam Chomsky, considered one of the fathers of modern linguistics. His works have had an enormous impact on the Linguistics domain and the Theoretical Computer Science domain.
 
+```{note}
+The slides for this chapter are <a href="01-slides-computational-thinking.html">available</a> within the book content.
+```
+
 
 (historic-hero)=
 ## Historic hero: Noam Chomsky

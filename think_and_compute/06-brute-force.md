@@ -3,6 +3,10 @@
 
 This chapter introduces the notion of *brute-force algorithms* by implementing two algorithms of this kind: *linear search* and *insertion sort*. The historic hero introduced in these notes is Betty Holberton. She was one of the first programmers of the ENIAC and one of the key people for the development of several programming languages and algorithms for sorting objects.
 
+```{note}
+The slides for this chapter are <a href="06-slides-brute-force.html">available</a> within the book content.
+```
+
 
 (sc-holberton)=
 ## Historic hero: Betty Holberton

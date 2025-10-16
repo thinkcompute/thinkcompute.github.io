@@ -3,6 +3,10 @@
 
 This chapter provides a general introduction to programming languages and then focuses on a particular language: Python. The historic hero introduced in these notes is Grace Hopper. She was the first programmer of the Harvard Mark I computer. She was responsible for the development of some of the first programming languages.
 
+```{note}
+The slides for this chapter are <a href="04-slides-programming-languages.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Grace Hopper
 

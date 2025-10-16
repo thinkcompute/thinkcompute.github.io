@@ -3,6 +3,10 @@
 
 This chapter introduces the notion of *computability* and the *computational cost* of algorithms. The historic hero presented in these notes is Alan Turing, considered the father of Theoretical Computer Science and Artificial Intelligence. His work on a particular model of computation, known as the *Turing machine*, had been the primary tool for highlighting the possibilities and the limits of automatic computation and, more in general, the modern electronic computer.
 
+```{note}
+The slides for this chapter are <a href="03-slides-computability.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Alan Turing
 

@@ -2,6 +2,10 @@
 # Organising information: trees
 This chapter introduces a new data structure for defining hierarchical relations: the tree. The historic hero introduced in these notes is Gabriel García Márquez, one of the most notable writers in Spanish of the 20<sup>th</sup> century. One of his novels (*One Hundred Years of Solitude*) is used in this chapter to introduce the way trees (as a data structure) can be used to understand a story. Moreover, even to structure a text.
 
+```{note}
+The slides for this chapter are <a href="11-slides-trees.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Gabriel García Márquez
 

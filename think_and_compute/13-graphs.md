@@ -2,6 +2,10 @@
 # Organising information: graphs
 This chapter introduces the last data structure presented in this course, i.e. the *graph*. The historic hero introduced in these notes is Leonhard Euler, a great scientist of the 18<sup>th</sup> century who introduced a new mathematical field called graph theory for the very first time.
 
+```{note}
+The slides for this chapter are <a href="13-slides-graphs.html">available</a> within the book content.
+```
+
 
 (sec-euler)=
 ## Historic hero: Euler

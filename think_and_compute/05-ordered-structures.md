@@ -3,6 +3,10 @@
 
 This chapter introduces the notion of ordered data structures, i.e. some primary containers of elements that can be used to organise data in a specific way. The historic hero introduced in these notes is Donald Knuth. He has been one of the most relevant scientists and contributors to the formal analysis of the computational complexity of algorithms.
 
+```{note}
+The slides for this chapter are <a href="05-slides-ordered-structures.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Donald Knuth
 

@@ -3,6 +3,10 @@
 
 This chapter introduces the last kind of algorithms presented in this book, i.e. the *greedy algorithms*. The historic hero introduced in these notes is Evelyn Berezin, one of the most influential businesswomen of the past century who have created the first word processor.
 
+```{note}
+The slides for this chapter are <a href="14-slides-greedy.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Evelyn Berezin
 

@@ -3,6 +3,10 @@
 
 This chapter introduces the notion of *algorithm* and *pseudocode*, to provide the initial tools for instructing a computer in executing a particular task. Also, it presents a specific kind of graphical pseudocode, i.e. the flowchart. The historic hero introduced in these notes is Ada Lovelace, considered the first computer programmer. Her work in translating and commenting on a scholarly paper describing Babbage's Analytical Engine has been one of the most important milestones of the Computer Science discipline.
 
+```{note}
+The slides for this chapter are <a href="02-slides-algorithms.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Ada Lovelace
 

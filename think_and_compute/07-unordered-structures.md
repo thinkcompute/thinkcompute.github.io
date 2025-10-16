@@ -3,6 +3,10 @@
 
 This chapter introduces the main concepts related to some of the most important data structures for creating and handling sets and dictionaries. The historic hero introduced in these notes is Jorge Luis Borges, considered one of the most famous Argentinian writers of the past century. Among his vast work, he wrote several short stories focused on exploring mathematical concepts and limits.
 
+```{note}
+The slides for this chapter are <a href="07-slides-unordered-structures.html">available</a> within the book content.
+```
+
 
 ## Historic hero: Jorge Luis Borges
 
