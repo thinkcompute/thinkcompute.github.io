@@ -49,6 +49,10 @@ Common features:
 * For the result to be achieved, each ingredient has to be added in specific amounts
 * Constant stirring is necessary, and at a specific speed
 * Sense of touch, vision, and smell are engaged
+
+```{note}
+Answer provided by [Delfina Pandiani](https://www.humandigitalist.com/) in 2018.
+```
 ````
 `````
 
