@@ -56,6 +56,55 @@ Answer provided by [Delfina Pandiani](https://www.humandigitalist.com/) in 2018.
 ````
 `````
 
+`````{exercise}
+:label: part-1-ex-4
+
+What is the result of the execution of the algorithm in [Figure 9 of the chapter "Algorithms"](https://thinkcompute.github.io/02-algorithms.html#complete-example) using `"Peroni"`, `"HTML"`, and `"Peroni, S., Osborne, F., Di Iorio, A., Nuzzolese, A. G., Poggi, F., Vitali, F., Motta, E. (2017). Research Articles in Simplified HTML: a Web-first format for HTML-based scholarly articles. PeerJ Computer Science 3: e132. e2513. DOI: https://doi.org/10.7717/peerj-cs.132"` as input values?
+
+````{solution} part-1-ex-4
+:label: part-1-ex-4-sol
+:class: dropdown
+
+2
+````
+`````
+
+`````{exercise}
+:label: part-1-ex-5
+
+Write the flowchart of an algorithm that takes in input two objects and returns the string “yes” whether the two objects are the same; otherwise, it returns the string “no”.
+
+````{solution} part-1-ex-5
+:label: part-1-ex-5-sol
+:class: dropdown
+
+![fishy](./images/ex-flowchart-same-objects.png)
+
+The source GraphML file (that can be open and modified with [yEd](https://www.yworks.com/products/yed)) of the flowchart is available {Download}`as part of the material of the course<./material/ex-flowchart-same-objects.graphml>`.
+````
+`````
+
+`````{exercise}
+:label: part-1-ex-6
+
+The [Chapter "Introduction to Computational Thinking"](https://thinkcompute.github.io/01-computational-thinking.html) illustrates [two different algorithms expressed in natural language](https://thinkcompute.github.io/01-computational-thinking.html#implementations-in-natural-language), for implementing the Fibonacci function. Create two distinct flowcharts to implement both of them.
+
+````{solution} part-1-ex-6
+:label: part-1-ex-6-sol
+:class: dropdown
+
+Flowchart for Fibonacci, definition 1:
+
+![fishy](./images/ex-flowchart-fibonacci-iterative.png)
+
+Flowchart for Fibonacci, definition 2:
+
+![fishy](./images/ex-flowchart-fibonacci-recursive.png)
+
+The source GraphML file (that can be open and modified with [yEd](https://www.yworks.com/products/yed)) of the flowcharts of the two exercises are available as part of the material of the course ({Download}`first flowchart <./material/ex-flowchart-fibonacci-iterative.graphml>`, {Download}`second flowchart <./material/ex-flowchart-fibonacci-recursive.graphml>`).
+````
+`````
+
 ## References
 
 ```{bibliography}
