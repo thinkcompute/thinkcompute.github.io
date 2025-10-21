@@ -266,7 +266,7 @@ print(2 ** 8)
 
 ### Variables
 
-Variables store data that you can reuse. Think of them as labeled boxes that hold values.
+Variables store data that you can reuse:
 
 ```{code-cell} python
 # Create a variable
@@ -276,127 +276,14 @@ print(paradox)
 
 ```{code-cell} python
 # Variables with numbers
-achilles_distance = 100
-print(achilles_distance)
+distance = 100
+print(distance)
 ```
 
-```{code-cell} python
-# You can change variable values
-temperature = 20
-print("Current temperature:", temperature)
-
-temperature = 25
-print("New temperature:", temperature)
+```{admonition} More on variables
+:class: tip
+In **Lab 02**, you'll learn about variable naming rules, data types, operators, and much more!
 ```
-
-### Naming rules
-
-✅ **Valid names:**
-- `planet`, `my_variable`, `distance_km`, `temperature2`
-
-❌ **Invalid names:**
-- `2planet` (cannot start with a number)
-- `my-variable` (cannot use hyphens)
-- `class` (cannot use Python keywords)
-
-```{admonition} Python Naming Convention
-:class: note
-Use `lowercase_with_underscores` for variable names (called "snake_case")
-```
-
-### Interactive exercise 1: Variables
-
-```{code-cell} python
-:tags: [hide-output]
-
-# Try creating your own variables!
-# Create a variable called 'name' with your name
-# Create a variable called 'age' with your age
-# Print both variables
-
-# Your code here:
-
-```
-
-````{admonition} Solution
-:class: dropdown
-
-```python
-name = "Alice"
-age = 25
-print("Name:", name)
-print("Age:", age)
-```
-````
-
-### Data types
-
-Python has several basic data types:
-
-```{code-cell} python
-# String (text)
-message = "Hello, Python!"
-print(type(message))
-```
-
-```{code-cell} python
-# Integer (whole number)
-count = 42
-print(type(count))
-```
-
-```{code-cell} python
-# Float (decimal number)
-price = 19.99
-print(type(price))
-```
-
-```{code-cell} python
-# Boolean (True/False)
-is_student = True
-print(type(is_student))
-```
-
-### String operations
-
-```{code-cell} python
-# Concatenation (joining strings)
-first_name = "Immanuel"
-last_name = "Kant"
-full_name = first_name + " " + last_name
-print(full_name)
-```
-
-```{code-cell} python
-# String formatting
-philosopher = "Aristotle"
-message = f"{philosopher} is studying Python!"
-print(message)
-```
-
-### Interactive exercise 2: Working with strings
-
-```{code-cell} python
-:tags: [hide-output]
-
-# Create variables for your favorite book's title and author
-# Combine them into a sentence and print it
-# Example output: "My favorite book is 'Il Maestro e Margherita' by Mikhail Bulgakov"
-
-# Your code here:
-
-```
-
-````{admonition} Solution
-:class: dropdown
-
-```python
-title = "Il Maestro e Margherita"
-author = "Mikhail Bulgakov"
-message = f"My favorite book is '{title}' by {author}"
-print(message)
-```
-````
 
 ### The print() Function
 
@@ -551,13 +438,13 @@ print(f"\n{years_difference} years passed between the two publications")
 
 In this lab, you learned how to:
 
-✅ Install and verify Python
-✅ Use the command line shell
-✅ Set up VS Code for Python development
-✅ Write and run Python scripts
-✅ Use variables, strings, and basic data types
-✅ Install libraries with pip
-✅ Create a simple Python program
+- ✅ Install and verify Python
+- ✅ Use the command line shell
+- ✅ Set up VS Code for Python development
+- ✅ Write and run Python scripts
+- ✅ Use variables, strings, and basic data types
+- ✅ Install libraries with pip
+- ✅ Create a simple Python program
 
 ```{admonition} Next lab
 :class: tip
