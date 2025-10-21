@@ -514,6 +514,85 @@ derived = "ideas"
 message3 = f"{name} claimed that all {derived} are ultimately derived from {source}"
 print(message3)
 ```
+---
+
+## Exercise: Zeno's paradox
+
+In Zeno's paradox, to reach a destination, you must first travel half the distance, then half of the remaining distance, then half of what's left, and so on infinitely. Zeno argued this makes motion impossible, since you'd need to complete an infinite number of steps.
+
+Let's use Python to calculate the first few steps and see what happens to the remaining distance.
+
+### Setup: Create a new file in VS Code
+
+1. Open Visual Studio Code
+2. Open your `python_laboratory` folder (the one you created in Lab 01):
+   - **File → Open Folder...**
+   - Navigate to and select your `python_laboratory` folder
+3. Create a new file:
+   - Click the **New File...** icon in the Explorer sidebar
+   - Name it `zeno_paradox.py`
+
+````{admonition} Requirements
+:class: tip
+
+1. Create a variable for the total distance: 100 meters
+
+2. Calculate the remaining distance after each step:
+   - Step 1: travel half the distance (50 m)
+   - Step 2: travel half of the remaining distance
+   - Step 3: travel half of what remains
+   - Step 4: travel half of what remains
+
+3. For each step, display:
+   - The distance traveled in that step
+   - The total distance covered so far
+   - The remaining distance
+
+4. Use f-strings to format the output clearly
+
+5. Run your script by clicking the **Play button** (▶) in the top-right corner of VS Code
+
+````
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+# Initial setup
+total_distance = 100
+remaining_distance = total_distance
+distance_covered = 0
+
+print(f"Total distance to cover: {total_distance} meters")
+
+# Step 1
+step_distance = remaining_distance / 2
+distance_covered += step_distance
+remaining_distance -= step_distance
+print(f"Step 1: travel {step_distance} m → covered {distance_covered} m → remaining {remaining_distance} m")
+
+# Step 2
+step_distance = remaining_distance / 2
+distance_covered += step_distance
+remaining_distance -= step_distance
+print(f"Step 2: travel {step_distance} m → covered {distance_covered} m → remaining {remaining_distance} m")
+
+# Step 3
+step_distance = remaining_distance / 2
+distance_covered += step_distance
+remaining_distance -= step_distance
+print(f"Step 3: travel {step_distance} m → covered {distance_covered} m → remaining {remaining_distance} m")
+
+# Step 4
+step_distance = remaining_distance / 2
+distance_covered += step_distance
+remaining_distance -= step_distance
+print(f"Step 4: travel {step_distance} m → covered {distance_covered} m → remaining {remaining_distance} m")
+
+print(f"After 4 steps, we've covered {distance_covered} m ({(distance_covered/total_distance)*100}% of the distance)")
+print(f"Remaining: only {remaining_distance} m!")
+```
+````
 
 ---
 
