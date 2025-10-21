@@ -3,3 +3,5 @@ matplotlib
 numpy
 ghp-import
 sphinx-exercise
+watchdog[watchmedo]
+python-dateutil

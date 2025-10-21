@@ -16,6 +16,24 @@ If you'd like to develop and/or build the Think and Compute: a Primer for Digita
 
 A fully-rendered HTML version of the book will be built in `think_and_compute/_build/html/`.
 
+#### Quick build script
+
+You can use the provided script for a faster build:
+
+```bash
+./build_book.sh
+```
+
+#### Development with auto-rebuild
+
+For active development, you can use the watch script that automatically rebuilds the book when you modify files:
+
+```bash
+./watch_book.sh
+```
+
+- **Note**: You'll need to manually refresh your browser to see the changes after each rebuild
+
 ### Hosting the book
 
 Please see the [Jupyter Book documentation](https://jupyterbook.org/publish/web.html) to discover options for deploying a book online using services such as GitHub, GitLab, or Netlify.

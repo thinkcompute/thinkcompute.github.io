@@ -40,3 +40,22 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  extra_footer: |
+    <script>
+      // Open all external links in new tab
+      document.addEventListener('DOMContentLoaded', function() {
+        var links = document.querySelectorAll('a[href^="http"]');
+        links.forEach(function(link) {
+          if (link.hostname !== window.location.hostname) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+          }
+        });
+      });
+    </script>
+
+# Configure interactive code with Thebe
+launch_buttons:
+  thebe: true
+  notebook_interface: "jupyterlab"
+  binderhub_url: "https://mybinder.org"
