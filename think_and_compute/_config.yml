@@ -27,7 +27,7 @@ sphinx:
 
   config:
     bibtex_reference_style: label
-    html_extra_path: ['slides']
+    html_extra_path: ['slides', 'python']
   
 # Information about where the book exists on the web
 repository:
