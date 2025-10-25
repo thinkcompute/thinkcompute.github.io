@@ -23,6 +23,7 @@ parts:
     - file: 06-brute-force
     - file: 07-unordered-structures
     - file: 08-recursion
+    - file: part-2-exercises
   - caption: "Part 3: A Python Laboratory"
     numbered: False
     chapters:
