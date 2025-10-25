@@ -61,7 +61,7 @@ The goal of this chapter is to develop our first algorithm in Python. The algori
 
 In Python, we can create a new algorithm by implementing a new *function*. We can introduce a function using the keyword `def` (which stands for *define*). The keyword `def` must be followed by a name (e.g. the name of the algorithm) and a comma-separated list of input parameters between round brackets. For instance, `def contains_word(first_word, second_word, bib_entry)` defines the function `contains_word`, which takes three parameters as input​.
 
-Each function definition is followed by “`:`” and all the instructions to execute must be specified in the following lines, as an indented block (preferably using four spaces), as illustrated in {numref}`py-function`. The name of a function and its parameters cannot contain space characters and must always start with a letter – e.g. `this_is_my_parameter` is correct, while `1_parameter` is not.
+Each function definition is followed by "`:`" and all the instructions to execute must be specified in the following lines, as an indented block (preferably using four spaces), as illustrated in {numref}`py-function`. The name of a function and its parameters cannot contain space characters and must always start with a letter – e.g. `this_is_my_parameter` is correct, while `1_parameter` is not.
 
 
 ```{code-block} python
@@ -114,7 +114,7 @@ else:
     ...
 ```
 
-The condition specified in the `if` statement shown in {numref}`py-function-def` allows one to check if a certain string is contained in another one using the command “in”. In particular, `<string1> in <string2>` would be true if the *<string2>* contains *<string1>*. As anticipated in the previous chapters, a *[string](https://en.wikipedia.org/wiki/String_(computer_science))* is a particular type of value composed of a sequence of characters and defined by using quotes. For instance, `"Peroni"`, `"Osborne"`, and ​`"Peroni, S., Osborne, F., Di Iorio, A., Nuzzolese, A. G., Poggi, F., Vitali, F., Motta, E. (2017). Research Articles in Simplified HTML: a Web-first format for HTML-based scholarly articles. PeerJ Computer Science 3: e132. e2513. DOI: https://doi.org/10.7717/peerj-cs.132"` are all strings. 
+The condition specified in the `if` statement shown in {numref}`py-function-def` allows one to check if a certain string is contained in another one using the command "in". In particular, `<string1> in <string2>` would be true if the *<string2>* contains *<string1>*. As anticipated in the previous chapters, a *[string](https://en.wikipedia.org/wiki/String_(computer_science))* is a particular type of value composed of a sequence of characters and defined by using quotes. For instance, `"Peroni"`, `"Osborne"`, and ​`"Peroni, S., Osborne, F., Di Iorio, A., Nuzzolese, A. G., Poggi, F., Vitali, F., Motta, E. (2017). Research Articles in Simplified HTML: a Web-first format for HTML-based scholarly articles. PeerJ Computer Science 3: e132. e2513. DOI: https://doi.org/10.7717/peerj-cs.132"` are all strings. 
 
 Note that *<string1>* and *<string2>* are just placeholders for strings: we can use either strings, e.g. `"Peroni"` in `"Peroni beer"`, or variables referring to strings, as shown in {numref}`py-function-def`. A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a symbolic name that contains some information referred to as a value (e.g. first_word). For instance, any input value is, in fact, a particular kind of variable. As defined previously, all the input parameters of the algorithm are expected to refer to strings.
 
@@ -444,14 +444,124 @@ print(test_contains_word("References", "1983",
     "Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a", 0))
 ```
 
-{numref}`tdd-template-full-impl` shows the final Python implementation of the algorithm and the related test for the example mentioned above.
+The proposed development approach could seem bland at first sight. However, programmers regularly adopt it to think carefully about the requirements of a particular code to develop and avoid the introduction of bugs.
+
+We suggest systematically adopting the test-driven development approach when implementing algorithms in Python since it is a handy tool for checking the correctness of the outcomes of an algorithm. To this end, specific tests will anticipate all the algorithms in the following chaptersby following the template shown in {numref}`tdd-python-template`. We will replace all the words between angular brackets with the appropriate names. Initially, we will replace all the Python instructions of the algorithm with the instruction `return` to say that the algorithm is not returning anything. This lack in returning a value allows all the new tests to fail, as prescribed by the second step of the test-driven development process introduced above.
+
+
+```{code-block} python
+---
+name: tdd-python-template
+linenos: True
+caption: |
+    The template that will be used for presenting all the algorithms introduced in this course, accompanied by its tests.
+---
+def test_<algorithm>(<algorithm input params>, expected):
+    result = <algorithm>(<algorithm input params>)
+    if result == expected:
+        return True
+    else:
+        return False
+
+def <algorithm>(<algorithm input params>):
+    return
+
+print(test_<algorithm>(<algorithm input params 1>, <expected_1>))
+print(test_<algorithm>(<algorithm input params 2>, <expected_2>))
+… 
+```
+
+
+## Developing an algorithm in Python: a methodology
+
+If this is your first experience in using a programming language, it could be a bit difficult to approach the development of an algorithm in Python. Thus, to facilitate such development, having some guidelines to follow can be helpful. In this last section of the chapter, we introduce such a guideline that should be followed to implement in Python an algorithm informally described in a natural language text. These guidelines are split into seven distinct steps: Identify, Emulate, Fail, Draw, Assess, Translate, Succeed.
+
+
+### Identify: identification of input and output
+
+The first thing to do is to identify the input and output of the algorithm clearly. This can be done directly on the natural language description of the algorithm to implement. For instance, considering again the description of the algorithm mentioned above, we can highlight the input in bold and the output in italic:
+
+
+> Consider three different strings as input, i.e. **two words** and **a bibliographic entry** of a published paper. The algorithm must return the *number 2* if the bibliographic entry contains both words; the *number 1* if the bibliographic entry contains only one word; the *number 0* otherwise.
+
+
+### Emulate: execute the algorithm using several inputs
+
+Once identified the input and output material, it is crucial to understand which output should be returned by the algorithm according to different input values. The idea is to emulate the execution of an algorithm on specific input by following the informal instruction provided in the natural language description. This operation allows one to understand what should be the expected result of the algorithm execution before having a concrete implementation of the algorithm at hand. Therefore, this passage is essential to understand the expected behaviour of an algorithm.
+
+For instance, the following list introduces three different sets of input (in bold) and the related output that should be returned (in italic):
+
+* input: first word **"Shotton"**, second word **"Open"**, bibliographic entry **"Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a"** – output: *2*;
+* input: first word **"Citations"**, second word **"Science"**, bibliographic entry **"Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a"** – output: *1*;
+* input: first word **"References"**, second word **"1983"**, bibliographic entry **"Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a"** – output: *0*.
+
+
+### Fail: develop the test code and run it for the first time
+
+Following the template in {numref}`tdd-python-template`, now it is time to develop the first empty Python implementation of the algorithm. We will define only the input parameters and return nothing. We create the tests to check the implemented algorithm based on the emulation performed in the previous step. All such tests must fail since there is no Python implementation of the algorithm at this stage.
+
+{numref}`tdd-python-algorithm-first-fail` shows this first Python implementation and the related test for the example mentioned above. All the tests in the listing fail if we ask a computer to execute this Python code. It is possible to use [Python Tutor](http://pythontutor.com/visualize.html#code=%23%20Test%20case%20for%20the%20algorithm%0Adef%20test_contains_word%28first_word,%20second_word,%20bib_entry,%20expected%29%3A%0A%20%20%20%20result%20%3D%20contains_word%28first_word,%20second_word,%20bib_entry%29%0A%20%20%20%20if%20expected%20%3D%3D%20result%3A%0A%20%20%20%20%20%20%20%20return%20True%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%20False%0A%0A%0A%23%20Code%20of%20the%20algorithm%0Adef%20contains_word%28first_word,%20second_word,%20bib_entry%29%3A%0A%20%20%20%20return%0A%0A%0A%23%20Three%20different%20test%20runs%0Aprint%28test_contains_word%28%22Shotton%22,%20%22Open%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%202%29%29%0Aprint%28test_contains_word%28%22Citations%22,%20%22Science%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%201%29%29%0Aprint%28test_contains_word%28%22References%22,%20%221983%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%200%29%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false) to see a complete execution of the code in {numref}`tdd-python-algorithm-first-fail`.
+
+
+```{code-block} python
+---
+name: tdd-python-algorithm-first-fail
+linenos: True
+caption: |
+    The test code, the empty algorithm implementation in Python returning nothing, and three distinct runs of the test with different configurations and expected results. The source code of this listing is available {Download}`as part of the material of the course<./python/first_algorithm_empty.py>`.
+---
+# Test case for the algorithm
+def test_contains_word(first_word, second_word, bib_entry, expected):
+    result = contains_word(first_word, second_word, bib_entry)
+    if expected == result:
+        return True
+    else:
+        return False
+
+# Code of the algorithm
+def contains_word(first_word, second_word, bib_entry):
+    return
+
+# Three different test runs
+print(test_contains_word("Shotton", "Open",
+    "Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a", 2))
+print(test_contains_word("Citations", "Science",
+    "Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a", 1))
+print(test_contains_word("References", "1983",
+    "Shotton, D. (2013). Open Citations. Nature, 502: 295–297. doi:10.1038/502295a", 0))
+```
+
+
+### Draw: create the flowchart diagram of the algorithm
+
+Before implementing the algorithm in Python, it is helpful to visually sketch the instructions that the algorithm should define. To this end, we create a flowchart to address the specification provided in the natural language definition of the algorithm. For instance, {numref}`fc-algorithm` shows a flowchart of a possible implementation of the algorithm. 
+
+
+```{figure} images/04-fc-algorithm.png
+---
+name: fc-algorithm
+---
+The algorithm implemented with a flowchart.
+```
+
+
+### Assess: check if the flowchart returns the correct output
+
+After developing the flowchart, it is essential to test it by running it using the input defined in the step "Emulate". We can act as a computer by executing the instructions in the flowchart. If the output values returned are the ones we expected, we can proceed to the next step ("Translate"). Otherwise, if some execution returned an unexpected output, we need to go back to the previous step and change something in the flowchart.
+
+Executing the flowchart in {numref}`fc-algorithm` with the set of inputs mentioned in the example in step "Emulate", all the output returned by each execution are compliant with the expected outcomes.
+
+
+### Translate: convert the flowchart into Python
+
+In this step, we convert all the various instructions depicted by the flowchart widgets into particular Python constructs. In particular, the input widget should have been already converted into the parameters of the empty Python function developed in step "Fail". The output widgets must be translated by using the `return` instruction. An *if-else* conditional block must express each decision widget. At the same time, the process widgets must be defined as simple Python instructions (e.g. assignments to variables). {numref}`tdd-define-run` presents the full implementation of the algorithm in Python.
 
 
 ### Succeed: check if the Python code returns the correct output
 
-Finally, we should test the Python implementation of the algorithm according to the tests developed in step “Fail”. If all the output values returned by running the Python tests comply with the expected results, we have finished. Otherwise, if some execution returned an unexpected output, we need to go back to the previous step and change something in the Python implementation of the algorithm.
+Finally, we should test the Python implementation of the algorithm according to the tests developed in step "Fail". If all the output values returned by running the Python tests comply with the expected results, we have finished. Otherwise, if some execution returned an unexpected output, we need to go back to the previous step and change something in the Python implementation of the algorithm.
 
-All the tests introduced in {numref}`tdd-template-full-impl` are passed as expected. It is possible to use [Python Tutor](http://pythontutor.com/visualize.html#code=%23%20Test%20case%20for%20the%20algorithm%0Adef%20test_contains_word%28first_word,%20second_word,%20bib_entry,%20expected%29%3A%0A%20%20%20%20result%20%3D%20contains_word%28first_word,%20second_word,%20bib_entry%29%0A%20%20%20%20if%20expected%20%3D%3D%20result%3A%0A%20%20%20%20%20%20%20%20return%20True%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%20False%0A%0A%0A%23%20Code%20of%20the%20algorithm%0Adef%20contains_word%28first_word,%20second_word,%20bib_entry%29%3A%0A%20%20%20%20if%20first_word%20in%20bib_entry%20and%20second_word%20in%20bib_entry%3A%0A%20%20%20%20%20%20%20%20return%202%0A%20%20%20%20elif%20first_word%20in%20bib_entry%20or%20second_word%20in%20bib_entry%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%200%0A%0A%0A%23%20Three%20different%20test%20runs%0Aprint%28test_contains_word%28%22Shotton%22,%20%22Open%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%202%29%29%0Aprint%28test_contains_word%28%22Citations%22,%20%22Science%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%201%29%29%0Aprint%28test_contains_word%28%22References%22,%20%221983%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%200%29%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false) to see a complete execution of such code.
+All the tests initially introduced in {numref}`tdd-python-algorithm-first-fail` are passed as expected in the final code introduced in {numref}`tdd-define-run`. It is possible to use [Python Tutor](http://pythontutor.com/visualize.html#code=%23%20Test%20case%20for%20the%20algorithm%0Adef%20test_contains_word%28first_word,%20second_word,%20bib_entry,%20expected%29%3A%0A%20%20%20%20result%20%3D%20contains_word%28first_word,%20second_word,%20bib_entry%29%0A%20%20%20%20if%20expected%20%3D%3D%20result%3A%0A%20%20%20%20%20%20%20%20return%20True%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%20False%0A%0A%0A%23%20Code%20of%20the%20algorithm%0Adef%20contains_word%28first_word,%20second_word,%20bib_entry%29%3A%0A%20%20%20%20if%20first_word%20in%20bib_entry%20and%20second_word%20in%20bib_entry%3A%0A%20%20%20%20%20%20%20%20return%202%0A%20%20%20%20elif%20first_word%20in%20bib_entry%20or%20second_word%20in%20bib_entry%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%200%0A%0A%0A%23%20Three%20different%20test%20runs%0Aprint%28test_contains_word%28%22Shotton%22,%20%22Open%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%202%29%29%0Aprint%28test_contains_word%28%22Citations%22,%20%22Science%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%201%29%29%0Aprint%28test_contains_word%28%22References%22,%20%221983%22,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22Shotton,%20D.%20%282013%29.%20Open%20Citations.%20Nature,%20502%3A%20295%E2%80%93297.%20doi%3A10.1038/502295a%22,%200%29%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false) to see a complete execution of such code.
 
 
 
