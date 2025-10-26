@@ -47,7 +47,7 @@ In this course, we will use Python in its latest version, i.e. Python 3. Luckily
 * the introductory book *Dive into Python 3* {cite}`pilgrim_dive_2009`;
 * the [official documentation](https://docs.python.org/3/) of the language;
 * an [online platform for playing with Python 3](https://repl.it) without installing any software on your computer;
-* an [interactive online course](https://www.sololearn.com/Play/Python/) for learning Python from scratch;
+* an [interactive online course](https://www.sololearn.com/en/learn/courses/python-developer) for learning Python from scratch;
 * a book introducing all the basic Python features, which is particularly suited for Digital Humanities {cite}`tagliaferri_how_2018`;
 * another book entirely dedicated to problem solving and algorithms developed in Python {cite}`miller_problem_2011`;
 * a digital book that contains an introduction to [Python for the Humanities](http://www.karsdorp.io/python-course/).
