@@ -88,7 +88,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-4
 
-Write down a small function in Python that takes in input two booleans and returns `True` if both are false, otherwise it returns `False`.
+Write down a small function in Python that takes in two booleans as input and returns `True` if both are false, otherwise it returns `False`.
 
 ````{solution} part-2-ex-4
 :label: part-2-ex-4-sol
@@ -123,7 +123,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-5
 
-Write down a small function in Python that takes in input two boolean values and implements the *xor* operation, which returns `True` only when one of the input boolean is `True` and the other is `False`, and returns `False` otherwise.
+Write down a small function in Python that takes in two boolean values and implements the *xor* operation, which returns `True` only when one of the input boolean values is `True` and the other is `False`, and returns `False` otherwise.
 
 ````{solution} part-2-ex-5
 :label: part-2-ex-5-sol
@@ -158,7 +158,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-6
 
-Write down a small function in Python that takes in input two positive integers and returns the result of the division (Python operator: `/`) of the smaller one over the greater one.
+Write down a small function in Python that takes two positive integers as input and returns the result of the division (Python operator: `/`) of the smaller one over the greater one.
 
 ````{solution} part-2-ex-6
 :label: part-2-ex-6-sol
@@ -204,7 +204,7 @@ def t(x, y):
 print(t(5, t(3 + 2, 2)))
 ```
 
-Which value will be printed on screen if we execute such code?
+Which value will be printed on the screen if we execute such code?
 
 ````{solution} part-2-ex-7
 :label: part-2-ex-7-sol
