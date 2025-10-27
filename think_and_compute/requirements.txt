@@ -2,5 +2,6 @@ jupyter-book
 matplotlib
 numpy
 sphinx-exercise
+pandas
 rdflib
 sparql_dataframe
