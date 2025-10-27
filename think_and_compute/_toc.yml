@@ -42,19 +42,16 @@ parts:
     - file: 12-backtracking
     - file: 13-graphs
     - file: 14-greedy
-  # - caption: "Part 5: Managing Data in Python"
-    # numbered: False
-    # chapters:
-    # - file: 15-what-is-a-datum
-    # - file: 16-data-models
-    # - file: 17-pandas
-  # - caption: "Part 6: Databases"
-    # numbered: False
-    # chapters:
-    # - file: 18-relational-database
-    # - file: 19-graph-database
-    # - file: 20-querying-databases
-  # - caption: "Part 7: Descriptive Statistics"
-    # numbered: False
-    # chapters:
-    # - file: 21-Summarise and visualise
+  - caption: "Part 5: Managing Data in Python"
+    numbered: False
+    chapters:
+    - file: 15-what-is-a-datum
+    - file: 16-data-models
+    - file: 17-pandas
+    - file: 18-statistics
+  - caption: "Part 6: Databases"
+    numbered: False
+    chapters:
+    - file: 19-relational-database
+    - file: 20-graph-database
+    - file: 21-querying-databases
