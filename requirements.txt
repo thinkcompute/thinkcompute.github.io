@@ -5,3 +5,6 @@ ghp-import
 sphinx-exercise
 watchdog[watchmedo]
 python-dateutil
+pandas
+rdflib
+sparql_dataframe
