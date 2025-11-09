@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this book, please cite it as below."
 title: "Think and Compute: a Primer for Digital Humanists"
-type: book
+type: software
 authors:
   - given-names: Silvio
     family-names: Peroni
@@ -21,6 +21,26 @@ authors:
 date-released: 2025-09-01
 repository-code: "https://github.com/thinkcompute/thinkcompute.github.io"
 url: "https://thinkcompute.github.io"
+preferred-citation:
+  type: book
+  title: "Think and Compute: a Primer for Digital Humanists"
+  authors:
+    - given-names: Silvio
+      family-names: Peroni
+      email: silvio.peroni@unibo.it
+      affiliation: University of Bologna
+      orcid: "https://orcid.org/0000-0003-0530-4305"
+    - given-names: Ivan
+      family-names: Heibi
+      email: ivan.heibi2@unibo.it
+      affiliation: University of Bologna
+      orcid: "https://orcid.org/0000-0001-5366-5194"
+    - given-names: Arcangelo
+      family-names: Massari
+      email: arcangelo.massari@unibo.it
+      affiliation: University of Bologna
+      orcid: "https://orcid.org/0000-0002-8420-0696"
+  year: 2025
 abstract: >-
   This is the official book written by Silvio Peroni, with
   contributions from Ivan Heibi and Arcangelo Massari, for
