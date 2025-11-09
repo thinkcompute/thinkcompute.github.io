@@ -309,6 +309,53 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-2-ex-11
+
+Write a sequence of instructions in Python to create a list with the following elements ordered alphabetically: `"​Harry"`​, `"​Draco"`​, `"​Hermione"`​, `​"​Ron"`​, `"​Severus"`​.
+
+````{solution} part-2-ex-11
+:label: part-2-ex-11-sol
+:class: dropdown
+
+```python
+my_list = list()
+my_list.append("Draco")
+my_list.append("Harry")
+my_list.append("Hermione")
+my_list.append("Ron")
+my_list.append("Severus")
+```
+````
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-first-list.py>`. You can run it executing the command `python ex-first-list.py` in a shell.
+`````
+
+`````{exercise}
+:label: part-2-ex-12
+
+Consider to have a stack obtained by processing, one by one, the elements included in the list of the first exercise, i.e. `my_stack = deque(["Draco", "Harry", "Hermione", "Ron", "Severus"])`. Describe the status of my_stack after the execution of each of the following operations: `my_stack.pop()`, `my_stack.pop()`, `my_stack.append("Voldemort")`.
+
+````{solution} part-2-ex-12
+:label: part-2-ex-12-sol
+:class: dropdown
+
+The stack will contain the items `"Draco"`, `"Harry"`, `"Hermione"`, and  `"Voldemort"`: `deque(["Draco", "Harry", "Hermione", "Voldemort"])`.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-13
+
+Consider to have a queue obtained by processing, one by one, the elements included in the list of the first exercise, i.e. `my_queue = deque(["Draco", "Harry", "Hermione", "Ron", "Severus"])`. Describe the status of my_queue after the execution of each of the following operations: `my_queue.popleft()`, `my_queue.append("Voldemort")`, `my_queue.popleft()`.
+
+````{solution} part-2-ex-13
+:label: part-2-ex-13-sol
+:class: dropdown
+
+The queue will contain the items `"Hermione"`, `"Ron"`, `"Severus"`, and  `"Voldemort"`: `deque(["Hermione", "Ron", "Severus", "Voldemort"])`.
+````
+`````
 
 ## References
 
