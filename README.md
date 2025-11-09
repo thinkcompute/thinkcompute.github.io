@@ -9,10 +9,11 @@ TODO
 If you'd like to develop and/or build the Think and Compute: a Primer for Digital Humanists book, you should:
 
 1. Clone this repository
-2. Run `pip install -r requirements.txt` (it is recommended you do this within a virtual environment)
-3. (Optional) Edit the books source files located in the `think_and_compute/` directory
-4. Run `jupyter-book clean think_and_compute/` to remove any existing builds
-5. Run `jupyter-book build think_and_compute/`
+2. Install uv (if not already installed): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+3. Run `uv sync` to install all dependencies
+4. (Optional) Edit the books source files located in the `think_and_compute/` directory
+5. Run `uv run jupyter-book clean think_and_compute/` to remove any existing builds
+6. Run `uv run jupyter-book build think_and_compute/`
 
 A fully-rendered HTML version of the book will be built in `think_and_compute/_build/html/`.
 

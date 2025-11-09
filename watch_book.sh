@@ -6,10 +6,10 @@ echo "Press Ctrl+C to stop"
 echo ""
 
 echo "Performing initial build..."
-jupyter-book build think_and_compute
+uv run jupyter-book build think_and_compute
 
-watchmedo shell-command \
+uv run watchmedo shell-command \
     --patterns="*.md;*.ipynb;*.py;*.yml;*.yaml;*.bib" \
     --recursive \
-    --command='echo "Changes detected, rebuilding..." && jupyter-book build think_and_compute' \
+    --command='echo "Changes detected, rebuilding..." && uv run jupyter-book build think_and_compute' \
     think_and_compute/
