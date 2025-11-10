@@ -357,6 +357,87 @@ The queue will contain the items `"Hermione"`, `"Ron"`, `"Severus"`, and  `"Vold
 ````
 `````
 
+`````{exercise}
+:label: part-2-ex-14
+
+Write down a small function in Python that takes in input two strings and returns `-1` if the first string is longer than the second string, `0` if the strings have the same length, and `1` if the second string is longer than the first string.
+
+````{solution} part-2-ex-14
+:label: part-2-ex-14-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s1, s2, expected):
+    result = f(s1, s2)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s1, s2):
+    if len(s1) > len(s2):
+        return -1
+    elif len(s1) < len(s2):
+        return 1
+    else:
+        return 0
+
+
+# Tests
+print(test_f("hello", "hi", -1))
+print(test_f("hi", "hello", 1))
+print(test_f("hello", "earth", 0))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-greater_string.py>`. You can run it executing the command `python ex-dev-greater_string.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-15
+
+Write down a small function in Python that takes in input two strings and returns `True` if they are identical, `False` if they are not identical but contains the same number of characters, otherwise it returns the shorter one.
+
+````{solution} part-2-ex-15
+:label: part-2-ex-15-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s, t, expected):
+    result = f(s, t)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s, t):
+    if s == t:
+        return True
+    elif len(s) == len(t):
+        return False
+    elif len(s) < len(t):
+        return s
+    else:
+        return t
+
+
+# Tests
+print(test_f("ciao", "ciao", True))
+print(test_f("ciao", "oaic", False))
+print(test_f("ciao", "me", "me"))
+print(test_f("me", "ciao", "me"))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-check_string.py>`. You can run it executing the command `python ex-dev-check_string.py` in a shell.
+````
+`````
+
 ## References
 
 ```{bibliography}
