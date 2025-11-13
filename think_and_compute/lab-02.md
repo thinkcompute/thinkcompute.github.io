@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (ch-lab-02)=
-# Python basics - Variables, types, and operators
+# Variables, types, and operators
 
 ```{admonition} Learning objectives
 :class: tip
@@ -609,3 +609,8 @@ In this lab, you learned:
 - ✅ **Assignment operators**: `+=`, `-=`, `*=`, `/=`
 - ✅ **String methods**: `.upper()`, `.lower()`, `.strip()`, `.replace()`, `.split()`
 - ✅ **String formatting**: f-strings, `.format()`, `%`
+
+```{admonition} Next lab
+:class: tip
+In **Lab 03**, you'll learn about lists, nested lists, for loops, conditional statements (if-else-elif), and how to define your own functions. You'll combine these concepts to build more complex programs.
+```
