@@ -751,6 +751,7 @@ In **Lab 04**, you'll learn about unordered data structures (sets and dictionari
 
 ## Additional resources
 
-- [Python Lists Documentation](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
-- [Python Functions Documentation](https://docs.python.org/3/tutorial/controlflow.html#defining-functions)
-- [Python Conditionals Documentation](https://docs.python.org/3/tutorial/controlflow.html#if-statements)
+- [Python lists documentation](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+- [Python for loops documentation](https://docs.python.org/3/tutorial/controlflow.html#for-statements)
+- [Python functions documentation](https://docs.python.org/3/tutorial/controlflow.html#defining-functions)
+- [Python conditionals documentation](https://docs.python.org/3/tutorial/controlflow.html#if-statements)
