@@ -615,7 +615,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-22
 
-Write down a small function in Python that takes in input a number and a list of numbers and return `True` if the sum of all the numbers in the input list is equal to the input number, otherwise it returns `False`.
+Write down a small function in Python that takes in input a number and a list of numbers and returns `True` if the sum of all the numbers in the input list is equal to the input number, otherwise it returns `False`.
 
 ````{solution} part-2-ex-22
 :label: part-2-ex-22-sol
@@ -695,7 +695,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-24
 
-Write down a small function in Python that takes in input three strings and returns a tuple of two items containing the two longer input strings.
+Write down a small function in Python that takes in three strings as input and returns a tuple of two items containing the two longest input strings.
 
 ````{solution} part-2-ex-24
 :label: part-2-ex-24-sol
@@ -739,7 +739,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-25
 
-Write in Python the function `def my_enumerate(input_list)` which behaves like the built-in function `enumerate()` introduced in [Section "Linear search"](./06-brute-force.md#linear-search) and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `enumerate()` in the implementation.
+Write in Python the function `def my_enumerate(input_list)` which behaves like the built-in function `enumerate()` introduced in [Section "Linear search"](./06-brute-force.md#linear-search) of Chapter {ref}`ch-brute-force` and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `enumerate()` in the implementation.
 
 ````{solution} part-2-ex-25
 :label: part-2-ex-25-sol
@@ -775,7 +775,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-26
 
-Write in Python the function `def my_range(stop_number)` which behave like the built-in function `range()` introduced in [Section "Insertion sort"](./06-brute-force.md#insertion-sort) and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `range()` in the implementation.
+Write in Python the function `def my_range(stop_number)` which behaves like the built-in function `range()` introduced in [Section "Insertion sort"](./06-brute-force.md#insertion-sort) of Chapter {ref}`ch-brute-force` and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `range()` in the implementation.
 
 ````{solution} part-2-ex-26
 :label: part-2-ex-26-sol
@@ -813,7 +813,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-27
 
-Write in Python the function `def my_reversed(input_list)` which behave like the built-in function `reversed()` introduced in [Section "Insertion sort"](./06-brute-force.md#insertion-sort) and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `reversed()` in the implementation.
+Write in Python the function `def my_reversed(input_list)` which behaves like the built-in function `reversed()` introduced in [Section "Insertion sort"](./06-brute-force.md#insertion-sort) of Chapter {ref}`ch-brute-force` and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `reversed()` in the implementation.
 
 ````{solution} part-2-ex-27
 :label: part-2-ex-27-sol
