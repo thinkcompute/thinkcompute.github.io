@@ -438,6 +438,416 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-2-ex-16
+
+Write down the execution steps of `linear_search(list(["Coraline", "American Gods", "The Graveyard Book", "Good Omens", "Neverwhere"]), "The Sandman")`, as explained in a [listing](./06-brute-force.md#py-linear-search-execution) of Chapter {ref}`ch-brute-force`. 
+
+````{solution} part-2-ex-16
+:label: part-2-ex-16-sol
+:class: dropdown
+
+The instructions in the *for-each* loop used in the function will be executed five times (i.e. for all the items in `input_list`), since no item will contain `"The Sandman"` as value. Thus, *None* will be returned. 
+
+The various iterations of the *for-each* loop will be as follows:
+
+1. The variable `position` will be set to `0`, and the variable `item` will be set to `"Coraline"`. The condition defined in the *if* statement will be `False` since `"Coraline"` is not equal to `"The Sandman"`, which is the value to search assigned to the variable `value_to_search`. Thus, the *return* instruction under the *if* block will not be executed.
+2. The variable `position` will be set to `1`, and the variable `item` will be set to `"American Gods"`. The condition defined in the *if* statement will be `False` since `"American Gods"` is not equal to `"The Sandman"`, which is the value to search assigned to the variable `value_to_search`. Thus, the *return* instruction under the *if* block will not be executed.
+3. The variable `position` will be set to `2`, and the variable `item` will be set to `"The Graveyard Book"`. The condition defined in the *if* statement will be `False` since `"The Graveyard Book"` is not equal to `"The Sandman"`, which is the value to search assigned to the variable `value_to_search`. Thus, the *return* instruction under the *if* block will not be executed.
+4. The variable `position` will be set to `3`, and the variable `item` will be set to `"Good Omens"`. The condition defined in the *if* statement will be `False` since `"Good Omens"` is not equal to `"The Sandman"`, which is the value to search assigned to the variable `value_to_search`. Thus, the *return* instruction under the *if* block will not be executed.
+5. The variable `position` will be set to `4`, and the variable `item` will be set to `"Neverwhere"`. The condition defined in the *if* statement will be `False` since `"Neverwhere"` is not equal to `"The Sandman"`, which is the value to search assigned to the variable `value_to_search`. Thus, the *return* instruction under the *if* block will not be executed.
+
+Since no *return* instruction will be executed, `None` will be implicitly returned by the function.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-17
+
+Create a test case for the algorithm introduced in a [listing](./06-brute-force.md#py-foreach-example) of Chapter {ref}`ch-brute-force`.
+
+````{solution} part-2-ex-17
+:label: part-2-ex-17-sol
+:class: dropdown
+
+```python
+from collections import deque
+
+
+# Test case for the function
+def test_stack_from_list(input_list, expected):
+    result = stack_from_list(input_list)
+    if expected == result:
+        return True
+    else:
+        return False
+
+# Code of the function
+def stack_from_list(input_list):
+    output_stack = deque()  # the stack to create
+
+    # Iterate each element in the input list and add it to the stack
+    for item in input_list:
+        output_stack.append(item)
+
+    return output_stack
+
+
+# Three different test runs
+print(test_stack_from_list([], deque()))
+print(test_stack_from_list([1, 2, 3, 4, 5], deque([1, 2, 3, 4, 5])))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-test_stack_from_list.py>`. You can run it executing the command `python ex-test_stack_from_list.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-18
+
+Consider the following function in Python:
+
+```python
+def ln(inp, val):
+    for p, i in enumerate(inp):
+        if i != val:
+            return p
+```
+
+Write down the value that is returned by the function above when called as follows: `ln(["a", "b", "c"], "b")`
+
+````{solution} part-2-ex-18
+:label: part-2-ex-18-sol
+:class: dropdown
+
+```python
+0
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-falsify_linear_search.py>`. You can run it executing the command `python ex-und-falsify_linear_search.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-19
+
+Consider the following Python function:
+
+```python
+def f(n):
+    result = list()
+    while n > 0:
+        result.append(n)
+        n = n -1
+    return len(result)
+```
+
+What is the result of the execution of `f(3)`?
+
+````{solution} part-2-ex-19
+:label: part-2-ex-19-sol
+:class: dropdown
+
+```python
+3
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-listing_integers.py>`. You can run it executing the command `python ex-und-listing_integers.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-20
+
+Consider the following Python function:
+
+```python
+def f(s1, s2):
+    result = True
+    for c in s1:
+        result = result and (c in s2)
+    return result
+```
+
+What is the result of the execution of `f("riddle", "dialer")`?
+
+````{solution} part-2-ex-20
+:label: part-2-ex-20-sol
+:class: dropdown
+
+```python
+True
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-chars_in_strings.py>`. You can run it executing the command `python ex-und-chars_in_strings.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-21
+
+Consider the following Python function:
+
+```python
+def f(x):
+    r = 0
+    x_len = len(x)
+    while x_len > 0:
+        r = r + x_len
+        x_len = x_len - 1
+    return r
+```
+
+What is the result of the execution of `f("me")`?
+
+````{solution} part-2-ex-21
+:label: part-2-ex-21-sol
+:class: dropdown
+
+```python
+3
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-working_with_len.py>`. You can run it executing the command `python ex-und-working_with_len.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-22
+
+Write down a small function in Python that takes in input a number and a list of numbers and return `True` if the sum of all the numbers in the input list is equal to the input number, otherwise it returns `False`.
+
+````{solution} part-2-ex-22
+:label: part-2-ex-22-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(n, n_list, expected):
+    result = f(n, n_list)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(n, n_list):
+    result = 0
+    for i in n_list:
+        result += i
+    return result == n
+
+
+# Tests
+print(test_f(10, [1, 2, 3, 4], True))
+print(test_f(10, [0, 1, 2, 3, 4], True))
+print(test_f(10, [1, 2, 3], False))
+print(test_f(10, [1, 2, 3, 4, 5], False))
+print(test_f(10, [], False))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-sum-numbers.py>`. You can run it executing the command `python ex-dev-sum-numbers.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-23
+
+Write down a small function in Python that takes in input a string and a boolean and return a list of the *vowel* characters (i.e. those matching with any of the following ones: `"a"`, `"e"`, `"i"`, `"o"`, `"u"`) in the input string if the input boolean is `True`, otherwise (i.e. the input boolean is `False`) it returns a list of the characters that are *not* vowels.
+
+````{solution} part-2-ex-23
+:label: part-2-ex-23-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s, b, expected):
+    result = f(s, b)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s, b):
+    result = list()
+
+    for c in s:
+        if b and c in "aeiou":
+            result.append(c)
+        elif not b and c not in "aeiou":
+            result.append(c)
+
+    return result
+
+
+# Tests
+print(test_f("john doe", True, ["o", "o", "e"]))
+print(test_f("john doe", False, ["j", "h", "n", " ", "d"]))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-check_vowels.py>`. You can run it executing the command `python ex-dev-check_vowels.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-24
+
+Write down a small function in Python that takes in input three strings and returns a tuple of two items containing the two longer input strings.
+
+````{solution} part-2-ex-24
+:label: part-2-ex-24-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s1, s2, s3, expected):
+    result = f(s1, s2, s3)
+    if sorted(expected) == sorted(result):
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s1, s2, s3):
+    l_s1 = len(s1)
+    l_s2 = len(s2)
+    l_s3 = len(s3)
+
+    if l_s1 <= l_s2 and l_s1 <= l_s3:
+        return s2, s3
+    elif l_s2 <= l_s1 and l_s2 <= l_s3:
+        return s1, s3
+    else:
+        return s1, s2
+
+
+# Tests
+print(test_f("ciao", "hello", "hi", ("ciao", "hello")))
+print(test_f("ciao", "hi", "hi", ("ciao", "hi")))
+print(test_f("hi", "hi", "hi", ("hi", "hi")))
+print(test_f("hi", "hi", "ciao", ("hi", "ciao")))
+``` 
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-measuring_strings.py>`. You can run it executing the command `python ex-dev-measuring_strings.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-25
+
+Write in Python the function `def my_enumerate(input_list)` which behaves like the built-in function `enumerate()` introduced in [Section "Linear search"](./06-brute-force.md#linear-search) and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `enumerate()` in the implementation.
+
+````{solution} part-2-ex-25
+:label: part-2-ex-25-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_my_enumerate(input_list, expected):
+    result = my_enumerate(input_list)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def my_enumerate(input_list):
+    l = list()
+    for i in range(len(input_list)):
+        l.append((i, input_list[i]))
+    return l
+
+
+# Tests
+print(test_my_enumerate([], []))
+print(test_my_enumerate(["a", "b", "c"], [(0, "a"), (1, "b"), (2, "c")]))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-my_enumerate.py>`. You can run it executing the command `python ex-my_enumerate.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-26
+
+Write in Python the function `def my_range(stop_number)` which behave like the built-in function `range()` introduced in [Section "Insertion sort"](./06-brute-force.md#insertion-sort) and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `range()` in the implementation.
+
+````{solution} part-2-ex-26
+:label: part-2-ex-26-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_my_range(stop_number, expected):
+    result = my_range(stop_number)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def my_range(stop_number):
+    l = list()
+    while stop_number > 0:
+        stop_number = stop_number - 1
+        l.insert(0, stop_number)
+    return l
+
+
+# Tests
+print(test_my_range(0, []))
+print(test_my_range(1, [0]))
+print(test_my_range(4, [0, 1, 2, 3]))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-my_range.py>`. You can run it executing the command `python ex-my_range.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-27
+
+Write in Python the function `def my_reversed(input_list)` which behave like the built-in function `reversed()` introduced in [Section "Insertion sort"](./06-brute-force.md#insertion-sort) and returns a proper list, and accompany the function with the related test case. It is not possible to use the built-in function `reversed()` in the implementation.
+
+````{solution} part-2-ex-27
+:label: part-2-ex-27-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_my_reversed(input_list, expected):
+    result = my_reversed(input_list)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def my_reversed(input_list):
+    l = list()
+    for item in input_list:
+        l.insert(0, item)
+    return l
+
+
+# Tests
+print(test_my_reversed([], []))
+print(test_my_reversed([1], [1]))
+print(test_my_reversed([1, 2, 4, 3, 4, 7, 2], [2, 7, 4, 3, 4, 2, 1]))
+print(test_my_reversed(["a", "b", "c", "d"], ["d", "c", "b", "a"]))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-my_reversed.py>`. You can run it executing the command `python ex-my_reversed.py` in a shell.
+````
+`````
+
 ## References
 
 ```{bibliography}
