@@ -746,7 +746,7 @@ In this lab, you learned:
 
 ```{admonition} Next lab
 :class: tip
-In **Lab 04**, you'll learn about unordered data structures (sets and dictionaries), which are perfect for organizing data that doesn't need a specific order.
+In **Lab 04**, you will learn about sets and dictionaries.
 ```
 
 ## Additional resources

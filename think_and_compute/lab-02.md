@@ -469,6 +469,11 @@ message2 = f"{name} was excommunicated at age {excommunication_age} for arguing 
 print(message2)
 ```
 
+```{admonition} What does the "f" in f-strings mean?
+:class: note
+The "f" stands for **"formatted"**. These are officially called **formatted string literals** and were introduced in Python 3.6 ([PEP 498](https://peps.python.org/pep-0498/)).
+```
+
 ```{code-cell} python
 # F-strings can include expressions
 philosopher = "Giordano Bruno"
