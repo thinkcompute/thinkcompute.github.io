@@ -1145,9 +1145,3 @@ The source Python file of the code shown above is available {Download}`as part o
 ```{bibliography}
 :filter: docname in docnames
 ```
-
-dev
-9 11 19 21
-
-und
-12 15
