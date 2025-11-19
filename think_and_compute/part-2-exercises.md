@@ -848,8 +848,306 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-2-ex-28
+
+Write a code in Python to create a set of the following elements: `"​Bilbo"`, `"​Frodo"`, `"​Sam"`, `"​Pippin"`, `"​Merry"`. 
+
+````{solution} part-2-ex-28
+:label: part-2-ex-28-sol
+:class: dropdown
+
+```python
+my_set = set()
+my_set.add("Bilbo")
+my_set.add("Frodo")
+my_set.add("Sam")
+my_set.add("Pippin")
+my_set.add("Merry")
+```
+````
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-create_set.py>`. You can run it executing the command `python ex-create_set.py` in a shell.
+`````
+
+`````{exercise}
+:label: part-2-ex-29
+
+Consider the set created in the first exercise, stored in the variable `my_set`. Describe the status of ​`my_set` after the execution of each of the following operations: 
+
+```python
+​my_set.remove("Bilbo")
+my_set.add("Galadriel")
+​my_set.update(set({"Saruman", "Frodo", "Gandalf"}))
+```
+
+````{solution} part-2-ex-29
+:label: part-2-ex-29-sol
+:class: dropdown
+
+The set will contain the elements `"​Frodo"`, `"​Sam"`, `"​Pippin"`, `"​Merry"`, `"Galadriel"`, `"Saruman"`, `"Gandalf"`.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-30
+
+Suppose to organise some of the elements in the set returned by the second exercise in two different sets: `set_hobbit` that refers to the set `set({"Frodo", "Sam", "Pippin", "Merry"})`, and `set_magician` defined as `set({"Saruman", "Gandalf"})`. Create a dictionary containing two pairs: one that associates the set of hobbits with the key `"hobbit"`, and the other that associates the set of magicians with the key `"magician"`. 
+
+````{solution} part-2-ex-30
+:label: part-2-ex-30-sol
+:class: dropdown
+
+```python
+set_hobbit = set()
+set_hobbit.add("Frodo")
+set_hobbit.add("Sam")
+set_hobbit.add("Pippin")
+set_hobbit.add("Merry")
+
+set_magician = set()
+set_magician.add("Saruman")
+set_magician.add("Gandalf")
+
+my_dict = dict()
+my_dict["hobbit"] = set_hobbit
+my_dict["magician"] = set_magician
+```
+````
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-create_dict_of_sets.py>`. You can run it executing the command `python ex-create_dict_of_sets.py` in a shell.
+`````
+
+`````{exercise}
+:label: part-2-ex-31
+
+Consider the following Python function:
+
+```python
+def g(x):
+    r = set()
+    idx = 0
+    for it in x:
+        if it not in r:
+            r.add(idx)
+        idx = idx + 1
+    return r
+```
+
+What is the result of the execution of `g([5, 7, 7, 2, 5, 7])`?
+
+````{solution} part-2-ex-31
+:label: part-2-ex-31-sol
+:class: dropdown
+
+```python
+{0, 1, 2, 4, 5}
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-set_of_integers.py>`. You can run it executing the command `python ex-und-set_of_integers.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-32
+
+Consider the following Python function:
+
+```python
+def g(s):
+    result = dict()
+    for c in s:
+        if c not in result:
+            result[c] = 0
+        result[c] = result[c] + 1
+    return result.get("o")
+```
+
+What is the result of the execution of `g("Bologna")`?
+
+````{solution} part-2-ex-32
+:label: part-2-ex-32-sol
+:class: dropdown
+
+```python
+2
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-dict_of_integer_values.py>`. You can run it executing the command `python ex-und-dict_of_integer_values.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-33
+
+Write down a small function in Python that takes in input two strings and returns a set of all the characters they have in common.
+
+````{solution} part-2-ex-33
+:label: part-2-ex-33-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s1, s2, expected):
+    result = f(s1, s2)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s1, s2):
+    result = set()
+
+    for c in s1:
+        if c in s2:
+            result.add(c)
+
+    return result
+
+
+# Tests
+print(test_f("anna", "elsa", {"a"}))
+print(test_f("ron", "hermione", {"r", "o", "n"}))
+print(test_f("", "hello", set()))
+print(test_f("dad", "mum", set()))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-set_of_matched_chars.py>`. You can run it executing the command `python ex-dev-set_of_matched_chars.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-34
+
+Write down a small function in Python that takes in input two strings and returns the set of all the digit characters they do not have in common.
+
+````{solution} part-2-ex-34
+:label: part-2-ex-34-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s, n, expected):
+    result = f(s, n)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s1, s2):
+    result = set()
+    for d in "0123456789":
+        if (d in s1 and d not in s2) or (d not in s1 and d in s2):
+            result.add(d)
+    return result
+
+
+# Tests
+print(test_f("alice", "bob", set()))
+print(test_f("2 books and 1 pen", "trees and 2 apples", {"1"}))
+print(test_f("odd number: 1, 3, 5, 7, 9", "even number: 2, 4, 6, 8", {"1", "2", "3", "4", "5", "6", "7", "8", "9"}))
+print(test_f("odd number: 1, 3, 5, 7, 9", "prime number: 1, 2, 3, 5, 7", {"2", "9"}))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-set_digits.py>`. You can run it executing the command `python ex-dev-set_digits.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-35
+
+Write down a small function in Python that takes in input two strings and returns a set containing the characters that are not contained in both the strings.
+
+````{solution} part-2-ex-35
+:label: part-2-ex-35-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s1, s2, expected):
+    result = f(s1, s2)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s1, s2):
+    result = set()
+
+    for c in s1 + s2:
+        if not (c in s1 and c in s2):
+            result.add(c)
+
+    return result
+
+
+# Tests
+print(test_f("", "", set()))
+print(test_f("hello", "hello", set()))
+print(test_f("hello", "", {"h", "e", "l", "o"}))
+print(test_f("", "hello", {"h", "e", "l", "o"}))
+print(test_f("hello", "hi", {"i", "e", "l", "o"}))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-chars_not_in_both_strings.py>`. You can run it executing the command `python ex-dev-chars_not_in_both_strings.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-36
+
+Write down a small function in Python that takes in input two strings and returns the number of characters the two strings have in common.
+
+````{solution} part-2-ex-36
+:label: part-2-ex-36-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_f(s1, s2, expected):
+    result = f(s1, s2)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def f(s1, s2):
+    result = set()
+
+    for c in s1:
+        if c in s2:
+            result.add(c)
+    
+    return len(result)
+
+
+# Tests
+print(test_f("hello", "loch", 3))
+print(test_f("hello", "hi", 1))
+print(test_f("hello", "hello", 4))
+print(test_f("hello", "try", 0))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-chars_in_both_strings.py>`. You can run it executing the command `python ex-dev-chars_in_both_strings.py` in a shell.
+````
+`````
+
 ## References
 
 ```{bibliography}
 :filter: docname in docnames
 ```
+
+dev
+9 11 19 21
+
+und
+12 15
