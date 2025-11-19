@@ -1021,7 +1021,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-34
 
-Write down a small function in Python that takes in input two strings and returns the set of all the digit characters they do not have in common.
+Write down a small function in Python that takes in two strings as input and returns the set of all the digit characters they do not have in common.
 
 ````{solution} part-2-ex-34
 :label: part-2-ex-34-sol
@@ -1060,7 +1060,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-35
 
-Write down a small function in Python that takes in input two strings and returns a set containing the characters that are not contained in both the strings.
+Write down a small function in Python that takes in two strings as input and returns a set containing the characters that are not contained in both strings.
 
 ````{solution} part-2-ex-35
 :label: part-2-ex-35-sol
@@ -1102,7 +1102,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-2-ex-36
 
-Write down a small function in Python that takes in input two strings and returns the number of characters the two strings have in common.
+Write down a small function in Python that takes in two strings as input and returns the number of characters the two strings have in common.
 
 ````{solution} part-2-ex-36
 :label: part-2-ex-36-sol
