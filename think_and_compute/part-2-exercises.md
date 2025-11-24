@@ -1140,6 +1140,167 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-2-ex-37
+
+Consider the following Python function:
+
+```python
+def f(s1, s2, n):
+    if s1 < s2:
+        return n
+    else:
+        return f(s2, s1, n * -1)
+```
+
+What is the result of the execution of `f("mickey","donald",7)`?
+
+````{solution} part-2-ex-37
+:label: part-2-ex-37-sol
+:class: dropdown
+
+```python
+-7
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-recursive_check_strings.py>`. You can run it executing the command `python ex-und-recursive_check_strings.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-38
+
+Define a recursive function `def exponentiation(base_number, exponent)` for implementing the exponentiation operation. Test (by implementing the related test case) it on the following inputs: 3<sup>4</sup>, 17<sup>1</sup>, and 2<sup>0</sup>. 
+
+````{solution} part-2-ex-38
+:label: part-2-ex-38-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_exponentation(base_number, exponent, expected):
+    result = exponentation(base_number, exponent)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def exponentation(base_number, exponent):
+    if exponent == 0:
+        return 1
+    else:
+        return base_number * exponentation(base_number, exponent - 1)
+
+
+# Tests
+print(test_exponentation(3, 4, 81))
+print(test_exponentation(17, 1, 17))
+print(test_exponentation(2, 0, 1))
+print(test_exponentation(0, 15, 0))
+print(test_exponentation(0, 0, 1))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-exponentation.py>`. You can run it executing the command `python ex-exponentation.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-39
+
+Define a recursive function `def fib(n)` that implements the algorithm to find the n<sup>th</sup> Fibonacci number. In particular, if `n` is less than or equal to 0, then 0 is returned as a result. Otherwise, if `n` is equal to 1, then 1 is returned. Otherwise, return the sum of the same function called with `n-1` and `n-2` as input. Please accompany the function with the related test case. 
+
+````{solution} part-2-ex-39
+:label: part-2-ex-39-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_fib(n, expected):
+    result = fib(n)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def fib(n):
+    if n <= 0:
+        return 0
+    if n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+
+
+# Tests
+print(test_fib(0, 0))
+print(test_fib(1, 1))
+print(test_fib(2, 1))
+print(test_fib(7, 13))
+print(test_fib(-15, 0))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-fib_recursive.py>`. You can run it executing the command `python ex-fib_recursive.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-2-ex-40
+
+The variable `my_mat_list` is a list of the ten integer numbers (each one can assume a value between 0 and 9, inclusive), and the variable `my_n_odd` is the number of odd numbers in the list. Study the execution of the following function passing `my_mat_list` and `my_n_odd`, as input (i.e. `f(my_mat_list, my_n_odd)`).
+
+```python
+def f(mat_list, n_odd):
+    if n_odd <= 0 or len(mat_list) == 0:
+        return 0
+    else:
+        v = 0
+        result = list()
+
+        for i in mat_list:
+            if v > 0:
+                result.append(i)
+            if i > 0 and v == 0:
+                v = i
+
+        return v + f(result, n_odd - 1)
+```
+
+````{solution} part-2-ex-40
+:label: part-2-ex-40-sol
+:class: dropdown
+
+The function `f` is a recursive function which act on a selection of the numbers included in the input `mat_list` parameter. In particular, `0` is returned either in the case it does not contain any odd number or there are no more items in the input list. 
+
+In case these two cases do not apply, a recursive step is executed. Before executing the recursion, though, a list (stored in the variable `result`) of numbers greater than `0` is created as a result of the execution of a *for each* loop that parses all the numbers in the input list. In addition, as a consequence of this loop, a variable `v` is also initialised and contains the first positive number encountered while parsing the input list. 
+
+Then, the recursive step is applied. In particular, the code returns the sum of the content of the variable `v` just created with the result of the execution of the function `f` passing the variable `result` and the number of odd numbers provided in input minus 1 as input.
+
+For instance, the execution of the function
+
+```python
+f([0, 0, 0, 1, 0, 0, 5, 2, 0, 0], 2)
+```
+
+proceeds as follows:
+
+1. According to the input specified, the `else` block is executed. After the execution of the *for each* loop, the variable `v` is set to `1` while the `result` list contains `[0, 0, 5, 2, 0, 0]`. Then, the first recursive call is executed passing the list in `result` and `1` as input.
+
+2. The first recursive call is executed and, since the condition of the `if` block is `False`, the execution continues to the `else` block. After the execution of the *for each* loop, the variable `v` is set to `5` and the `result` list contains `[2, 0, 0]`. Then, the second recursive call is executed passing the list in `result` and `0` as input.
+
+3. The second recursive call is executed and, since the condition of the `if` block is `True` (i.e. `n_odd` is equal to `0`), `0` is returned by the function.
+
+4. The first recursive call receives back from the second recursive call the result of its execution (i.e. `0`). It sums it with the value in `v` (i.e. `5`) and returns the final result (i.e. `5`).
+
+5. The initial function `f` receives back from the first recursive call the result of its execution (i.e. `5`). It sums it with the value in `v` (i.e. `1`) and returns the final result (i.e. `6`).
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-odd_numbers_in_matriculation.py>`. You can run it executing the command `python ex-und-odd_numbers_in_matriculation.py` in a shell.
+````
+`````
+
 ## References
 
 ```{bibliography}
