@@ -44,22 +44,22 @@ Now let's dive deeper into **how to name variables properly** and **Python's nam
 argument = "Cogito"
 _hidden_premise = "Doubt"
 # argument2 is valid
-# 2argument is INVALID ❌
+# 2argument is INVALID
 ```
 
 ```{code-cell} python
 # Rule 2: can contain letters, numbers, and underscores only
 publication_year = 1641
-# publication-year is INVALID ❌ (hyphens not allowed)
-# publication year is INVALID ❌ (spaces not allowed)
-# publication$year is INVALID ❌ (special characters not allowed)
+# publication-year is INVALID (hyphens not allowed)
+# publication year is INVALID (spaces not allowed)
+# publication$year is INVALID (special characters not allowed)
 ```
 
 ```{code-cell} python
 # Rule 3: cannot use Python keywords
 # Examples of keywords: if, for, while, class, def, return, True, False
-name = "Socrates"  # ✅ valid
-# class = "Ethics"  # ❌ INVALID - 'class' is a keyword
+name = "Socrates"  # valid
+# class = "Ethics"  # INVALID - 'class' is a keyword
 ```
 
 ```{admonition} Don't worry about memorizing keywords
@@ -106,13 +106,13 @@ Python has official style guidelines called [PEP 8](https://peps.python.org/pep-
 ### Descriptive names matter
 
 ```{code-cell} python
-# ❌ Bad: unclear what these mean
+# Bad: unclear what these mean
 a = 365
 b = 24
 c = 60
 result = a * b * c
 
-# ✅ Good: clear and self-documenting
+# Good: clear and self-documenting
 days_in_year = 365
 hours_per_day = 24
 minutes_per_hour = 60
@@ -605,15 +605,15 @@ print(f"Remaining: only {remaining_distance} m!")
 
 In this lab, you learned:
 
-- ✅ **Variable naming rules and conventions** (snake_case, PEP 8)
-- ✅ **Four basic data types**: int, float, str, bool
-- ✅ **Type conversion** functions: `int()`, `float()`, `str()`, `bool()`
-- ✅ **Arithmetic operators**: `+`, `-`, `*`, `/`, `//`, `%`, `**`
-- ✅ **Comparison operators**: `==`, `!=`, `<`, `>`, `<=`, `>=`
-- ✅ **Logical operators**: `and`, `or`, `not`
-- ✅ **Assignment operators**: `+=`, `-=`, `*=`, `/=`
-- ✅ **String methods**: `.upper()`, `.lower()`, `.strip()`, `.replace()`, `.split()`
-- ✅ **String formatting**: f-strings, `.format()`, `%`
+- **Variable naming rules and conventions** (snake_case, PEP 8)
+- **Four basic data types**: int, float, str, bool
+- **Type conversion** functions: `int()`, `float()`, `str()`, `bool()`
+- **Arithmetic operators**: `+`, `-`, `*`, `/`, `//`, `%`, `**`
+- **Comparison operators**: `==`, `!=`, `<`, `>`, `<=`, `>=`
+- **Logical operators**: `and`, `or`, `not`
+- **Assignment operators**: `+=`, `-=`, `*=`, `/=`
+- **String methods**: `.upper()`, `.lower()`, `.strip()`, `.replace()`, `.split()`
+- **String formatting**: f-strings, `.format()`, `%`
 
 ```{admonition} Next lab
 :class: tip

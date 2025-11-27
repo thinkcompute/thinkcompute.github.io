@@ -1,2 +1,9 @@
 .DS_Store
 _build/
+
+# Generated files from lab-05 notebook execution
+think_and_compute/nietzsche_quotes.txt
+think_and_compute/nietzsche_works.csv
+think_and_compute/more_nietzsche_works.csv
+think_and_compute/blade_runner.json
+think_and_compute/sci_fi_films.json

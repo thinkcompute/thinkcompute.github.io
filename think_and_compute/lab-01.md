@@ -233,7 +233,7 @@ Now you can type Python commands and see immediate results!
 :class: tip
 The code blocks below are **executable**! You can run them directly in your browser:
 
-1. Click the **rocket icon** (🚀) in the top-right corner of the page
+1. Click the **rocket icon** in the top-right corner of the page
 2. Select **Live Code**
 3. Click **Restart** to initialize the kernel
 4. Wait for the kernel to start (this may take a few moments)
@@ -438,13 +438,13 @@ print(f"\n{years_difference} years passed between the two publications")
 
 In this lab, you learned how to:
 
-- ✅ Install and verify Python
-- ✅ Use the command line shell
-- ✅ Set up VS Code for Python development
-- ✅ Write and run Python scripts
-- ✅ Use variables, strings, and basic data types
-- ✅ Install libraries with pip
-- ✅ Create a simple Python program
+- Install and verify Python
+- Use the command line shell
+- Set up VS Code for Python development
+- Write and run Python scripts
+- Use variables, strings, and basic data types
+- Install libraries with pip
+- Create a simple Python program
 
 ```{admonition} Next lab
 :class: tip

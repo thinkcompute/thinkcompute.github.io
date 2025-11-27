@@ -63,9 +63,9 @@ print(numbers)
 ```{admonition} Important: Empty sets
 :class: warning
 You **cannot** create an empty set using `{}` because that creates an empty dictionary instead. Always use `set()` for empty sets:
-- `empty_set = set()` ✅ Creates an empty set
-- `empty_dict = {}` ✅ Creates an empty dictionary
-- `not_a_set = {}` ❌ This is a dictionary, not a set!
+- `empty_set = set()` - Creates an empty set
+- `empty_dict = {}` - Creates an empty dictionary
+- `not_a_set = {}` - This is a dictionary, not a set!
 ```
 
 ```{code-cell} python
@@ -90,8 +90,8 @@ print(mixed_set)
 ```{admonition} What can be in a set?
 :class: note
 Sets can only contain certain types of values:
-- ✅ Strings, numbers (int, float), booleans, and tuples
-- ❌ Lists, sets, or dictionaries
+- Allowed: Strings, numbers (int, float), booleans, and tuples
+- Not allowed: Lists, sets, or dictionaries
 
 This is because lists, sets, and dictionaries can be modified after creation, which would cause problems for how Python organizes data in sets. You will learn more about mutable and immutable types in {ref}`ch-divide-and-conquer`.
 ```
@@ -328,8 +328,8 @@ print(mixed_keys)
 ```{admonition} What can be a dictionary key?
 :class: note
 Dictionary keys can only be certain types of values:
-- ✅ Strings, numbers (int, float), booleans, and tuples
-- ❌ Lists, sets, or dictionaries
+- Allowed: Strings, numbers (int, float), booleans, and tuples
+- Not allowed: Lists, sets, or dictionaries
 
 This is the same restriction as for set elements. Keys must be types that cannot be modified after creation. You will learn more about this in {ref}`ch-divide-and-conquer`.
 ```
@@ -671,11 +671,11 @@ print(f"Adriana's grade: {grades['Adriana']}")
 
 | Feature | List | Set | Dictionary |
 |---------|------|-----|------------|
-| Ordered | ✅ Yes | ❌ No | ❌ No (Python 3.7+ maintains insertion order) |
-| Duplicates allowed | ✅ Yes | ❌ No | ❌ No (keys must be unique) |
-| Access by index | ✅ Yes `list[0]` | ❌ No | ❌ No (access by key) |
-| Access by key | ❌ No | ❌ No | ✅ Yes `dict[key]` |
-| Mutable | ✅ Yes | ✅ Yes | ✅ Yes |
+| Ordered | Yes | No | No (Python 3.7+ maintains insertion order) |
+| Duplicates allowed | Yes | No | No (keys must be unique) |
+| Access by index | Yes `list[0]` | No | No (access by key) |
+| Access by key | No | No | Yes `dict[key]` |
+| Mutable | Yes | Yes | Yes |
 | Syntax | `[1, 2, 3]` | `{1, 2, 3}` | `{"a": 1, "b": 2}` |
 
 ---
@@ -792,16 +792,21 @@ def find_rare_words(word_counts):
 
 In this lab, you learned:
 
-- ✅ **Creating and manipulating sets**: `set()`, `{}`, `add()`, `remove()`, `discard()`, `pop()`, `clear()`
-- ✅ **Set operations**: `union()`, `intersection()`, `difference()`, `symmetric_difference()`
-- ✅ **Set membership testing**: `in`, `not in` (very fast!)
-- ✅ **Creating and manipulating dictionaries**: `dict()`, `{}`, adding, updating, removing items
-- ✅ **Accessing dictionary values**: `dict[key]`, `dict.get(key)`, `dict.get(key, default)`
-- ✅ **Dictionary methods**: `.keys()`, `.values()`, `.items()`
-- ✅ **Iterating over dictionaries**: `for key in dict:`, `for key, value in dict.items():`
-- ✅ **Choosing the right data structure**: When to use lists, sets, or dictionaries
-- ✅ **Performance considerations**: Fast membership testing with sets and dictionaries
-- ✅ **Combining data structures**: Using sets and dictionaries together to solve problems
+- **Creating and manipulating sets**: `set()`, `{}`, `add()`, `remove()`, `discard()`, `pop()`, `clear()`
+- **Set operations**: `union()`, `intersection()`, `difference()`, `symmetric_difference()`
+- **Set membership testing**: `in`, `not in` (very fast!)
+- **Creating and manipulating dictionaries**: `dict()`, `{}`, adding, updating, removing items
+- **Accessing dictionary values**: `dict[key]`, `dict.get(key)`, `dict.get(key, default)`
+- **Dictionary methods**: `.keys()`, `.values()`, `.items()`
+- **Iterating over dictionaries**: `for key in dict:`, `for key, value in dict.items():`
+- **Choosing the right data structure**: When to use lists, sets, or dictionaries
+- **Performance considerations**: Fast membership testing with sets and dictionaries
+- **Combining data structures**: Using sets and dictionaries together to solve problems
+
+```{admonition} Next lab
+:class: tip
+In **Lab 05**, you will learn about recursion and working with files (TXT, CSV, JSON).
+```
 
 ## Additional resources
 

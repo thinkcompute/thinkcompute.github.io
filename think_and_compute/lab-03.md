@@ -732,17 +732,17 @@ for book in books_1940s:
 
 In this lab, you learned:
 
-- ✅ **Creating and manipulating lists**: `list()`, `[]`, `append()`, `extend()`, `insert()`, `remove()`, `pop()`
-- ✅ **Accessing list elements**: indexing `[0]`, negative indices `[-1]`, slicing `[start:end]`
-- ✅ **List methods**: `len()`, `count()`, `index()`, `sort()`, `reverse()`
-- ✅ **Nested lists**: creating and accessing lists of lists with double indexing `list[0][1]`
-- ✅ **Conditional statements**: `if`, `elif`, `else`
-- ✅ **Combining conditions**: `and`, `or`, `not`, `in`
-- ✅ **For loops**: iterating over lists with `for item in list:`
-- ✅ **Loops with conditionals**: combining `for` and `if` to filter and process data
-- ✅ **Defining functions**: `def`, parameters, `return`
-- ✅ **Functions with lists and loops**: passing lists, iterating, creating new lists
-- ✅ **Documentation**: docstrings for function documentation
+- **Creating and manipulating lists**: `list()`, `[]`, `append()`, `extend()`, `insert()`, `remove()`, `pop()`
+- **Accessing list elements**: indexing `[0]`, negative indices `[-1]`, slicing `[start:end]`
+- **List methods**: `len()`, `count()`, `index()`, `sort()`, `reverse()`
+- **Nested lists**: creating and accessing lists of lists with double indexing `list[0][1]`
+- **Conditional statements**: `if`, `elif`, `else`
+- **Combining conditions**: `and`, `or`, `not`, `in`
+- **For loops**: iterating over lists with `for item in list:`
+- **Loops with conditionals**: combining `for` and `if` to filter and process data
+- **Defining functions**: `def`, parameters, `return`
+- **Functions with lists and loops**: passing lists, iterating, creating new lists
+- **Documentation**: docstrings for function documentation
 
 ```{admonition} Next lab
 :class: tip
