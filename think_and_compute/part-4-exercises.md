@@ -1,5 +1,5 @@
 (ch-part-2-exercises)=
-# Part 2: Exercises
+# Part 4: Exercises
 
 `````{exercise}
 :label: part-4-ex-1
