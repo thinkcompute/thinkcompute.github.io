@@ -117,6 +117,7 @@ Write a recursive algorithm in Python – `def euclidean(r, s)` – which takes 
 :label: part-4-ex-3-sol
 :class: dropdown
 
+```python
 # Test case for the function
 def test_euclidean(r, s, expected):
     result = euclidean(r, s)
@@ -137,7 +138,6 @@ def euclidean(r, s):
         return euclidean(r - s, s)
 
         
-        
 # Tests
 print(test_euclidean(1, 1, 1))
 print(test_euclidean(1, 2, 1))
@@ -146,9 +146,10 @@ print(test_euclidean(3, 2, 1))
 print(test_euclidean(3, 3, 3))
 print(test_euclidean(3, 9, 3))
 print(test_euclidean(15, 6, 3))
-````
+```
 
 The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-euclidean.py>`. You can run it executing the command `python ex-dev-euclidean.py` in a shell.
+````
 `````
 
 `````{exercise}
