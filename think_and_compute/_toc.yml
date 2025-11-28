@@ -42,6 +42,7 @@ parts:
     - file: 12-backtracking
     - file: 13-graphs
     - file: 14-greedy
+    - file: part-4-exercises
   - caption: "Part 5: Managing Data in Python"
     numbered: False
     chapters:
