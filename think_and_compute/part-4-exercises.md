@@ -379,6 +379,191 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-4-ex-8
+
+Consider the following function:
+
+```python
+def rin(g_name, f_name, idx):
+    result = []
+
+    if len(g_name) > 0:
+        if g_name[0] in f_name:
+            result.append(idx)
+        
+        idx = idx + 1
+        result.extend(rin(g_name[1:len(g_name)], f_name, idx))
+
+    return result 
+```
+
+The variable `my_g_name` contains the string with your given name in lower case (e.g. `"john"`), and `my_f_name` contains the string with your family name in lower case (e.g. `"doe"`). What is the value returned by calling the function sc as shown as follows: 
+
+```python
+rin(my_g_name, my_f_name, 0)
+```
+
+````{solution} part-4-ex-8
+:label: part-4-ex-8-sol
+:class: dropdown
+
+The function `rin` is an recursive recursive function that reduces the characters of the given name at each recursive call, removing the first one. In particular, in each call (in case the `g_name` input parameter is not empty) it adds the value of `idx` to the result list in case the first character of `g_name` is also included in `f_name`. The final list returned will be a list of non-negative integers.
+
+For instance, executing the function as follows
+
+```python
+rin("john", "doe", 0)
+```
+
+returns the list `[1]`.
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-given_and_family_names.py>`. You can run it executing the command `python ex-und-given_and_family_names.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-9
+
+Consider the following function:
+
+```python
+def rsel(full_name, mat_string):
+    uniq = []
+    for c in full_name:
+        if c not in uniq:
+            uniq.append(c)
+    
+    r = []
+    i = len(mat_string) // 2
+    if i > 0:
+        n = int(mat_string[i])
+        if n < len(uniq):
+            r.append(uniq[n])
+            new_full_name = full_name[0:n] + full_name[n+1:len(full_name)]
+            new_mat_string = mat_string[0:n] + mat_string[n+1:len(mat_string)]
+            r.extend(rsel(new_full_name, new_mat_string))
+    
+    return r
+```
+
+The variable `my_mat_string` contains the string of all ten numbers of a matriculation number (e.g. `"0235145398"`), and `my_full_name` is a string of a full name, all in lowercase with no spaces (e.g. `"johndoe"`). Write down the value returned by calling the function `rsel` as shown as follows: 
+
+```python
+rsel(my_full_name, my_mat_string)
+```
+
+````{solution} part-4-ex-9
+:label: part-4-ex-9-sol
+:class: dropdown
+
+The function `rsel` is a recursive function that, at every call, reduce both the input parameters of one character. In particular, it identifies all the unique letters in the given input string `full_name`, it sees if the `mat_string` contains at least two characters, and then it appends, to the list to be returned as result, the character in the list of unique letters that is specified in the position specified by the first digit number after the first half of the matricutation string if such position is indeed present in the list of unique letters.
+
+For instance, executing the function as follows
+
+```python
+rsel("johndoe", "0235145398")
+```
+
+returns the list `["d", "e"]`.
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-name_and_matriculation.py>`. You can run it executing the command `python ex-und-name_and_matriculation.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-9
+
+Consider the following function:
+
+```python
+def cnt(mat_string):
+    result = 0
+
+    if len(mat_string) > 0:
+        n = int(mat_string[0])
+
+        if n % 2 == 0:
+            return 1 + cnt(mat_string[1:len(mat_string)])
+        else:
+            return -1 + cnt(mat_string[1:len(mat_string)])
+    
+    return result
+```
+
+In the function above, the operation `%` returns the remainder of the division between two numbers. 
+
+The variable `my_mat_string` contains the string of a 10-digit matriculation number (e.g. `"0000123456"`). Write down the value returned by calling the function `cnt` as shown as follows: 
+
+```python
+cnt(my_mat_string)
+```
+
+````{solution} part-4-ex-9
+:label: part-4-ex-9-sol
+:class: dropdown
+
+The function `cnt` is an recursive function that, at every call, reduces the input of one character. In particular, it adds one to the final result returned if the number is even, while it subtracts one unit otherwise, before calling the recursive step.
+
+For instance, executing the function as follows
+
+```python
+cnt("0000123456")
+```
+
+returns the number `4`.
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-und-binary_sum_matriculation.py>`. You can run it executing the command `python ex-und-binary_sum_matriculation.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-10
+
+Write an extension of the multiplication function introduced in the {numref}`ch-recursion`, i.e. `def multiplication(int_1, int_2, solution_dict)`, by using a dynamic programming approach. This new function takes in input two integers to multiply and a dictionary with solutions of multiplications between numbers. The function returns the result of the multiplication and, at the same time, modifies the solution dictionary adding additional solutions when found. Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-10
+:label: part-4-ex-10-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_multiplication(int_1, int_2, solution_dict, expected):
+    result = multiplication(int_1, int_2, solution_dict)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def multiplication(int_1, int_2, solution_dict):
+    if int_1 < int_2:
+        mult_pair = (int_1, int_2)
+    else:
+        mult_pair = (int_2, int_1)
+
+    if mult_pair not in solution_dict:
+        if int_2 == 0:
+            solution_dict[mult_pair] = 0
+        else:
+            solution_dict[mult_pair] = int_1 + multiplication(int_1, int_2 - 1, solution_dict)
+
+    return solution_dict[mult_pair]
+
+
+# Tests
+my_dict = {}
+print(test_multiplication(0, 0, my_dict, 0))
+print(test_multiplication(1, 0, my_dict, 0))
+print(test_multiplication(5, 7, my_dict, 35))
+print(test_multiplication(7, 7, my_dict, 49))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dp_multiplication.py>`. You can run it executing the command `python ex-dp_multiplication.py` in a shell.
+````
+`````
+
 
 ## References
 
