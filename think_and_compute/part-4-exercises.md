@@ -520,7 +520,9 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-4-ex-10
 
-Write an extension of the multiplication function introduced in the {numref}`ch-recursion`, i.e. `def multiplication(int_1, int_2, solution_dict)`, by using a dynamic programming approach. This new function takes in input two integers to multiply and a dictionary with solutions of multiplications between numbers. The function returns the result of the multiplication and, at the same time, modifies the solution dictionary adding additional solutions when found. Accompany the implementation of the function with the appropriate test cases. 
+Write an extension of the multiplication function introduced in the {numref}`ch-recursion`, i.e. `def multiplication(int_1, int_2, solution_dict)`, by using a dynamic programming approach. This new function takes in input two integers to multiply and a dictionary with solutions of multiplications between numbers. The function returns the result of the multiplication and, at the same time, modifies the solution dictionary adding additional solutions when found. 
+
+Accompany the implementation of the function with the appropriate test cases. 
 
 ````{solution} part-4-ex-10
 :label: part-4-ex-10-sol
