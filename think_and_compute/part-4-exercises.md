@@ -472,7 +472,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````
 
 `````{exercise}
-:label: part-4-ex-9
+:label: part-4-ex-10
 
 Consider the following function:
 
@@ -499,8 +499,8 @@ The variable `my_mat_string` contains the string of a 10-digit matriculation num
 cnt(my_mat_string)
 ```
 
-````{solution} part-4-ex-9
-:label: part-4-ex-9-sol
+````{solution} part-4-ex-10
+:label: part-4-ex-10-sol
 :class: dropdown
 
 The function `cnt` is an recursive function that, at every call, reduces the input of one character. In particular, it adds one to the final result returned if the number is even, while it subtracts one unit otherwise, before calling the recursive step.
@@ -518,14 +518,14 @@ The source Python file of the code shown above is available {Download}`as part o
 `````
 
 `````{exercise}
-:label: part-4-ex-10
+:label: part-4-ex-11
 
 Write an extension of the multiplication function introduced in {numref}`ch-recursion`, i.e. `def multiplication(int_1, int_2, solution_dict)`, by using a dynamic programming approach. This new function takes as input two integers to multiply and a dictionary with solutions of multiplications between numbers. The function returns the result of the multiplication and, at the same time, modifies the solution dictionary, adding additional solutions when found.  
 
 Accompany the implementation of the function with the appropriate test cases. 
 
-````{solution} part-4-ex-10
-:label: part-4-ex-10-sol
+````{solution} part-4-ex-11
+:label: part-4-ex-11-sol
 :class: dropdown
 
 ```python
