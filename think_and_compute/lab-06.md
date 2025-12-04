@@ -236,3 +236,76 @@ Recursion is elegant for problems that naturally divide into smaller subproblems
 ```
 
 ---
+
+## Part 2: Recursion exercises
+
+Now it's your turn to practice recursive thinking. This exercise will help you build confidence with the pattern before we move to more complex algorithms.
+
+### Exercise 2.1: Count occurrences (recursively)
+
+Implement a function `count_occurrences(items, target)` that counts how many times `target` appears in the list `items`, using recursion (no loops).
+
+```python
+print(count_occurrences([1, 2, 3, 2, 4, 2], 2))    # Expected: 3
+print(count_occurrences(["a", "b", "a"], "a"))      # Expected: 2
+print(count_occurrences([1, 2, 3], 5))              # Expected: 0
+print(count_occurrences([], 1))                     # Expected: 0
+```
+
+````{admonition} Solution
+:class: dropdown
+
+**Recursive formulation**:
+- **Base case**: An empty list contains 0 occurrences of any target
+- **Recursive step**: If the first element matches, add 1 to the count of the rest; otherwise just return the count of the rest
+
+```python
+def count_occurrences(items, target):
+    if len(items) == 0:
+        return 0
+    else:
+        if items[0] == target:
+            return 1 + count_occurrences(items[1:], target)
+        else:
+            return count_occurrences(items[1:], target)
+
+print(count_occurrences([1, 2, 3, 2, 4, 2], 2))    # 3
+print(count_occurrences(["a", "b", "a"], "a"))      # 2
+print(count_occurrences([1, 2, 3], 5))              # 0
+print(count_occurrences([], 1))                     # 0
+```
+
+**Execution trace for `count_occurrences([2, 1, 2], 2)`**:
+
+**Step 1: The calls go DOWN (each call waits for the next one)**
+
+```
+count_occurrences([2, 1, 2], 2)    "Is 2 == 2? Yes! I'll return 1 + ..."
+         │
+         ▼
+count_occurrences([1, 2], 2)      "Is 1 == 2? No. I'll just pass along ..."
+         │
+         ▼
+count_occurrences([2], 2)         "Is 2 == 2? Yes! I'll return 1 + ..."
+         │
+         ▼
+count_occurrences([], 2)          "Empty list! Base case: return 0"
+```
+
+**Step 2: The results come back UP**
+
+```
+count_occurrences([], 2)          returns 0
+         │
+         ▼
+count_occurrences([2], 2)         returns 1 + 0 = 1
+         │
+         ▼
+count_occurrences([1, 2], 2)      returns 1  (just passes the result, no match here)
+         │
+         ▼
+count_occurrences([2, 1, 2], 2)   returns 1 + 1 = 2
+```
+
+**Result**: `2` (the value 2 appears twice in the list)
+````
