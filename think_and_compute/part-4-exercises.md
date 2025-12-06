@@ -520,7 +520,7 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-4-ex-11
 
-Write an extension of the multiplication function introduced in {numref}`ch-recursion`, i.e. `def multiplication(int_1, int_2, solution_dict)`, by using a dynamic programming approach. This new function takes as input two integers to multiply and a dictionary with solutions of multiplications between numbers. The function returns the result of the multiplication and, at the same time, modifies the solution dictionary, adding additional solutions when found.  
+Write an extension of the multiplication function introduced in [Chapter "Recursion"](./08-recursion.md#py-recursive-multiplication), i.e. `def multiplication(int_1, int_2, solution_dict)`, by using a dynamic programming approach. This new function takes as input two integers to multiply and a dictionary with solutions of multiplications between numbers. The function returns the result of the multiplication and, at the same time, modifies the solution dictionary, adding additional solutions when found.  
 
 Accompany the implementation of the function with the appropriate test cases. 
 
@@ -566,6 +566,441 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-4-ex-12
+
+Write the body of the Python function `def depth_first_visit(node)` that takes the root node of a tree as input and returns the list of all its nodes ordered according to a depth-first visit. The depth-first visit proceeds as indicated in the [image below](https://en.wikipedia.org/wiki/Depth-first_search#/media/File:Depth-first-tree.svg), created by [Alexander Drichel](https://commons.wikimedia.org/wiki/User:Alexander_Drichel), where the numbers indicate the order in which the nodes should be visited.
+
+[Depth-first visit](images/ex-depth-first-visit.png)
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-12
+:label: part-4-ex-12-sol
+:class: dropdown
+
+```python
+from anytree import Node
+
+
+# Test case for the function
+def test_depth_first_visit(node, expected):
+    result = depth_first_visit(node)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def depth_first_visit(node):
+    result = list()
+    depth_first_visit_recursive(node, result)
+    return result
+
+
+def depth_first_visit_recursive(node, list):
+    list.append(node)
+    for child in node.children:
+        depth_first_visit_recursive(child, list)
+
+
+# Tests
+n1 = Node(1)
+n2 = Node(2, n1)
+n3 = Node(3, n2)
+n4 = Node(4, n3)
+n5 = Node(5, n3)
+n6 = Node(6, n2)
+n7 = Node(7, n1)
+n8 = Node(8, n1)
+n9 = Node(9, n8)
+n10 = Node(10, n9)
+n11 = Node(11, n9)
+n12 = Node(12, n8)
+print(test_depth_first_visit(n1, [n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12]))
+``` 
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-depth_first_visit.py>`. You can run it executing the command `python ex-dev-depth_first_visit.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-13
+
+Write in Python a function `def breadth_first_visit(root_node)` that does not use any recursion. This function takes a tree's root node and returns a list of all nodes in breadth-first order. The breadth-first order considers all the nodes of the first level, then those ones of the second level, and so forth. For instance, considering the nodes created in the [listing](./11-trees.md#py-tree) in [Chapter "Organising information: trees"](./11-trees.md), the function called on the node book should return the following list: 
+
+```python
+[book, chapter_1, chapter_2, text_8, paragraph_1, paragraph_2, paragraph_3, text_7, text_1, quotation_1, text_3, quotation_2, text_5, text_6, text_2, text_4]
+```
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-13
+:label: part-4-ex-13-sol
+:class: dropdown
+
+```python
+from anytree import Node
+from collections import deque
+
+
+# Test case for the function
+def test_breadth_first_visit(root_node, expected):
+    result = breadth_first_visit(root_node)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def breadth_first_visit(root_node):
+    result = list()
+    to_visit = deque()
+    to_visit.append(root_node)
+
+    while to_visit:
+        node_to_visit = to_visit.popleft()
+        result.append(node_to_visit)
+        to_visit.extend(node_to_visit.children)
+
+    return result
+
+
+# Tests
+book = Node("book")
+chapter_1 = Node("chapter1", book)
+chapter_2 = Node("chapter2", book)
+paragraph_1 = Node("paragraph1", chapter_1)
+text_1 = Node("text1", paragraph_1)
+quotation_1 = Node("quotation1", paragraph_1)
+text_2 = Node("text2", quotation_1)
+text_3 = Node("text3", paragraph_1)
+quotation_2 = Node("quotation2", paragraph_1)
+text_4 = Node("text4", quotation_2)
+paragraph_2 = Node("paragraph2", chapter_1)
+text_5 = Node("text5", paragraph_2)
+paragraph_3 = Node("paragraph3", chapter_1)
+text_6 = Node("text6", paragraph_3)
+text_7 = Node("text7", chapter_2)
+text_8 = Node("text8", book)
+bfv = [book,
+       chapter_1, chapter_2, text_8,
+       paragraph_1, paragraph_2, paragraph_3, text_7,
+       text_1, quotation_1, text_3, quotation_2, text_5, text_6,
+       text_2, text_4]
+print(test_breadth_first_visit(book, bfv))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-depth_first_visit.py>`. You can run it executing the command `python ex-depth_first_visit.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-14
+
+Write in Python a recursive version of the function defined in the {numref}´part-4-ex-13´.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-14
+:label: part-4-ex-14-sol
+:class: dropdown
+
+```python
+from anytree import Node
+from collections import deque
+
+
+# Test case for the function
+def test_breadth_first_visit(root_node, expected):
+    result = breadth_first_visit(root_node)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def breadth_first_visit(root_node):
+    result = list()
+
+    if len(root_node.ancestors) == 0:  # It is the first call
+        root_node.parent = Node(deque())
+
+    queue = root_node.root.name
+    result.append(root_node)
+    queue.extend(root_node.children)
+
+    if len(queue) > 0:
+        result.extend(breadth_first_visit(queue.popleft()))
+    else:
+        root_node.root.children = ()
+
+    return result
+
+
+# Tests
+book = Node("book")
+chapter_1 = Node("chapter1", book)
+chapter_2 = Node("chapter2", book)
+paragraph_1 = Node("paragraph1", chapter_1)
+text_1 = Node("text1", paragraph_1)
+quotation_1 = Node("quotation1", paragraph_1)
+text_2 = Node("text2", quotation_1)
+text_3 = Node("text3", paragraph_1)
+quotation_2 = Node("quotation2", paragraph_1)
+text_4 = Node("text4", quotation_2)
+paragraph_2 = Node("paragraph2", chapter_1)
+text_5 = Node("text5", paragraph_2)
+paragraph_3 = Node("paragraph3", chapter_1)
+text_6 = Node("text6", paragraph_3)
+text_7 = Node("text7", chapter_2)
+text_8 = Node("text8", book)
+bfv = [book,
+       chapter_1, chapter_2, text_8,
+       paragraph_1, paragraph_2, paragraph_3, text_7,
+       text_1, quotation_1, text_3, quotation_2, text_5, text_6,
+       text_2, text_4]
+print(test_breadth_first_visit(book, bfv))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-depth_first_visit_recursive.py>`. You can run it executing the command `python ex-dev-depth_first_visit_recursive.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-15
+
+A **decision tree** is a flowchart-like structure in which each internal node represents a test on an attribute (e.g. whether a coin flip comes up heads or tails), each branch represents the outcome of the test, and each leaf node represents a class label (i.e., a decision taken after computing all attributes). The paths from root to leaf represent classification rules. An example of a decision tree is shown as follows:
+
+[Decision tree](images/ex-decision.png)
+
+The decision tree above allows one to check whether a given number (identified by the variable `attribute`) is equal to 0. For checking this, supposing to execute such a decision tree passing the number 3 as input, one has (a) to start from the root, (b) to execute the condition (i.e. 3 < 0), (c) to follow the related branch (i.e. *false*), and (d) to repeat again the process if we arrived in an inner node or (e) to return the result if we arrived in a leaf node.
+
+As shown in the figure, in a decision tree, each internal node always has two children: the left one is reached when the condition the internal node specifies is *true*, while the right one is reached when the condition the internal node specifies is *false*.
+
+Write an algorithm in Python – `def exec_dt(decision, attribute)` – which takes in input a tree `decision` (which is represented by the root node of the tree defined as an object of the class anytree.Node) describing a decision tree, in which the name of each non-leaf node in the tree is a Python function – it means that we can see the node name as a function that can be executed by passing an input, e.g. considering the node `n`, we can call the function specified as its name passing the input between parenthesis, as usual: `n.name(56)`. Each Python function, to execute using `attribute` as input, returns either `True` or `False` if the condition defined by that function is satisfied or is not satisfied, respectively. The algorithm returns the leaf node reached by executing the decision tree with the value in `attribute`.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-15
+:label: part-4-ex-15-sol
+:class: dropdown
+
+```python
+from anytree import Node
+
+
+# Test case for the function
+def test_exec_td(decision, attribute, expected):
+    result = exec_td(decision, attribute)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def exec_td(decision, attribute):
+    if decision.children:
+        if decision.name(attribute):
+            return exec_td(decision.children[0], attribute)
+        else:
+            return exec_td(decision.children[1], attribute)
+    else:
+        return decision
+
+
+# Tests
+attr_equal = "attribute is equal to 0"
+attr_not_equal = "attribute is not equal to 0"
+
+root = Node(lambda x: x < 0)
+root_left = Node(attr_not_equal, root)
+root_right = Node(lambda x: x > 0, root)
+root_right_left = Node(attr_not_equal, root_right)
+root_right_right = Node(attr_equal, root_right)
+
+print(test_exec_td(root, 0, root_right_right))
+print(test_exec_td(root, 5, root_right_left))
+print(test_exec_td(root, -10, root_left))
+``` 
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-decision_tree.py>`. You can run it executing the command `python ex-dev-decision_tree.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-16
+
+A binary search tree is a binary tree data structure where each node may have at most two children, and the value of each node is greater than (or equal to) all the values in the respective node's left subtree and less than (or equal to) the ones in its right subtree. It can be built, recursively following an approach which recalls the binary search strategy, starting from a list of ordered items (e.g. a list of integers), where each item becomes a node of a tree.
+
+[Example of a binary search tree](images/ex-bst.png)
+
+As a reminder, the binary search strategy first checks if the middle item of a list is equal to the item to search for and, in case this is not true, it continues to analyse the part of the list that either precedes or follows the middle item if it is greater than or less than the item to search.
+
+Write a recursive algorithm in Python – `def create_bst(ordered_list, parent)` – which takes in input an ordered list of integers ordered_list and a parent node `parent`, and returns the root node of the binary search tree created from the input list. In the first call, the function is run passing `None` as input for the second parameter `parent`, e.g. 
+
+```
+create_bst([0, 1, 1, 2, 3, 5, 8, 13], None)
+```
+
+and returns the binary search tree (i.e. its root node) shown in the example above.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-16
+:label: part-4-ex-16-sol
+:class: dropdown
+
+```python
+from anytree import Node, RenderTree
+
+# Test case for the function
+def test_create_bst(ordered_list, parent, expected):
+    result = create_bst(ordered_list, parent)
+    
+    if str(RenderTree(result)) == str(RenderTree(expected)):
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def create_bst(ordered_list, parent):
+    cur_len = len(ordered_list)
+
+    if cur_len == 1:
+        return Node(ordered_list[0], parent)
+    elif cur_len > 1:
+        mid = cur_len // 2
+        
+        r = Node(ordered_list[mid], parent)
+
+        create_bst(ordered_list[:mid], r)
+        create_bst(ordered_list[mid+1:], r)
+        
+        return r
+
+
+# Tests
+print(test_create_bst([9], None, Node(9)))
+
+r1 = Node(5)
+Node(1, r1)
+Node(9, r1)
+print(test_create_bst([1, 5, 9], None, r1))
+
+r2 = Node(5)
+r2_1 = Node(3, r2)
+Node(1, r2_1)
+r2_2 = Node(9, r2)
+Node(7, r2_2)
+print(test_create_bst([1, 3, 5, 7, 9], None, r2))
+
+r3 = Node(3)
+r3_1 = Node(1, r3)
+r3_1_1 = Node(1, r3_1)
+Node(0, r3_1_1)
+Node(2, r3_1)
+r3_2 = Node(8, r3)
+Node(5, r3_2)
+Node(13, r3_2)
+print(test_create_bst([0, 1, 1, 2, 3, 5, 8, 13], None, r3))
+``` 
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-binary_search_tree.py>`. You can run it executing the command `python ex-dev-binary_search_tree.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-17
+
+A **minimax** is a recursive algorithm for choosing the next move in a two-player (A and B) game like chess, where all the possible configurations of the board are described as nodes in a tree of moves. A value is associated with each configuration (i.e. each node) and indicates how good it would be for a player (either A or B, depending on the turn) to reach that configuration. If it is A's turn to move, A gives a value to each of its legal moves, i.e. the child nodes of the one describing the current configuration. The best value for A is the **maximum** of the values of the children of the configuration in which A has to play, while the best value for B is the **minimum** of the values of the children of the configuration in which B has to play.
+
+The minimax uses a heuristic function `get_value` **only** when a **terminal node** of the tree of moves is reached or when **nodes at the maximum search depth** are reached (the maximum depth is specified as input to the algorithm). The other non-leaf nodes inherit their value from a descendant leaf/max-depth node, i.e. either the maximum of the values of the children if A is playing or the minimum of the values of the children if B is playing.
+
+[Minimax execution](images/ex-minimax.png)
+
+Write an algorithm in Python – `def minimax(node, max_depth, player_a_moves)` – which takes in input a node of the tree of moves, the maximum depth to consider while visiting the tree of moves, and whether the player A is playing (when `player_a_moves` is True) or its opponent is (when `player_a_moves` is False), and returns the heuristic value that will be assigned to the input node. The function `def get_value(node)`, for getting the heuristic value associated with a leaf or a node at maximum depth, and another function `def get_next_valid_moves(node)`, used to get all the moves (i.e. children) of a configuration (i.e. a node), are provided (i.e. they must not be developed) and can be directly used in the implementation of the algorithm. Initially, for instance considering the image above, the algorithm will be called as follows:
+
+```python
+minimax(root, 2, True)
+```
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-17
+:label: part-4-ex-17-sol
+:class: dropdown
+
+```python
+from anytree import Node
+
+
+# Test case for the function
+def test_minimax(node, max_depth, player_a_moves, expected):
+    result = minimax(node, max_depth, player_a_moves)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def minimax(node, max_depth, player_a_moves):
+    if max_depth == 0 or len(node.children) == 0:
+        return get_value(node)
+    else:
+        move_values = []
+        for move in get_next_valid_moves(node):
+            move_values.append(minimax(move, max_depth - 1, not player_a_moves))
+            
+        if player_a_moves:
+            return max(move_values)
+        else:
+            return min(move_values)
+
+
+# Ancillary functions for granted
+def get_value(node):
+    d = {
+        "Move X": 2,
+        "Move Y": 7,
+        "Move Z": 5,
+        "Move W": 10,
+        "Move V": 8
+    }
+    return d[node.name]
+
+
+def get_next_valid_moves(node):
+    return node.children
+
+
+# Tests
+root = Node("Move Y")
+node_1_1 = Node("Move X", root)
+node_1_2 = Node("Move Y", root)
+node_2_1 = Node("Move X", node_1_1)
+node_2_2 = Node("Move Y", node_1_1)
+node_2_3 = Node("Move Z", node_1_1)
+node_2_4 = Node("Move W", node_1_2)
+node_2_5 = Node("Move Y", node_1_2)
+node_3_1 = Node("Move Y", node_2_2)
+node_3_2 = Node("Move V", node_2_2)
+
+print(test_minimax(root, 0, True, 7))
+print(test_minimax(root, 2, True, 7))
+print(test_minimax(root, 3, True, 7))
+print(test_minimax(root, 7, True, 7))
+``` 
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-minimax.py>`. You can run it executing the command `python ex-dev-minimax.py` in a shell.
+````
+`````
 
 ## References
 

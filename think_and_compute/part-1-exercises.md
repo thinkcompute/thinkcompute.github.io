@@ -59,7 +59,7 @@ Answer provided by [Delfina Pandiani](https://www.humandigitalist.com/) in 2018.
 `````{exercise}
 :label: part-1-ex-4
 
-What is the result of the execution of the algorithm in [Figure 9 of the chapter "Algorithms"](https://thinkcompute.github.io/02-algorithms.html#complete-example) using `"Peroni"`, `"HTML"`, and `"Peroni, S., Osborne, F., Di Iorio, A., Nuzzolese, A. G., Poggi, F., Vitali, F., Motta, E. (2017). Research Articles in Simplified HTML: a Web-first format for HTML-based scholarly articles. PeerJ Computer Science 3: e132. e2513. DOI: https://doi.org/10.7717/peerj-cs.132"` as input values?
+What is the result of the execution of the algorithm in [Figure 9 of the chapter "Algorithms"](./02-algorithms.md#complete-example) using `"Peroni"`, `"HTML"`, and `"Peroni, S., Osborne, F., Di Iorio, A., Nuzzolese, A. G., Poggi, F., Vitali, F., Motta, E. (2017). Research Articles in Simplified HTML: a Web-first format for HTML-based scholarly articles. PeerJ Computer Science 3: e132. e2513. DOI: https://doi.org/10.7717/peerj-cs.132"` as input values?
 
 ````{solution} part-1-ex-4
 :label: part-1-ex-4-sol
