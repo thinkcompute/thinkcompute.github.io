@@ -569,9 +569,14 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-4-ex-12
 
-Write the body of the Python function `def depth_first_visit(node)` that takes the root node of a tree as input and returns the list of all its nodes ordered according to a depth-first visit. The depth-first visit proceeds as indicated in the [image below](https://en.wikipedia.org/wiki/Depth-first_search#/media/File:Depth-first-tree.svg), created by [Alexander Drichel](https://commons.wikimedia.org/wiki/User:Alexander_Drichel), where the numbers indicate the order in which the nodes should be visited.
+Write the body of the Python function `def depth_first_visit(node)` that takes the root node of a tree as input and returns the list of all its nodes ordered according to a depth-first visit. The depth-first visit proceeds as indicated in {numref}`depth-first-visit`, where the numbers indicate the order in which the nodes should be visited.
 
-[Depth-first visit](images/ex-depth-first-visit.png)
+```{figure} images/ex-depth-first-visit.png
+---
+name: depth-first-visit
+---
+Depth-first visit. Photo by Alexander Drichel, source: [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search#/media/File:Depth-first-tree.svg).
+```
 
 Accompany the implementation of the function with the appropriate test cases. 
 
@@ -773,9 +778,14 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-4-ex-15
 
-A **decision tree** is a flowchart-like structure in which each internal node represents a test on an attribute (e.g. whether a coin flip comes up heads or tails), each branch represents the outcome of the test, and each leaf node represents a class label (i.e., a decision taken after computing all attributes). The paths from root to leaf represent classification rules. An example of a decision tree is shown as follows:
+A **decision tree** is a flowchart-like structure in which each internal node represents a test on an attribute (e.g. whether a coin flip comes up heads or tails), each branch represents the outcome of the test, and each leaf node represents a class label (i.e., a decision taken after computing all attributes). The paths from root to leaf represent classification rules. An example of a decision tree is shown in {numref}`decision`.
 
-[Decision tree](images/ex-decision.png)
+```{figure} images/ex-decision.png
+---
+name: decision
+---
+Decision tree.
+```
 
 The decision tree above allows one to check whether a given number (identified by the variable `attribute`) is equal to 0. For checking this, supposing to execute such a decision tree passing the number 3 as input, one has (a) to start from the root, (b) to execute the condition (i.e. 3 < 0), (c) to follow the related branch (i.e. *false*), and (d) to repeat again the process if we arrived in an inner node or (e) to return the result if we arrived in a leaf node.
 
@@ -835,9 +845,14 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-4-ex-16
 
-A binary search tree is a binary tree data structure where each node may have at most two children, and the value of each node is greater than (or equal to) all the values in the respective node's left subtree and less than (or equal to) the ones in its right subtree. It can be built, recursively following an approach which recalls the binary search strategy, starting from a list of ordered items (e.g. a list of integers), where each item becomes a node of a tree.
+A binary search tree is a binary tree data structure where each node may have at most two children, and the value of each node is greater than (or equal to) all the values in the respective node's left subtree and less than (or equal to) the ones in its right subtree. It can be built, recursively following an approach which recalls the binary search strategy, starting from a list of ordered items (e.g. a list of integers), where each item becomes a node of a tree, as shown in {numref}`bst`.
 
-[Example of a binary search tree](images/ex-bst.png)
+```{figure} images/ex-bst.png
+---
+name: bst
+---
+Example of a binary search tree.
+```
 
 As a reminder, the binary search strategy first checks if the middle item of a list is equal to the item to search for and, in case this is not true, it continues to analyse the part of the list that either precedes or follows the middle item if it is greater than or less than the item to search.
 
@@ -920,9 +935,14 @@ The source Python file of the code shown above is available {Download}`as part o
 
 A **minimax** is a recursive algorithm for choosing the next move in a two-player (A and B) game like chess, where all the possible configurations of the board are described as nodes in a tree of moves. A value is associated with each configuration (i.e. each node) and indicates how good it would be for a player (either A or B, depending on the turn) to reach that configuration. If it is A's turn to move, A gives a value to each of its legal moves, i.e. the child nodes of the one describing the current configuration. The best value for A is the **maximum** of the values of the children of the configuration in which A has to play, while the best value for B is the **minimum** of the values of the children of the configuration in which B has to play.
 
-The minimax uses a heuristic function `get_value` **only** when a **terminal node** of the tree of moves is reached or when **nodes at the maximum search depth** are reached (the maximum depth is specified as input to the algorithm). The other non-leaf nodes inherit their value from a descendant leaf/max-depth node, i.e. either the maximum of the values of the children if A is playing or the minimum of the values of the children if B is playing.
+The minimax uses a heuristic function `get_value` **only** when a **terminal node** of the tree of moves is reached or when **nodes at the maximum search depth** are reached (the maximum depth is specified as input to the algorithm). The other non-leaf nodes inherit their value from a descendant leaf/max-depth node, i.e. either the maximum of the values of the children if A is playing or the minimum of the values of the children if B is playing. An example of minimax execution is shown in {numref}`minimax`.
 
-[Minimax execution](images/ex-minimax.png)
+```{figure} images/ex-minimax.png
+---
+name: minimax
+---
+Minimax execution.
+```
 
 Write an algorithm in Python – `def minimax(node, max_depth, player_a_moves)` – which takes in input a node of the tree of moves, the maximum depth to consider while visiting the tree of moves, and whether the player A is playing (when `player_a_moves` is True) or its opponent is (when `player_a_moves` is False), and returns the heuristic value that will be assigned to the input node. The function `def get_value(node)`, for getting the heuristic value associated with a leaf or a node at maximum depth, and another function `def get_next_valid_moves(node)`, used to get all the moves (i.e. children) of a configuration (i.e. a node), are provided (i.e. they must not be developed) and can be directly used in the implementation of the algorithm. Initially, for instance considering the image above, the algorithm will be called as follows:
 
