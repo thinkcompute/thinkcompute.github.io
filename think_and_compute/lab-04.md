@@ -805,7 +805,7 @@ In this lab, you learned:
 
 ```{admonition} Next lab
 :class: tip
-In **Lab 05**, you will learn about recursion and working with files (TXT, CSV, JSON).
+In **Lab 05**, you will practice brute-force algorithms like linear search and insertion sort.
 ```
 
 ## Additional resources
