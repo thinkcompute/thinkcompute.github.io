@@ -1092,6 +1092,7 @@ Accompany the implementation of the function with the appropriate test cases.
 :label: part-4-ex-18-sol
 :class: dropdown
 
+```python
 # Test case for the function
 def test_get_good_white_moves(white, black, expected):
     result = get_good_white_moves(white, black)
@@ -1129,6 +1130,7 @@ print(test_get_good_white_moves(
     {(1, 1), (0, 2), (0, 3), (1, 0)},
     {(2, 0), (2, 1), (3, 1), (2, 2), (2, 3)},
     {(0, 0), (0, 1), (1, 2), (1, 3), (3, 2), (3, 3)}))
+```
 
 The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-atari_go.py>`. You can run it executing the command `python ex-dev-atari_go.py` in a shell.
 ````
