@@ -933,6 +933,306 @@ The source Python file of the code shown above is available {Download}`as part o
 `````{exercise}
 :label: part-4-ex-17
 
+Propose some variation to the [implementation of the peg solitaire exercise](./12-backtracking.md#py-solve) in [Chapter "Backtracking algorithms"](./12-backtracking.md) to make it more efficient – in particular, avoiding unsuccessful configurations if they have already been encountered previously while looking for a solution.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-17
+:label: part-4-ex-17-sol
+:class: dropdown
+
+```python
+from anytree import Node
+from collections import deque
+
+
+# Test case for the algorithm
+def test_solve(pegs, holes, last_move, no_win_list, expected):
+    result = solve(pegs, holes, last_move, no_win_list)
+    if expected == result.name["in"] and len(pegs) == 1:
+        return True
+    else:
+        return False
+
+
+# Code of the algorithm
+def solve(pegs, holes, last_move, no_win):
+    result = None
+
+    if pegs not in no_win:
+        no_win.append(set(pegs))
+
+        if len(pegs) == 1 and (5, 1) in pegs:  # leaf-win base case
+            result = last_move
+        else:
+            last_move.children = valid_moves(pegs, holes)
+
+            if len(last_move.children) == 0:  # leaf-lose base case
+                undo_move(last_move, pegs, holes)  # backtracking
+            else:  # recursive step
+                possible_moves = deque(last_move.children)
+
+                while result is None and len(possible_moves) > 0:
+                    current_move = possible_moves.pop()
+                    apply_move(current_move, pegs, holes)
+                    result = solve(pegs, holes, current_move, no_win)
+
+                if result is None:
+                    undo_move(last_move, pegs, holes)  # backtracking
+    else:
+        undo_move(last_move, pegs, holes)  # backtracking
+
+    return result
+
+
+def create_board():
+    initial_hole = (5, 1)
+    holes = set()
+    holes.add(initial_hole)
+
+    pegs = set([
+        (1, 0), (4, 0),
+        (0, 1), (1, 1), (2, 1), (3, 1), (4, 1),
+        (1, 2), (4, 2),
+        (1, 3), (4, 3),
+        (0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4),
+        (1, 5), (4, 5)
+    ])
+
+    return pegs, holes
+
+
+def valid_moves(pegs, holes):
+    result = list()
+
+    for x, y in holes:
+        if (x-1, y) in pegs and (x-2, y) in pegs:
+            result.append(Node({"move": (x-2, y), "in": (x, y), "remove": (x-1, y)}))
+        if (x+1, y) in pegs and (x+2, y) in pegs:
+            result.append(Node({"move": (x+2, y), "in": (x, y), "remove": (x+1, y)}))
+        if (x, y-1) in pegs and (x, y-2) in pegs:
+            result.append(Node({"move": (x, y-2), "in": (x, y), "remove": (x, y-1)}))
+        if (x, y+1) in pegs and (x, y+2) in pegs:
+            result.append(Node({"move": (x, y+2), "in": (x, y), "remove": (x, y+1)}))
+
+    return result
+
+
+def apply_move(node, pegs, holes):
+    move = node.name
+    old_pos = move.get("move")
+    new_pos = move.get("in")
+    eat_pos = move.get("remove")
+
+    pegs.remove(old_pos)
+    holes.add(old_pos)
+
+    pegs.add(new_pos)
+    holes.remove(new_pos)
+
+    pegs.remove(eat_pos)
+    holes.add(eat_pos)
+
+
+def undo_move(node, pegs, holes):
+    move = node.name
+    old_pos = move.get("move")
+    new_pos = move.get("in")
+    eat_pos = move.get("remove")
+
+    pegs.add(old_pos)
+    holes.remove(old_pos)
+
+    pegs.remove(new_pos)
+    holes.add(new_pos)
+
+    pegs.add(eat_pos)
+    holes.remove(eat_pos)
+
+
+# Tests
+pegs, holes = create_board()
+print(test_solve(pegs, holes, Node("start"), list(), (5, 1)))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-solve_dp.py>`. You can run it executing the command `python ex-solve_dp.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-18
+
+*AtariGo* is a simplified version of Go. Its rules are pretty simple. Two teams, Black and White, take turns placing a stone (game piece) of their own colour on a vacant point (intersection) of the grid on the board. Once placed, stones do not move. A vacant point adjacent to a stone is called a liberty for that stone. Connected stones formed a group and shared their liberties. A stone or group with no liberties is captured. Black plays first. The first team to capture anything wins.
+
+Suppose you want to develop software that can play AtariGo on a 4x4 board, as shown in {numref}`go`, already populated with some stones.
+
+```{figure} images/ex-go.png
+---
+name: go
+---
+An example of a small Go board.
+```
+
+Suppose we use tuples to define every position in the board, as  shown as follows:
+
+```
+(0, 0) (1, 0) (2, 0) (3, 0)
+(0, 1) (1, 1) (2, 1) (3, 1)
+(0, 2) (1, 2) (2, 2) (3, 2)
+(0, 3) (1, 3) (2, 3) (3, 3)
+```
+
+One of the functions to implement returns the set of board positions that are not occupied by any stone and that do not result in the stone being immediately captured if placed. Supposing White has to play on the board in the figure, such a function would return the set containing the tuples `(0, 0)`, `(1, 0)` and `(0, 1)` – but not `(3, 3)` since if White places a stone there it will be immediately captured.
+
+Write a function in Python – `def get_good_white_moves(white, black)` – that takes in input the set of tuples identifying the stones placed in the 4x4 board in the previous turns by the two players (`white` and `black`, respectively) and that returns the set of all the tuples identifying possible places where White can put its stone in the current turn, according to the rules mentioned above. As a simplification, avoid checking the liberties of groups of White stones.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-18
+:label: part-4-ex-18-sol
+:class: dropdown
+
+# Test case for the function
+def test_get_good_white_moves(white, black, expected):
+    result = get_good_white_moves(white, black)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def get_good_white_moves(white, black):
+    result = set([
+        (0, 0), (1, 0), (2, 0), (3, 0),
+        (0, 1), (1, 1), (2, 1), (3, 1),
+        (0, 2), (1, 2), (2, 2), (3, 2),
+        (0, 3), (1, 3), (2, 3), (3, 3)
+    ])
+    result.difference_update(white)
+    result.difference_update(black)
+
+    for x, y in set(result):
+        if not have_freedom((x - 1, y), black) and not have_freedom((x + 1, y), black) and \
+                not have_freedom((x, y - 1), black) and not have_freedom((x, y + 1), black):
+            result.remove((x, y))
+
+    return result
+
+
+def have_freedom(t, black):
+    return 0 <= t[0] <= 3 and 0 <= t[1] <= 3 and t not in black
+
+
+# Tests
+print(test_get_good_white_moves(
+    {(1, 1), (0, 2), (0, 3), (1, 0)},
+    {(2, 0), (2, 1), (3, 1), (2, 2), (2, 3)},
+    {(0, 0), (0, 1), (1, 2), (1, 3), (3, 2), (3, 3)}))
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-atari_go.py>`. You can run it executing the command `python ex-dev-atari_go.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-19
+
+We define a labyrinth as a set of tuples representing the cells of its paths. The tuples are organised in an x/y grid, similar to the way used in [the listing](./12-backtracking.md#board-coords) in [Chapter "Backtracking algorithms"](./12-backtracking.md) for the peg solitaire, such as the one proposed as follows:
+
+```
+      (1,0)       (3,0) (4,0) (5,0)
+(0,1) (1,1) (2,1) (3,1)       (5,1)
+(0,2)       (2,2)       (4,2) (5,2)
+(0,3)       (2,3) (3,3)       (5,3)
+(0,4)                   (4,4)      
+(0,5) (1,5) (2,5) (3,5) (4,5)      
+```
+
+Write the function `solve_labyrinth(paths, entrance, exit, last_move)` using a backtracking approach, which takes as input the paths of the labyrinth (such as the ones mentioned above), two tuples representing the entrance and the exit of the labyrinth, and the last move made. The function returns the last move done to reach the exit if the labyrinth has an escape; otherwise, it returns `None`.
+
+Accompany the implementation of the function with the appropriate test cases.
+
+````{solution} part-4-ex-19
+:label: part-4-ex-19-sol
+:class: dropdown
+
+```python
+from anytree import Node
+from collections import deque
+
+
+# Test case for the function
+def test_solve_labyrinth(paths, entrance, exit, last_move, expected):
+    result = solve_labyrinth(paths, entrance, exit, last_move)
+    if result is not None and result.name == exit:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def solve_labyrinth(paths, entrance, exit, last_move):
+    result = None
+    paths.remove(last_move.name)
+
+    if entrance == exit:  # leaf-win base case
+        result = last_move
+    else:
+        last_move.children = valid_moves(paths, entrance[0], entrance[1])
+
+        if len(last_move.children) == 0:  # leaf-lose base case
+            paths.add(last_move.name)  # backtracking
+        else:  # recursive step
+            possible_moves = deque(last_move.children)
+
+            while result is None and len(possible_moves) > 0:
+                current_move = possible_moves.pop()
+                result = solve_labyrinth(paths, current_move.name, exit, current_move)
+
+            if result is None:
+                paths.add(last_move.name)  # backtracking
+
+    return result
+
+
+def create_labyrinth():
+    return set([
+        (1, 0), (3, 0), (4, 0), (5, 0),
+        (0, 1), (1, 1), (2, 1), (3, 1), (5, 1),
+        (0, 2), (2, 2), (4, 2), (5, 2),
+        (0, 3), (2, 3), (3, 3), (5, 3),
+        (0, 4), (4, 4),
+        (0, 5), (1, 5), (2, 5), (3, 5), (4, 5)])
+
+
+def valid_moves(available_paths, x, y):
+    result = list()
+
+    if (x - 1, y) in available_paths:
+        result.append(Node((x - 1, y)))
+    if (x + 1, y) in available_paths:
+        result.append(Node((x + 1, y)))
+    if (x, y - 1) in available_paths:
+        result.append(Node((x, y - 1)))
+    if (x, y + 1) in available_paths:
+        result.append(Node((x, y + 1)))
+
+    return result
+
+
+# Tests
+print(test_solve_labyrinth(create_labyrinth(), (1, 0), (5, 3), Node((1, 0)), (5, 3)))
+print(test_solve_labyrinth(create_labyrinth(), (5, 3), (1, 0), Node((5, 3)), (1, 0)))
+print(test_solve_labyrinth(create_labyrinth(), (1, 0), (1, 0), Node((1, 0)), (1, 0)))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-solve_labirinth.py>`. You can run it executing the command `python ex-solve_labirinth.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-20
+
 A **minimax** is a recursive algorithm for choosing the next move in a two-player (A and B) game like chess, where all the possible configurations of the board are described as nodes in a tree of moves. A value is associated with each configuration (i.e. each node) and indicates how good it would be for a player (either A or B, depending on the turn) to reach that configuration. If it is A's turn to move, A gives a value to each of its legal moves, i.e. the child nodes of the one describing the current configuration. The best value for A is the **maximum** of the values of the children of the configuration in which A has to play, while the best value for B is the **minimum** of the values of the children of the configuration in which B has to play.
 
 The minimax uses a heuristic function `get_value` **only** when a **terminal node** of the tree of moves is reached or when **nodes at the maximum search depth** are reached (the maximum depth is specified as input to the algorithm). The other non-leaf nodes inherit their value from a descendant leaf/max-depth node, i.e. either the maximum of the values of the children if A is playing or the minimum of the values of the children if B is playing. An example of minimax execution is shown in {numref}`minimax`.
@@ -952,8 +1252,8 @@ minimax(root, 2, True)
 
 Accompany the implementation of the function with the appropriate test cases. 
 
-````{solution} part-4-ex-17
-:label: part-4-ex-17-sol
+````{solution} part-4-ex-20
+:label: part-4-ex-20-sol
 :class: dropdown
 
 ```python
