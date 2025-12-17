@@ -1659,6 +1659,222 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-4-ex-26
+
+Implement the algorithm introduced in [Section "The greedy algorithmic approach"](./14-greedy.md#the-greedy-approach) of [Chapter "Greedy algorithms"](./14-greedy.md) for returning the minimum amount of coins for a change. 
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-26
+:label: part-4-ex-26-sol
+:class: dropdown
+
+```python
+# Test case for the function
+def test_return_change(amount, expected):
+    result = return_change(amount)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def return_change(amount):
+    result = dict()
+    coins = [2.0, 1.0, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01]
+
+    for coin in coins:
+        while float_diff(amount, coin) >= 0:
+            amount = float_diff(amount, coin)
+
+            if coin not in result:
+                result[coin] = 0
+            result[coin] = result[coin] + 1
+
+    return result
+
+
+# The use of the 'round' function is justified due to the precision in the representation
+# of floating point numbers, see https://docs.python.org/3/tutorial/floatingpoint.html.
+def float_diff(f1, f2):
+    return round(f1 - f2, 2)
+
+
+# Tests
+print(test_return_change(5.00, {2.0: 2, 1.0: 1}))
+print(test_return_change(2.76, {2.0: 1, 0.5: 1, 0.2: 1, 0.05: 1, 0.01: 1}))
+print(test_return_change(0.00, {}))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-return_change.py>`. You can run it executing the command `python ex-return_change.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-27
+
+Suppose one must schedule the maximum number of activities in a day, choosing from a set of available activities, while one can address at most one activity at a time. Each activity is defined by a tuple, where the first element specifies the start time (an integer from 0 to 24, indicating the start hour), and the second element specifies the finish time (an integer from 0 to 24, indicating the finish hour). Develop the Python function `def select_activities(set_of_activities)` by using a greedy approach. It takes as input a set of day-level activities and returns the list of the maximum number of non-overlapping activities that can be scheduled, ordered by start time. Hint: consider each activity's finish time and how it may affect the selection.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-27
+:label: part-4-ex-27-sol
+:class: dropdown
+
+```python
+from collections import deque
+
+
+# Test case for the function
+def test_select_activities(set_of_activities, expected):
+    result = select_activities(set_of_activities)
+    if expected == len(result):
+        bool_result = True
+        for idx, activity in enumerate(result):
+            if idx > 0:
+                bool_result = bool_result and (activity[0] >= result[idx - 1][1])
+
+        return bool_result
+    else:
+        return False
+
+
+# Code of the function
+def select_activities(set_of_activities):
+    ordered_activities = deque()
+    for activity in set_of_activities:
+        insert_position = len(ordered_activities)
+        for idx in reversed(range(insert_position)):
+            if activity[1] < ordered_activities[idx][1]:
+                insert_position = idx
+        ordered_activities.insert(insert_position, activity)
+
+    result = list()
+    finish_time = 0
+    while len(ordered_activities) > 0:
+        activity = ordered_activities.popleft()
+        if activity[0] >= finish_time:
+            result.append(activity)
+            finish_time = activity[1]
+
+    return result
+
+
+# Tests
+activities_1 = set()
+activities_1.add((0, 3))
+activities_1.add((4, 7))
+activities_1.add((2, 12))
+activities_1.add((7, 8))
+activities_1.add((10, 13))
+activities_1.add((12, 20))
+activities_1.add((14, 17))
+activities_1.add((16, 19))
+activities_1.add((17, 24))
+activities_1.add((21, 23))
+print(test_select_activities(activities_1, 6))
+print(test_select_activities(set(), 0))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-select_activities.py>`. You can run it executing the command `python ex-select_activities.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-28
+
+Graph colouring is an assignment of attributes traditionally called "colours" to the vertices of an undirected graph subject to certain constraints, where no two adjacent vertices are of the same colour, as shown in {numref}`colouring`. 
+
+```{figure} images/ex-colouring.png
+---
+name: colouring
+---
+Example of a graph colouring.
+```
+
+A **greedy colouring** is a colouring of the vertices of a graph formed by a greedy algorithm that considers the vertices of the graph in sequence and assigns each vertex its first available colour. The algorithm processes the vertices, assigning a colour to each one as it is processed. The colours should be represented by the non-negative integers 0, 1, 2, etc., and each vertex is given the colour with the smallest colour number that is not already used by one of its neighbours.
+
+Write an algorithm in Python – `def greedy_colouring(g)` – that implements the greedy colouring, which takes in input an undirected graph `g`, created using the library *networkx*, and returns a dictionary having the name of the vertex as key and the non-negative integer defining its colour as value. Important: having a graph `g`, the method `g.neighbors(n)` returns an iterator (acting as a list, when used in a for each loop) of all the neighbours of the given node `n`.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-28
+:label: part-4-ex-28-sol
+:class: dropdown
+
+```python
+from networkx import Graph
+
+# Test case for the function
+def test_greedy_colouring(g, expected):
+    result = greedy_colouring(g)
+    
+    if result == expected:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def greedy_colouring(g):
+    result = dict()
+
+    for node in g.nodes:
+        colour = 0
+        used = set()
+
+        for nei in g.neighbors(node):
+            if nei in result:
+                used.add(result[nei])
+        
+        while colour in used:
+            colour += 1
+        
+        result[node] = colour
+    
+    return result
+
+
+# Tests   
+my_g = Graph()
+my_g.add_edge(1, 2)
+my_g.add_edge(2, 3)
+my_g.add_edge(3, 4)
+my_g.add_edge(4, 5)
+my_g.add_edge(5, 1)
+my_g.add_edge(1, 6)
+my_g.add_edge(2, 7)
+my_g.add_edge(3, 8)
+my_g.add_edge(4, 9)
+my_g.add_edge(5, 10)
+my_g.add_edge(6, 8)
+my_g.add_edge(6, 9)
+my_g.add_edge(7, 9)
+my_g.add_edge(7, 10)
+my_g.add_edge(8, 10)
+
+result = {
+    1: 0,
+    2: 1,
+    3: 0,
+    4: 1,
+    5: 2,
+    6: 1,
+    7: 0,
+    8: 2,
+    9: 2,
+    10: 1 
+}
+
+print(test_greedy_colouring(my_g, result))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-colouring.py>`. You can run it executing the command `python ex-dev-colouring.py` in a shell.
+````
+`````
+
 ## References
 
 ```{bibliography}

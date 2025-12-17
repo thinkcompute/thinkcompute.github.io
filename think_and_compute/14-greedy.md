@@ -23,7 +23,7 @@ A picture of Evelyn Berezin taken in 2015. Source: [Computer History Museum](htt
 ```
 
 
-## Greedy algorithms
+## The greedy approach
 
 A *[greedy algorithm](https://en.wikipedia.org/wiki/Greedy_algorithm)* is a particular algorithmic approach. At every execution stage, it always makes the optimal choice (i.e. the best one) in that specific moment. For certain kinds of problems, this behaviour allows us to reach the best possible solution to the computational problem into consideration. For instance, if you have to determine the minimum number of euro coins needed for making a change, then a greedy algorithm will return an optimal solution overall:
 
