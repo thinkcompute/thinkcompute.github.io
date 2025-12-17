@@ -1324,6 +1324,341 @@ The source Python file of the code shown above is available {Download}`as part o
 ````
 `````
 
+`````{exercise}
+:label: part-4-ex-21
+
+Consider the list of co-authors of Tim Berners-Lee as illustrated in the right box at [http://dblp.uni-trier.de/pers/hd/b/Berners=Lee:Tim](http://dblp.uni-trier.de/pers/hd/b/Berners=Lee:Tim). Build an undirected graph that contains Tim Berners Lee as the central node, and that links to five nodes representing his top-five co-authors. Also, specify the weight of each edge as an attribute, where the value of the weight is the number of bibliographic resources (articles, proceedings, etc.) Tim Berners-Lee has co-authored with the person linked by that edge.
+
+````{solution} part-4-ex-21
+:label: part-4-ex-21-sol
+:class: dropdown
+
+```python
+from networkx import Graph
+
+g = Graph()
+
+g.add_node("Tim Berners-Lee")
+g.add_node("Tom Heath")
+g.add_node("Christian Bizer")
+g.add_node("Sören Auer")
+g.add_node("Lalana Kagal")
+g.add_node("Daniel J. Weitzner")
+
+g.add_edge("Tim Berners-Lee", "Tom Heath", weight=18)
+g.add_edge("Tim Berners-Lee", "Christian Bizer", weight=18)
+g.add_edge("Tim Berners-Lee", "Sören Auer", weight=10)
+g.add_edge("Tim Berners-Lee", "Lalana Kagal", weight=9)
+g.add_edge("Tim Berners-Lee", "Daniel J. Weitzner", weight=8)
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-graph.py>`. You can run it executing the command `python ex-graph.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-22
+
+Create a directed graph which relates the actors [Brad Pitt](http://www.imdb.com/name/nm0000093/), [Eva Green](http://www.imdb.com/name/nm1200692/), [George Clooney](http://www.imdb.com/name/nm0000123/), [Catherine Zeta-Jones](http://www.imdb.com/name/nm0001876/), [Johnny Depp](http://www.imdb.com/name/nm0000136/), and [Helena Bonham Carter](http://www.imdb.com/name/nm0000307/) to the following movies: [_Ocean's Twelve_](http://www.imdb.com/title/tt0349903/), [_Fight Club_](http://www.imdb.com/title/tt0137523/), [_Dark Shadows_](http://www.imdb.com/title/tt1077368/).
+
+````{solution} part-4-ex-22
+:label: part-4-ex-22-sol
+:class: dropdown
+
+```python
+from networkx import DiGraph
+
+g = DiGraph()
+
+g.add_node("Brad Pitt")
+g.add_node("Eva Green")
+g.add_node("George Clooney")
+g.add_node("Catherine Zeta-Jones")
+g.add_node("Johnny Depp")
+g.add_node("Helena Bonham Carter")
+g.add_node("Ocean's Twelve")
+g.add_node("Fight Club")
+g.add_node("Dark Shadows")
+
+g.add_edge("Brad Pitt", "Ocean's Twelve")
+g.add_edge("George Clooney", "Ocean's Twelve")
+g.add_edge("Catherine Zeta-Jones", "Ocean's Twelve")
+
+g.add_edge("Brad Pitt", "Fight Club")
+g.add_edge("Helena Bonham Carter", "Fight Club")
+
+g.add_edge("Helena Bonham Carter", "Dark Shadows")
+g.add_edge("Johnny Depp", "Dark Shadows")
+g.add_edge("Eva Green", "Dark Shadows")
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-digraph.py>`. You can run it executing the command `python ex-digraph.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-23
+
+The Erdős number quantifies the collaborative distance between the mathematician Paul Erdős and another person, measured by the number of scholarly articles they have co-authored. In practice, having the collaboration network of some people described as an undirected graph, where each node represents a person and an edge between two people states that they have coauthored some article together, the goal is to find the minimal distance, computed as the number of edges to traverse, between the node representing Paul Erdős and another input person.
+
+An **Erdős number by research group (ENG)** is the average number computed by dividing the Erdős numbers of each member of the research group by the number of people in that group.
+
+Write an algorithm in Python – `def eng(coauthor_graph, research_group)` – which takes in input an undirected graph `coauthor_graph` (i.e. an object of the class `networkx.Graph`) describing a collaboration network, in which each node is defined by the string of the name of a person and that includes the node `"Paul Erdős"`, and the list of strings `research_group`, which contains the strings of the names of people that are member of a research group. The Python function should return the Erdős number for the corresponding research group.
+
+Accompany the implementation of the function with the appropriate test cases.
+
+````{solution} part-4-ex-23
+:label: part-4-ex-23-sol
+:class: dropdown
+
+```python
+from networkx import Graph
+
+
+# Test case for the function
+def test_eng(coauthor_graph, research_group, expected):
+    result = eng(coauthor_graph, research_group)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def eng(coauthor_graph, research_group):
+    erdos = dict()
+    for node in coauthor_graph.nodes:
+        erdos[node] = 0
+
+    to_visit = ["Paul Erdős"]
+    to_visit.extend(coauthor_graph.adj["Paul Erdős"])
+    idx = 1
+
+    while idx < len(to_visit):
+        node = to_visit[idx]
+        idx = idx + 1
+        erdos[node] = erdos[node] + 1
+        
+        for child in coauthor_graph.adj[node]:
+            if child not in to_visit:
+                erdos[child] = erdos[child] + erdos[node]
+                to_visit.append(child)
+    
+    total = 0
+    for member in research_group:
+        total = total + erdos[member]
+    
+    return total / len(research_group)
+
+
+# Tests
+g = Graph()
+pe = "Paul Erdős"
+ad = "Alice Doe"
+bd = "Bob Doe"
+cd = "Charles Doe"
+dd = "Des Doe"
+ed = "Estella Doe"
+
+g.add_edge(pe, ad)
+g.add_edge(ad, bd)
+g.add_edge(ad, cd)
+g.add_edge(bd, cd)
+g.add_edge(bd, dd)
+g.add_edge(bd, ed)
+g.add_edge(ad, ed)
+
+print(test_eng(g, [pe], 0))
+print(test_eng(g, [ad], 1))
+print(test_eng(g, [bd], 2))
+print(test_eng(g, [ed], 2))
+print(test_eng(g, [dd], 3))
+print(test_eng(g, [ad, bd, ed, dd], 2))
+``` 
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-erdos.py>`. You can run it executing the command `python ex-dev-erdos.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-24
+
+**A\*** is a search algorithm for weighted graphs. Starting from a specific start node of a graph, it aims to find a path to the given goal node having the smallest cost (i.e. the least distance travelled, considering the sum of the weights of all the edges crossed from start to goal). Typical implementations of A* use a priority queue to perform the repeated selection of minimum cost nodes to expand, computed using the following formula: 
+
+```
+f(n) = g(n) + h(n)
+```
+
+where `n` is the next node on the path, `g(n)` is the cost of the path from the start node to `n`, and `h(n)` is a heuristic function (`h` is provided as input of the algorithm) that estimates the cost of the cheapest path from `n` to the goal.
+
+At the very beginning of the algorithm, the priority queue is initialised with the start node, and `f(start)` is set to `h(start)`. At each step of the algorithm, the node `n` with the lowest `f(n)` value is removed from the priority queue, the `f` and `g` values of its neighbours are updated accordingly, and these neighbours are added to the priority queue. The algorithm continues until the node with the lowest f value in the queue is removed (i.e., the goal node), at which point `g(goal)` is returned. 
+
+Write an algorithm in Python – `def a_star(graph, start, goal, h)` – which takes in input a directed graph (defined according to the *networkx* library), a start node in the graph, a goal node in the graph, and the function `h` used to compute `f`, and returns the cost of the cheapest path from start to goal. All the edges in the graph have specified an attribute `weight` (an integer) representing the cost to traverse that edge.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-24
+:label: part-4-ex-24-sol
+:class: dropdown
+
+```python
+from collections import deque
+from networkx import Graph
+
+# Test case for the function
+def test_a_star(graph, start, goal, h, expected):
+    result = a_star(graph, start, goal, h)
+    if expected == result:
+        return True
+    else:
+        return False
+
+
+# Code of the function
+def a_star(graph, start, goal, h):
+    q = []
+    q.append(start)
+    f = {start: h(start)}
+    g = {start: 0}
+
+    while q:
+        idx = select_item(q, f)
+        item = q[idx]
+        q.remove(item)
+
+        if item == goal:
+            return g[item]
+        else:
+            for node in graph.adj[item]:
+                weight = graph.get_edge_data(item, node)["weight"]
+                tmp_g = g[item] + weight
+                if node not in g or tmp_g < g[node]:
+                    g[node] = tmp_g
+                    f[node] = g[node] + h(node)
+                    q.append(node)
+            
+    return None
+
+def select_item(q, f):
+    f_values = []
+    min_value = None
+
+    for item in q:
+        cur_value = f[item]
+        f_values.append(cur_value)
+        if min_value is None or cur_value < min_value:
+            min_value = cur_value
+        
+    return f_values.index(min_value)
+
+# Tests
+g = Graph()
+g.add_edge("a", "b", weight=2)
+g.add_edge("b", "c", weight=3)
+g.add_edge("c", "end", weight=4)
+g.add_edge("end", "e", weight=2)
+g.add_edge("e", "d", weight=3)
+g.add_edge("d", "start", weight=2)
+g.add_edge("start", "a", weight=1.5)
+
+def my_h(x):
+    res = {
+        "start": 7,
+        "a": 4,
+        "b": 2,
+        "c": 4,
+        "d": 4.5,
+        "e": 2,
+        "end": 0
+    }
+
+    return res[x]
+
+print(test_a_star(g, "start", "end", my_h, 7))
+print(test_a_star(g, "start", "end", lambda x: 0, 7))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-a_star.py>`. You can run it executing the command `python ex-dev-a_star.py` in a shell.
+````
+`````
+
+`````{exercise}
+:label: part-4-ex-25
+
+**PageRank** is an algorithm used by Google Search to rank web pages in their search engine results. It operates on a directed graph where nodes represent webpages, and each directed edge represents a link from a source webpage to a target webpage. Each node of the graph has an associated PageRank that measures its relative importance within the graph (the greater, the more critical).
+
+In its simplified version, it is computed as follows. It takes as input a directed graph, where each node has a potential PageRank transfer value to share with other nodes, initialised to 1. Then, the algorithm transfers the potential value of a given node to its outbound targets, dividing it equally among all outbound links. For instance, suppose that page B had a link to pages C and A, page C has a link to page A, and page D has links to all three pages. Thus, page B would transfer half of its existing value (0.5) to page A and the other half (0.5) to page C. Page C would transfer all of its existing value (1) to the only page it links to, A. Since D had three outbound links, it would transfer one third of its existing value, or approximately 0.33, to A, B and C. The sum of all the values that are transferred to a given node is the PageRank of that node – for instance, page A will have a PageRank of approximately 1.83.
+
+Write an algorithm in Python – `def simplified_pr(g)` – which takes in input a directed graph created using the networkx library, and returns a dictionary having as many key-value pairs as the number of nodes in the graph. In particular, each pair maps a node name to its PageRank. It is possible to use the method `adj[n]` of a graph for getting all the nodes reachable from a node `n` by following its outbound edges. For instance, in the example above, where the graph is stored as a `DiGraph` in the variable `my_g`, `my_g.adj["D"]` returns a collection containing the nodes A, B, and C.
+
+Accompany the implementation of the function with the appropriate test cases. 
+
+````{solution} part-4-ex-25
+:label: part-4-ex-25-sol
+:class: dropdown
+
+```python
+from networkx import DiGraph
+
+
+# Test case for the function
+def test_simplified_pr(g, expected):
+    result = simplified_pr(g)
+    
+    if len(result) == len(expected):
+        test_res = True
+        for key in result:
+            if round(result[key], 2) != round(expected[key], 2):
+                test_res = False
+        return test_res
+    else:
+        return False
+
+
+# Code of the function
+def simplified_pr(g):
+    result = {}
+
+    for n in g.nodes:
+        if n not in result:
+            result[n] = 0
+        
+        adj_n = g.adj[n]
+
+        if len(adj_n):
+            value = 1 / len(adj_n)
+
+            for a in adj_n:
+                if a not in result:
+                    result[a] = 0
+                result[a] += value
+
+    return result
+    
+            
+# Tests
+my_g = DiGraph()
+my_g.add_edge("B", "C")
+my_g.add_edge("B", "A")
+my_g.add_edge("C", "A")
+my_g.add_edge("D", "A")
+my_g.add_edge("D", "B")
+my_g.add_edge("D", "C")
+
+res = {
+    "A": 1.83,
+    "B": 0.33,
+    "C": 0.83,
+    "D": 0
+}
+
+print(test_simplified_pr(my_g, res))
+```
+
+The source Python file of the code shown above is available {Download}`as part of the material of the course<./material/ex-dev-pagerank.py>`. You can run it executing the command `python ex-dev-pagerank.py` in a shell.
+````
+`````
+
 ## References
 
 ```{bibliography}
