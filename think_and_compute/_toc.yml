@@ -33,7 +33,6 @@ parts:
     - file: lab-04
     - file: lab-05
     - file: lab-06
-    - file: lab-07
   - caption: "Part 4: Additional Algorithmic Techniques and Data Structures"
     numbered: False
     chapters:
@@ -44,14 +43,19 @@ parts:
     - file: 13-graphs
     - file: 14-greedy
     - file: part-4-exercises
-  - caption: "Part 5: Managing Data in Python"
+  - caption: "Part 5: Laboratory on Divide-and-Conquer and File Handling"
+    numbered: False
+    chapters:
+    - file: lab-07
+    - file: lab-08
+  - caption: "Part 6: Managing Data in Python"
     numbered: False
     chapters:
     - file: 15-what-is-a-datum
     - file: 16-data-models
     - file: 17-pandas
     - file: 18-statistics
-  - caption: "Part 6: Databases"
+  - caption: "Part 7: Databases"
     numbered: False
     chapters:
     - file: 19-relational-database
