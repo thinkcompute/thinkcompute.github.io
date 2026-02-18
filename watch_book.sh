@@ -6,6 +6,7 @@ echo "Press Ctrl+C to stop"
 echo ""
 
 echo "Performing initial build..."
+uv run jupyter-book clean think_and_compute
 uv run jupyter-book build think_and_compute
 
 # Watch only markdown files
@@ -14,5 +15,5 @@ uv run watchmedo shell-command \
     --patterns="*.md" \
     --recursive \
     --drop \
-    --command='echo "Changes detected, rebuilding..." && uv run jupyter-book build think_and_compute' \
+    --command='echo "Changes detected, rebuilding..." && uv run jupyter-book clean think_and_compute && uv run jupyter-book build think_and_compute' \
     think_and_compute/

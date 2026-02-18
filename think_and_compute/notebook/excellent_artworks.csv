@@ -1,0 +1,7 @@
+id,title,year,genre,height_cm,width_cm,museum_id,artwork_id,room,condition,name,city,type,founded
+1,Ragazzo con canestra di frutta,1593,portrait,70,67,1,1,Sala VIII,excellent,Galleria Borghese,Rome,museum,1903
+3,Buona ventura,1594,genre,115,150,2,3,Sala Pinacoteca,excellent,Musei Capitolini,Rome,museum,1734
+5,Canestra di frutta,1599,still life,47,65,4,5,Sala Federiciana,excellent,Pinacoteca Ambrosiana,Milan,museum,1618
+7,Testa di Medusa,1597,mythological,60,55,5,7,Sala di Caravaggio,excellent,Galleria degli Uffizi,Florence,museum,1581
+10,Vocazione di san Matteo,1600,religious,322,340,7,10,Cappella Contarelli,excellent,San Luigi dei Francesi,Rome,church,1589
+11,Conversione di san Paolo,1601,religious,230,175,8,11,Cappella Cerasi,excellent,Santa Maria del Popolo,Rome,church,1099

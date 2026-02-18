@@ -55,7 +55,12 @@ parts:
     - file: 16-data-models
     - file: 17-pandas
     - file: 18-statistics
-  - caption: "Part 7: Databases"
+  - caption: "Part 7: A Laboratory on Managing Data"
+    numbered: False
+    chapters:
+    - file: lab-09
+    - file: lab-10
+  - caption: "Part 8: Databases"
     numbered: False
     chapters:
     - file: 19-relational-database

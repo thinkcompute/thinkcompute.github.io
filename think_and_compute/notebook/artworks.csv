@@ -1,0 +1,16 @@
+id,title,year,genre,height_cm,width_cm,museum_id
+1,Ragazzo con canestra di frutta,1593,portrait,70,67,1
+2,Bacchino malato,1593,mythological,67,53,1
+3,Buona ventura,1594,genre,115,150,2
+4,Riposo durante la fuga in Egitto,1596,religious,134,167,3
+5,Canestra di frutta,1599,still life,47,65,4
+6,Bacco,1597,mythological,95,85,5
+7,Testa di Medusa,1597,mythological,60,55,5
+8,Giuditta e Oloferne,1599,religious,145,195,6
+9,Narciso,1599,mythological,110,92,6
+10,Vocazione di san Matteo,1600,religious,322,340,7
+11,Conversione di san Paolo,1601,religious,230,175,8
+12,Madonna dei Pellegrini,1605,religious,260,150,9
+13,Flagellazione di Cristo,1607,religious,286,213,10
+14,Sette opere di misericordia,1607,religious,390,260,11
+15,Davide con la testa di Golia,1610,religious,125,101,1
