@@ -18,6 +18,8 @@ By the end of this lab, you will be able to:
 - Load CSV files into pandas DataFrames with correct data types
 - Query and filter DataFrames using `query()` and `iterrows()`
 - Join multiple DataFrames using `merge()`
+- Compute derived values from existing columns
+- Build a new DataFrame from aggregated results
 - Save results to CSV files using `to_csv()`
 ```
 
@@ -27,7 +29,7 @@ This lab puts into practice the concepts introduced in the [Introduction to Pand
 
 ## The dataset: Caravaggio's artworks in Italy
 
-The dataset for this lab consists of three CSV files stored in the `notebook/` directory:
+The dataset for this lab consists of three CSV files (you can download each file by clicking on its name):
 
 - **[`artworks.csv`](notebook/artworks.csv)**: a catalogue of 15 paintings by Caravaggio with their title, year, genre, dimensions (height and width in cm), and the museum where they are held
 - **[`museums.csv`](notebook/museums.csv)**: a list of 11 Italian museums and churches with their city, type, and founding year
@@ -43,7 +45,7 @@ In this first part, you will load the artworks dataset and explore its content u
 
 ### Exercise 1.1: Load the artworks catalogue
 
-Load the file `notebook/artworks.csv` into a pandas DataFrame using `read_csv()`. Make sure to specify `keep_default_na=False` and provide a `dtype` dictionary so that each column is read with the correct data type: `"string"` for text columns and `"int"` for `id`, `year`, `height_cm`, `width_cm`, and `museum_id`. Display the resulting DataFrame.
+Load the file `artworks.csv` into a pandas DataFrame using `read_csv()`. Make sure to specify `keep_default_na=False` and provide a `dtype` dictionary so that each column is read with the correct data type: `"string"` for text columns and `"int"` for `id`, `year`, `height_cm`, `width_cm`, and `museum_id`. Display the resulting DataFrame.
 
 ```{code-cell} python
 :tags: [hide-cell]
@@ -111,7 +113,7 @@ In real datasets, information is often distributed across multiple tables. In th
 
 ### Exercise 3.1: Load and join artworks with collections
 
-Load `notebook/museums.csv` and `notebook/collections.csv` into two DataFrames, specifying `keep_default_na=False` and appropriate `dtype` dictionaries. Then, use `merge()` to join the artworks DataFrame with the collections DataFrame. The join should match the `id` column in artworks with the `artwork_id` column in collections. Display the resulting DataFrame and observe which columns it contains.
+Load `museums.csv` and `collections.csv` into two DataFrames, specifying `keep_default_na=False` and appropriate `dtype` dictionaries. Then, use `merge()` to join the artworks DataFrame with the collections DataFrame. The join should match the `id` column in artworks with the `artwork_id` column in collections. Display the resulting DataFrame and observe which columns it contains.
 
 ```{code-cell} python
 :tags: [hide-cell]
@@ -141,7 +143,7 @@ df_art_collections
 
 ### Exercise 3.2: Chain a second merge and save results
 
-Starting from the result of the previous exercise, perform a second `merge()` to add the museum names. Join on the `museum_id` column (present in both the artworks data and the museums data). Then, find all artworks in "excellent" condition and print their title and museum name. Finally, save the resulting DataFrame of excellent-condition artworks to a new CSV file called `notebook/excellent_artworks.csv`, using `to_csv()` with `index=False` to avoid writing the row index.
+Starting from the result of the previous exercise, perform a second `merge()` to add the museum names. Join on the `museum_id` column (present in both the artworks data and the museums data). Then, find all artworks in "excellent" condition and print their title and museum name. Finally, save the resulting DataFrame of excellent-condition artworks to a new CSV file called `excellent_artworks.csv`, using `to_csv()` with `index=False` to avoid writing the row index.
 
 ```{code-cell} python
 :tags: [hide-cell]
@@ -157,16 +159,24 @@ df_excellent.to_csv("notebook/excellent_artworks.csv", index=False)
 
 ## Part 4: Final challenge
 
-### Exercise 4.1: Artworks per museum
+### Exercise 4.1: Museum report
 
-Using all three CSV files, produce a dictionary where each key is a museum name and each value is the number of artworks that museum holds. Print the result.
+Using all three CSV files, produce a summary report as a new DataFrame with one row per museum and the following columns:
+
+- `museum`: the museum name
+- `city`: the city where the museum is located
+- `num_artworks`: the number of Caravaggio artworks held by the museum
+- `largest_artwork`: the title of the largest artwork (by area, computed as `height_cm * width_cm`)
+- `excellent_pct`: the percentage of artworks in "excellent" condition (as an integer between 0 and 100)
+
+Save the resulting DataFrame to a CSV file called `museum_report.csv` (without the row index) and display it.
 
 ````{admonition} Solution
 :class: tip, dropdown
 ```python
-from pandas import read_csv, merge
+from pandas import read_csv, merge, DataFrame, Series
 
-df_artworks = read_csv("notebook/artworks.csv",
+df_artworks = read_csv("artworks.csv",
                         keep_default_na=False,
                         dtype={
                             "id": "int",
@@ -178,7 +188,7 @@ df_artworks = read_csv("notebook/artworks.csv",
                             "museum_id": "int"
                         })
 
-df_museums = read_csv("notebook/museums.csv",
+df_museums = read_csv("museums.csv",
                       keep_default_na=False,
                       dtype={
                           "museum_id": "int",
@@ -188,7 +198,7 @@ df_museums = read_csv("notebook/museums.csv",
                           "founded": "int"
                       })
 
-df_collections = read_csv("notebook/collections.csv",
+df_collections = read_csv("collections.csv",
                           keep_default_na=False,
                           dtype={
                               "artwork_id": "int",
@@ -199,15 +209,44 @@ df_collections = read_csv("notebook/collections.csv",
 df_full = merge(df_artworks, df_collections, left_on="id", right_on="artwork_id")
 df_full = merge(df_full, df_museums, on="museum_id")
 
-museum_counts = dict()
+report = dict()
 for idx, row in df_full.iterrows():
     museum_name = row["name"]
-    if museum_name in museum_counts:
-        museum_counts[museum_name] = museum_counts[museum_name] + 1
-    else:
-        museum_counts[museum_name] = 1
+    area = row["height_cm"] * row["width_cm"]
 
-print(museum_counts)
+    if museum_name not in report:
+        report[museum_name] = {
+            "city": row["city"],
+            "num_artworks": 0,
+            "largest_artwork": row["title"],
+            "largest_area": area,
+            "excellent_count": 0
+        }
+
+    report[museum_name]["num_artworks"] = report[museum_name]["num_artworks"] + 1
+
+    if area > report[museum_name]["largest_area"]:
+        report[museum_name]["largest_artwork"] = row["title"]
+        report[museum_name]["largest_area"] = area
+
+    if row["condition"] == "excellent":
+        report[museum_name]["excellent_count"] = report[museum_name]["excellent_count"] + 1
+
+rows = list()
+for museum_name in report:
+    row = Series({
+        "museum": museum_name,
+        "city": report[museum_name]["city"],
+        "num_artworks": report[museum_name]["num_artworks"],
+        "largest_artwork": report[museum_name]["largest_artwork"],
+        "excellent_pct": int(report[museum_name]["excellent_count"] / report[museum_name]["num_artworks"] * 100)
+    })
+    rows.append(row)
+
+df_report = DataFrame(rows)
+
+df_report.to_csv("museum_report.csv", index=False)
+df_report
 ```
 ````
 
@@ -220,6 +259,8 @@ In this lab, you practised:
 - **Loading data**: using `read_csv()` with `keep_default_na=False` and `dtype` to control how pandas interprets each column
 - **Exploring data**: iterating over rows with `iterrows()` and filtering with `query()`
 - **Combining tables**: using `merge()` to join DataFrames on shared columns
+- **Computing derived values**: calculating new quantities (such as area) from existing columns
+- **Building DataFrames**: creating a new `DataFrame` from aggregated results using `DataFrame()`
 - **Saving results**: writing DataFrames to CSV files with `to_csv()`
 
 ---
