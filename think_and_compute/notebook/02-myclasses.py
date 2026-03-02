@@ -1,4 +1,4 @@
-class Publication(object):
+class Publication:
     def __init__(self, doi, publicationYear, title, publicationVenue):
         self.doi = doi
         self.publicationYear = publicationYear
@@ -18,7 +18,7 @@ class Publication(object):
         return self.publicationVenue
 
     
-class Venue(object):
+class Venue:
     def __init__(self, identifiers, name):
         self.id = set()
         for identifier in identifiers:

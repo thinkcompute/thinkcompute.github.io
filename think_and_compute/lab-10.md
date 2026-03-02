@@ -31,25 +31,25 @@ In this part, you will create a class to represent artists.
 
 ### Exercise 1.1: The Artist class
 
-Define a class `Artist` with a constructor `__init__(self, name, birth_year, nationality)` that stores these three values as attributes of the object. Add three getter methods: `get_name()`, `get_birth_year()`, and `get_nationality()`. Each method should return the corresponding attribute.
+Define a class `Artist` with a constructor `__init__(self, name: str, birth_year: int, nationality: str)` that stores these three values as attributes of the object. Add three getter methods: `get_name() -> str`, `get_birth_year() -> int`, and `get_nationality() -> str`. Each method should return the corresponding attribute.
 
 Create two instances: Caravaggio (born 1571, Italian) and Annibale Carracci (born 1560, Italian). Test each getter by printing the name, birth year, and nationality of both artists.
 
 ```{code-cell} python
 :tags: [hide-cell]
-class Artist(object):
-    def __init__(self, name, birth_year, nationality):
+class Artist:
+    def __init__(self, name: str, birth_year: int, nationality: str) -> None:
         self.name = name
         self.birth_year = birth_year
         self.nationality = nationality
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.name
 
-    def get_birth_year(self):
+    def get_birth_year(self) -> int:
         return self.birth_year
 
-    def get_nationality(self):
+    def get_nationality(self) -> str:
         return self.nationality
 
 caravaggio = Artist("Caravaggio", 1571, "Italian")
@@ -61,7 +61,7 @@ print(carracci.get_name(), "-", carracci.get_birth_year(), "-", carracci.get_nat
 
 ### Exercise 1.2: Comparing artists
 
-Add a method `is_contemporary_of(self, other_artist)` to the `Artist` class. Two artists are considered contemporaries if the absolute difference between their birth years is 50 years or less. The method should return `True` or `False`.
+Add a method `is_contemporary_of(self, other_artist: Artist) -> bool` to the `Artist` class. Two artists are considered contemporaries if the absolute difference between their birth years is 50 years or less. The method should return `True` or `False`.
 
 Test it with:
 - Caravaggio (1571) and Carracci (1560): 11 years apart, should return `True`
@@ -70,22 +70,22 @@ Test it with:
 
 ```{code-cell} python
 :tags: [hide-cell]
-class Artist(object):
-    def __init__(self, name, birth_year, nationality):
+class Artist:
+    def __init__(self, name: str, birth_year: int, nationality: str) -> None:
         self.name = name
         self.birth_year = birth_year
         self.nationality = nationality
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.name
 
-    def get_birth_year(self):
+    def get_birth_year(self) -> int:
         return self.birth_year
 
-    def get_nationality(self):
+    def get_nationality(self) -> str:
         return self.nationality
 
-    def is_contemporary_of(self, other_artist):
+    def is_contemporary_of(self, other_artist: Artist) -> bool:
         difference = abs(self.birth_year - other_artist.get_birth_year())
         return difference <= 50
 
@@ -107,7 +107,7 @@ Now that you have a class for artists, you will create a class to represent thei
 
 ### Exercise 2.1: The Artwork class
 
-Define a class `Artwork` with a constructor that takes `title`, `year`, `technique`, and `artist` (an `Artist` object). Add getter methods `get_title()`, `get_year()`, `get_technique()`, and `get_artist()`. Also add a method `get_artist_name()` that returns the name of the artist by calling the `get_name()` method of the `Artist` object stored in the `artist` attribute.
+Define a class `Artwork` with a constructor that takes `title: str`, `year: int`, `technique: str`, and `artist: Artist`. Add getter methods `get_title() -> str`, `get_year() -> int`, `get_technique() -> str`, and `get_artist() -> Artist`. Also add a method `get_artist_name() -> str` that returns the name of the artist by calling the `get_name()` method of the `Artist` object stored in the `artist` attribute.
 
 Create two instances:
 
@@ -118,26 +118,26 @@ Print the title, year, and artist name of each artwork.
 
 ```{code-cell} python
 :tags: [hide-cell]
-class Artwork(object):
-    def __init__(self, title, year, technique, artist):
+class Artwork:
+    def __init__(self, title: str, year: int, technique: str, artist: Artist) -> None:
         self.title = title
         self.year = year
         self.technique = technique
         self.artist = artist
 
-    def get_title(self):
+    def get_title(self) -> str:
         return self.title
 
-    def get_year(self):
+    def get_year(self) -> int:
         return self.year
 
-    def get_technique(self):
+    def get_technique(self) -> str:
         return self.technique
 
-    def get_artist(self):
+    def get_artist(self) -> Artist:
         return self.artist
 
-    def get_artist_name(self):
+    def get_artist_name(self) -> str:
         return self.artist.get_name()
 
 bacco = Artwork("Bacco", 1597, "oil on canvas", caravaggio)
@@ -150,10 +150,10 @@ print(giuditta.get_title(), "-", giuditta.get_year(), "-", giuditta.get_artist_n
 ### Exercise 2.2: The Gallery class
 
 Define a class `Gallery` with:
-- A constructor that takes a `name` (string) and initializes an empty list of artworks
-- A method `add_artwork(artwork)` that appends an `Artwork` object to the list
-- A method `get_artworks()` that returns a **copy** of the list of artworks
-- A method `size()` that returns the number of artworks in the gallery
+- A constructor that takes a `name: str` and initializes an empty list of artworks
+- A method `add_artwork(artwork: Artwork) -> None` that appends an `Artwork` object to the list
+- A method `get_artworks() -> list[Artwork]` that returns a **copy** of the list of artworks
+- A method `size() -> int` that returns the number of artworks in the gallery
 
 Create a gallery called "Caravaggio a Roma", add both artworks to it, and print its size.
 
@@ -164,18 +164,18 @@ The method `get_artworks()` returns `list(self.artworks)` instead of `self.artwo
 
 ```{code-cell} python
 :tags: [hide-cell]
-class Gallery(object):
-    def __init__(self, name):
+class Gallery:
+    def __init__(self, name: str) -> None:
         self.name = name
-        self.artworks = []
+        self.artworks: list[Artwork] = []
 
-    def add_artwork(self, artwork):
+    def add_artwork(self, artwork: Artwork) -> None:
         self.artworks.append(artwork)
 
-    def get_artworks(self):
+    def get_artworks(self) -> list[Artwork]:
         return list(self.artworks)
 
-    def size(self):
+    def size(self) -> int:
         return len(self.artworks)
 
 gallery = Gallery("Caravaggio a Roma")
@@ -190,22 +190,22 @@ print("Number of artworks:", gallery.size())
 
 ## Part 3: Inheritance
 
-In this part, you will create a subclass of `Artwork` to represent a specific type of artwork. When a class inherits from another, it receives all the methods and attributes of the parent class and can add new ones. If a subclass needs no extra attributes, it can simply use `pass` as its body. When it needs additional attributes, its constructor should call the parent constructor using `super().__init__()` before setting the new attributes.
+In this part, you will create a subclass of `Artwork` to represent a specific type of artwork. When a class inherits from another, it receives all the methods and attributes of the parent class and can add new ones. When a subclass needs additional attributes, its constructor should call the parent constructor using `super().__init__()` and then set the new attributes.
 
 ### Exercise 3.1: A subclass with extra attributes
 
-Create a class `Altarpiece` that extends `Artwork` with an additional attribute `chapel`. The constructor should accept `title`, `year`, `technique`, `artist`, and `chapel`. It should call the constructor of `Artwork` using `super().__init__()` to handle the first four parameters, then set `self.chapel`. Add a `get_chapel()` method.
+Create a class `Altarpiece` that extends `Artwork` with an additional attribute `chapel`. The constructor should accept `title: str`, `year: int`, `technique: str`, `artist: Artist`, and `chapel: str`. It should call the constructor of `Artwork` using `super().__init__()` to handle the first four parameters, then set `self.chapel`. Add a `get_chapel() -> str` method.
 
 Create *Vocazione di san Matteo* by Caravaggio (1600, oil on canvas, chapel: "Cappella Contarelli"). Print its title, artist name, and chapel.
 
 ```{code-cell} python
 :tags: [hide-cell]
 class Altarpiece(Artwork):
-    def __init__(self, title, year, technique, artist, chapel):
+    def __init__(self, title: str, year: int, technique: str, artist: Artist, chapel: str) -> None:
         super().__init__(title, year, technique, artist)
         self.chapel = chapel
 
-    def get_chapel(self):
+    def get_chapel(self) -> str:
         return self.chapel
 
 vocazione = Altarpiece("Vocazione di san Matteo", 1600, "oil on canvas", caravaggio, "Cappella Contarelli")
