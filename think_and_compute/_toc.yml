@@ -66,3 +66,7 @@ parts:
     - file: 19-relational-database
     - file: 20-graph-database
     - file: 21-querying-databases
+  - caption: "Part 9: Laboratory on Databases"
+    numbered: False
+    chapters:
+    - file: lab-11

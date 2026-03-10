@@ -233,3 +233,8 @@ In this lab, you practised:
 - [Python tutorial on classes](https://docs.python.org/3/tutorial/classes.html)
 - [Real Python: Object-oriented programming in Python](https://realpython.com/python3-object-oriented-programming/)
 - [How To Code in Python: Understanding Inheritance](https://www.digitalocean.com/community/books/digitalocean-ebook-how-to-code-in-python)
+
+```{admonition} Next lab
+:class: seealso
+In the next lab, {ref}`ch-lab-11`, you will learn to store data in an SQLite database and query it using SQL, building on the concepts introduced in the [Configuring and populating a relational database](19-relational-database.ipynb) and [Interacting with databases using Pandas](21-querying-databases.ipynb) chapters.
+```
