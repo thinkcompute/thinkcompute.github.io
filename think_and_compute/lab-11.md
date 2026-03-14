@@ -298,3 +298,8 @@ In this lab, you practised:
 - [SQL tutorial on W3Schools](https://www.w3schools.com/sql/)
 - [Pandas `to_sql` documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html)
 - [Pandas `read_sql` documentation](https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html)
+
+```{admonition} Next lab
+:class: seealso
+In the next lab, {ref}`ch-lab-12`, you will learn to represent the same dataset as RDF triples and query it using SPARQL on a Blazegraph triplestore, building on the concepts introduced in the [Configuring and populating a graph database](20-graph-database.ipynb) and [Interacting with databases using Pandas](21-querying-databases.ipynb) chapters.
+```

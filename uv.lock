@@ -2221,6 +2221,7 @@ dependencies = [
     { name = "python-dateutil" },
     { name = "rdflib" },
     { name = "sparql-dataframe" },
+    { name = "sparqlwrapper" },
     { name = "sphinx-exercise" },
     { name = "watchdog", extra = ["watchmedo"] },
 ]
@@ -2236,6 +2237,7 @@ requires-dist = [
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "rdflib", specifier = ">=7.4.0" },
     { name = "sparql-dataframe", specifier = ">=0.4" },
+    { name = "sparqlwrapper", specifier = ">=2.0.0" },
     { name = "sphinx-exercise", specifier = ">=1.2.0" },
     { name = "watchdog", extras = ["watchmedo"], specifier = ">=6.0.0" },
 ]

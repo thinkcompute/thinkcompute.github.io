@@ -168,9 +168,9 @@ Choose a location on your computer (I recommend **Documents** or **Desktop**) an
 ```
 ````
 
-```{admonition} Keep this folder!
+```{admonition} One folder per project
 :class: tip
-You'll use this same folder for all the exercises in this laboratory session.
+You will use this folder for all the exercises in this first lab. As the course progresses, I recommend creating a **separate folder for each lab or project** (e.g. `lab-01`, `lab-02`, etc.). Keeping different projects in different folders avoids mixing files and, later on, allows each project to have its own isolated Python environment with only the packages it needs.
 ```
 
 #### Step 2: Open the folder in VS Code

@@ -13,6 +13,7 @@ dependencies = [
     "python-dateutil>=2.9.0.post0",
     "rdflib>=7.4.0",
     "sparql-dataframe>=0.4",
+    "sparqlwrapper>=2.0.0",
     "sphinx-exercise>=1.2.0",
     "watchdog[watchmedo]>=6.0.0",
 ]

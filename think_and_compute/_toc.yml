@@ -70,3 +70,4 @@ parts:
     numbered: False
     chapters:
     - file: lab-11
+    - file: lab-12
