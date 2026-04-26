@@ -12,67 +12,71 @@ parts:
   - caption: Preface
     numbered: False
     chapters:
-    - file: 00-preface
+      - file: 00-preface
   - caption: "Part 1: Basics of Computation"
     numbered: False
     chapters:
-    - file: 01-computational-thinking
-    - file: 02-algorithms
-    - file: 03-computability
-    - file: part-1-exercises
+      - file: 01-computational-thinking
+      - file: 02-algorithms
+      - file: 03-computability
+      - file: part-1-exercises
   - caption: "Part 2: Basics of Programming"
     numbered: False
     chapters:
-    - file: 04-programming-languages
-    - file: 05-ordered-structures
-    - file: 06-brute-force
-    - file: 07-unordered-structures
-    - file: 08-recursion
-    - file: part-2-exercises
+      - file: 04-programming-languages
+      - file: 05-ordered-structures
+      - file: 06-brute-force
+      - file: 07-unordered-structures
+      - file: 08-recursion
+      - file: part-2-exercises
   - caption: "Part 3: A Python Laboratory"
     numbered: False
     chapters:
-    - file: lab-01
-    - file: lab-02
-    - file: lab-03
-    - file: lab-04
-    - file: lab-05
-    - file: lab-06
+      - file: lab-01
+      - file: lab-02
+      - file: lab-03
+      - file: lab-04
+      - file: lab-05
+      - file: lab-06
   - caption: "Part 4: Additional Algorithmic Techniques and Data Structures"
     numbered: False
     chapters:
-    - file: 09-divide-and-conquer
-    - file: 10-dynamic-programming
-    - file: 11-trees
-    - file: 12-backtracking
-    - file: 13-graphs
-    - file: 14-greedy
-    - file: part-4-exercises
+      - file: 09-divide-and-conquer
+      - file: 10-dynamic-programming
+      - file: 11-trees
+      - file: 12-backtracking
+      - file: 13-graphs
+      - file: 14-greedy
+      - file: part-4-exercises
   - caption: "Part 5: Laboratory on Divide-and-Conquer and File Handling"
     numbered: False
     chapters:
-    - file: lab-07
-    - file: lab-08
+      - file: lab-07
+      - file: lab-08
   - caption: "Part 6: Managing Data in Python"
     numbered: False
     chapters:
-    - file: 15-what-is-a-datum
-    - file: 16-data-models
-    - file: 17-pandas
-    - file: 18-statistics
+      - file: 15-what-is-a-datum
+      - file: 16-data-models
+      - file: 17-pandas
+      - file: 18-statistics
   - caption: "Part 7: A Laboratory on Managing Data"
     numbered: False
     chapters:
-    - file: lab-09
-    - file: lab-10
-  - caption: "Part 8: Databases"
+      - file: lab-09
+      - file: lab-10
+  - caption: "Part 8: Regular Expressions"
     numbered: False
     chapters:
-    - file: 19-relational-database
-    - file: 20-graph-database
-    - file: 21-querying-databases
-  - caption: "Part 9: Laboratory on Databases"
+      - file: 18-regex
+  - caption: "Part 9: Databases"
     numbered: False
     chapters:
-    - file: lab-11
-    - file: lab-12
+      - file: 19-relational-database
+      - file: 20-graph-database
+      - file: 21-querying-databases
+  - caption: "Part 10: Laboratory on Databases"
+    numbered: False
+    chapters:
+      - file: lab-11
+      - file: lab-12
