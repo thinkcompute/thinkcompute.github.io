@@ -31,6 +31,18 @@ This lab puts into practice the concepts introduced in the [Introduction to Pand
 
 ---
 
+## Set up the project
+
+pandas is a library, so it must be added to the project before you can import it. Open your `python_laboratory` folder in VSCodium and run this command in the integrated terminal, as you learned in {ref}`ch-lab-01`:
+
+```bash
+uv add pandas
+```
+
+Run each script of this lab with `uv run`, so that Python finds the library inside the project environment.
+
+---
+
 ## The dataset: Caravaggio's artworks in Italy
 
 The dataset for this lab consists of three CSV files (you can download each file by clicking on its name):

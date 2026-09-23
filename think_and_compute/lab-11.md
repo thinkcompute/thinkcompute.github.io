@@ -39,6 +39,8 @@ This lab uses the same dataset from {ref}`ch-lab-09`. If you no longer have the 
 
 Download the three files and place them in the same folder where you will write your Python code.
 
+Work in the same `python_laboratory` project where you added pandas in {ref}`ch-lab-09`. The `sqlite3` module is part of the Python standard library, so no other library is needed. Run each script with `uv run`.
+
 ---
 
 ## Part 1: Building the database

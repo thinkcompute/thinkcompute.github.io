@@ -19,7 +19,7 @@ kernelspec:
 ```{admonition} Learning objectives
 :class: tip
 By the end of this lab, you will be able to:
-- Set up a Python project with `uv` and manage dependencies
+- Create the Blazegraph project with `uv init` and add its dependencies with `uv add`
 - Convert tabular data (CSV) into RDF triples using `rdflib`
 - Upload an RDF graph to a Blazegraph triplestore
 - Write SPARQL queries to retrieve and filter data from the triplestore
@@ -30,88 +30,20 @@ This lab puts into practice the concepts introduced in the [Configuring and popu
 
 ---
 
-## Managing Python projects with uv
+## Set up the Blazegraph project
 
-In {ref}`ch-lab-01` you installed packages with `pip3 install`. That approach works for quick experiments, but when projects grow it becomes hard to manage. Different projects may need different versions of the same library, and if everything is installed globally, packages from one project can conflict with another. You can track dependencies with a `requirements.txt` file and use virtual environments to isolate them, but you have to create and maintain both by hand.
+Because you installed uv and learned its main commands in {ref}`ch-lab-01`, you can now set up the Blazegraph project. Create a `lab-12-blazegraph` folder, open it in VSCodium, and run these commands in the integrated terminal:
 
-[uv](https://docs.astral.sh/uv/) is a modern Python project manager that handles all of this automatically. When you add a package with uv, it creates an isolated environment for your project, installs the package into that environment, and records its name in a configuration file called `pyproject.toml`. Anyone who receives your project folder can then recreate the exact same environment with a single command. You do not need to create virtual environments or write requirements files yourself.
-
-### Installing uv
-
-Open a terminal and run the appropriate command for your operating system.
-
-````{tab-set}
-```{tab-item} macOS / Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
+```bash
+uv init --bare
+uv add pandas rdflib sparqlite
 ```
 
-```{tab-item} Windows
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+Keep the Python files and downloaded CSV files in this folder, and run each script through the project environment:
+
+```bash
+uv run your_script.py
 ```
-````
-
-After installation, close and reopen your terminal so the `uv` command becomes available. You can verify it works by running:
-
-```
-uv --version
-```
-
-### Initialising a project
-
-Each project (or lab) should live in its own folder with its own environment. Create a new folder for this lab and initialise it with uv:
-
-````{tab-set}
-```{tab-item} macOS / Linux
-mkdir ~/Documents/lab-12-blazegraph
-cd ~/Documents/lab-12-blazegraph
-uv init
-```
-
-```{tab-item} Windows
-mkdir %USERPROFILE%\Documents\lab-12-blazegraph
-cd %USERPROFILE%\Documents\lab-12-blazegraph
-uv init
-```
-````
-
-The `uv init` command creates several files inside your folder:
-
-- `pyproject.toml`: a file that describes your project and lists its dependencies. You do not need to edit this file by hand; uv updates it for you.
-- `main.py`: a sample Python script with a simple "Hello world" program. You can replace its content with your own code or create new `.py` files alongside it.
-- `README.md`: an empty readme file for describing your project.
-- `.python-version`: a file that pins the Python version used by the project.
-
-The first time you run `uv run` or `uv add`, uv also creates:
-
-- `.venv/`: a directory containing the isolated Python environment. You can ignore this folder; uv manages it automatically.
-- `uv.lock`: a lockfile that records the exact versions of all installed packages, so the environment can be reproduced identically on another machine.
-
-Then open the folder in VS Code with **File -- Open Folder...**, as you have been doing since {ref}`ch-lab-01`.
-
-```{admonition} One folder per project
-:class: tip
-It is good practice to keep separate folders for separate projects. Each folder gets its own environment with only the packages it needs, avoiding conflicts and making the project easier to share. From now on, create a new folder for each lab.
-```
-
-### Adding packages
-
-To install a library and record it as a project dependency, use `uv add` followed by the package name. For example, to install the two libraries needed in this lab:
-
-```
-uv add rdflib sparqlite
-```
-
-This is the uv equivalent of `pip3 install`, with the advantage that the package is automatically recorded in `pyproject.toml`. If you ever need to set up the project on a different machine, running `uv sync` inside the folder will install all recorded packages automatically.
-
-### Running your code
-
-When you use uv, you run your Python scripts through `uv run` so that the isolated environment (with all installed packages) is active:
-
-```
-uv run python your_script.py
-```
-
-From this point on in the course, I will use `uv add` instead of `pip3 install` and `uv run` instead of calling `python3` directly.
 
 ---
 

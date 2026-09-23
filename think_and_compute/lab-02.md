@@ -532,9 +532,9 @@ In Zeno's paradox, to reach a destination, you must first travel half the distan
 
 Let's use Python to calculate the first few steps and see what happens to the remaining distance.
 
-### Setup: Create a new file in VS Code
+### Setup: Create a new file in VSCodium
 
-1. Open Visual Studio Code
+1. Open VSCodium
 2. Open your `python_laboratory` folder (the one you created in Lab 01):
    - **File → Open Folder...**
    - Navigate to and select your `python_laboratory` folder
@@ -560,7 +560,7 @@ Let's use Python to calculate the first few steps and see what happens to the re
 
 4. Use f-strings to format the output clearly
 
-5. Run your script by clicking the **Play button** (▶) in the top-right corner of VS Code
+5. Run your script from the integrated terminal (**Terminal → New Terminal**) with `uv run zeno_paradox.py`
 
 ````
 
