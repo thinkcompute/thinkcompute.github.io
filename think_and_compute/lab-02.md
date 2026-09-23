@@ -42,6 +42,32 @@ paradox = "Liar Paradox"
 
 Now let's dive deeper into **how to name variables properly** and **Python's naming rules**.
 
+### Putting values inside text (f-strings)
+
+In Lab 01 you printed a variable next to some text by passing several arguments to `print()`, separated by commas. Python offers a shorter way that you will see in every example from now on: the **f-string**. Write the letter `f` right before the opening quote, then put a variable name inside curly braces, and Python replaces the braces with the value of that variable:
+
+```{code-cell} python
+name = "Spinoza"
+excommunication_age = 23
+
+print(f"{name} was excommunicated at age {excommunication_age}")
+```
+
+The braces can hold any expression, not only a variable name, because Python computes it first and then inserts the result:
+
+```{code-cell} python
+philosopher = "Giordano Bruno"
+birth_year = 1548
+death_year = 1600
+
+print(f"{philosopher} lived {death_year - birth_year} years (from {birth_year} to {death_year})")
+```
+
+```{admonition} What does the "f" in f-strings mean?
+:class: note
+The "f" stands for **"formatted"**. These are officially called **formatted string literals** and were introduced in Python 3.6 ([PEP 498](https://peps.python.org/pep-0498/)).
+```
+
 ### Variable naming rules
 
 ```{code-cell} python
@@ -86,27 +112,7 @@ print(PHILOSOPHER)   # Aristotle
 
 ### Python naming conventions (PEP 8)
 
-Python has official style guidelines called [PEP 8](https://peps.python.org/pep-0008/). Here are the key naming conventions:
-
-````{list-table}
-:header-rows: 1
-
-* - Type
-  - Convention
-  - Example
-* - Variables
-  - `snake_case` (lowercase with underscores)
-  - `student_name`, `total_score`
-* - Constants
-  - `UPPER_CASE` (all caps with underscores)
-  - `MAX_STUDENTS`, `PI`
-* - Functions
-  - `snake_case`
-  - `calculate_average()`, `get_name()`
-* - Classes
-  - `CamelCase` (capitalize each word)
-  - `Student`, `PhilosophicalSchool`
-````
+Python has official style guidelines called [PEP 8](https://peps.python.org/pep-0008/). For variables, the convention is **snake_case**: all lowercase, with words separated by underscores, as in `student_name` or `total_score`. Python accepts `studentName` or `StudentName` as well, but other programmers expect snake_case, so following it makes your code easier to read.
 
 ### Descriptive names matter
 
@@ -123,12 +129,7 @@ hours_per_day = 24
 minutes_per_hour = 60
 minutes_in_year = days_in_year * hours_per_day * minutes_per_hour
 
-print(f"There are {minutes_in_year:,} minutes in a year")
-```
-
-```{admonition} About the :, syntax
-:class: note
-The `:,` inside the f-string adds comma separators to make large numbers more readable (e.g., `525600` becomes `525,600`). We'll explore f-string formatting in detail later in Part 4.
+print(f"There are {minutes_in_year} minutes in a year")
 ```
 
 ### Interactive exercise 1: Variable naming
@@ -190,7 +191,7 @@ print(type(age))  # <class 'int'>
 
 ```{admonition} Note: the type() function
 :class: note
-The `type()` function shows what data type a variable contains. You'll see it used throughout this lab to verify data types. It's useful for debugging, but you won't use it much in real programs.
+The `type()` function shows what data type a variable contains.
 ```
 
 #### 2. Floating Point Numbers (float)
@@ -282,14 +283,15 @@ concept = "Epistemology"
 ```
 
 ```{code-cell} python
-# Be careful with input()! It always returns a string
+# A number written between quotes is still a string
 # Uncomment to try:
-# user_age = input("Enter your age: ")
+# user_age = "17"
 # next_year_age = user_age + 1  # Error! Can't add string + int
 
-# Correct way:
-# user_age = int(input("Enter your age: "))
-# next_year_age = user_age + 1
+# Correct way: convert it first
+user_age = int("17")
+next_year_age = user_age + 1
+print(next_year_age)  # 18
 ```
 
 ---
@@ -353,7 +355,39 @@ age == 18    # Comparison: check if age equals 18 (returns True)
 
 ### Logical operators
 
-Combine boolean expressions:
+Combine boolean expressions. `and` and `or` take two booleans, while `not` takes one:
+
+````{list-table}
+:header-rows: 1
+
+* - `a`
+  - `b`
+  - `a and b`
+  - `a or b`
+  - `not a`
+* - `True`
+  - `True`
+  - `True`
+  - `True`
+  - `False`
+* - `True`
+  - `False`
+  - `False`
+  - `True`
+  - `False`
+* - `False`
+  - `True`
+  - `False`
+  - `True`
+  - `True`
+* - `False`
+  - `False`
+  - `False`
+  - `False`
+  - `True`
+````
+
+In words: `and` is `True` only when both sides are `True`, `or` is `True` when at least one side is `True`, and `not` turns `True` into `False` and the other way round.
 
 ```{code-cell} python
 # Evaluating a philosophical argument
@@ -456,74 +490,32 @@ laugh = "ha" * 5
 print(laugh)  # hahahahahaha
 ```
 
-### String formatting (f-strings)
+### Formatting numbers in f-strings
 
-The modern and preferred way to format strings:
+Concatenation with `+` requires converting every number with `str()`, while an f-string does the conversion for you. It can also control how the number appears if you add a colon after the expression, followed by a **format specifier**:
 
 ```{code-cell} python
 name = "Spinoza"
 excommunication_age = 23
-principle = "Deus sive Natura"
 
-# Old way (not recommended)
-message1 = name + " was excommunicated at age " + str(excommunication_age) + " for arguing " + principle
+# With concatenation
+message1 = name + " was excommunicated at age " + str(excommunication_age)
 
-# Modern way with f-strings (recommended!)
-message2 = f"{name} was excommunicated at age {excommunication_age} for arguing '{principle}' (God equals Nature)"
+# With an f-string
+message2 = f"{name} was excommunicated at age {excommunication_age}"
 
+print(message1)
 print(message2)
 ```
 
-```{admonition} What does the "f" in f-strings mean?
-:class: note
-The "f" stands for **"formatted"**. These are officially called **formatted string literals** and were introduced in Python 3.6 ([PEP 498](https://peps.python.org/pep-0498/)).
-```
-
 ```{code-cell} python
-# F-strings can include expressions
-philosopher = "Giordano Bruno"
-birth_year = 1548
-death_year = 1600
-
-message = f"{philosopher} lived {death_year - birth_year} years (from {birth_year} to {death_year})"
-print(message)
-```
-
-```{code-cell} python
-# Format numbers in f-strings
 price = 19.99567
-print(f"Price: ${price:.2f}")  # Round to 2 decimals: $19.00
+print(f"Price: ${price:.2f}")  # Round to 2 decimals: $20.00
 
 large_number = 1234567
 print(f"Population: {large_number:,}")  # Add commas: 1,234,567
 ```
 
-### Other string formatting methods
-
-```{code-cell} python
-# Using .format() method
-philosopher = "Hume"
-faculty = "reason"
-master = "the passions"
-
-message1 = "{} argued that {} is merely a slave to {}".format(philosopher, faculty, master)
-print(message1)
-
-# Using % operator (old style, less common now)
-thinker = "Hume"
-observations = 1000
-
-message2 = "%s noted that even after %d observations, we cannot prove causation" % (thinker, observations)
-print(message2)
-
-# But f-strings are the best!
-name = "Hume"
-source = "impressions"
-derived = "ideas"
-
-message3 = f"{name} claimed that all {derived} are ultimately derived from {source}"
-print(message3)
-```
 ---
 
 ## Exercise: Zeno's paradox
@@ -618,7 +610,7 @@ In this lab, you learned:
 - **Logical operators**: `and`, `or`, `not`
 - **Assignment operators**: `+=`, `-=`, `*=`, `/=`
 - **String methods**: `.upper()`, `.lower()`, `.strip()`, `.replace()`, `.split()`
-- **String formatting**: f-strings, `.format()`, `%`
+- **String formatting**: f-strings and format specifiers such as `:.2f` and `:,`
 
 ```{admonition} Next lab
 :class: tip
