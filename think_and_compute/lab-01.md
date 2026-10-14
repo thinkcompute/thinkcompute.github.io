@@ -194,6 +194,13 @@ uv init --bare
 
 The command prints nothing and creates one file, `pyproject.toml`, which stores the project's settings and the list of its libraries. You can see it appear in the Explorer panel on the left.
 
+```{admonition} Run `uv init` inside the project folder
+:class: warning
+Before you run `uv init --bare`, check that the shell is inside `python_laboratory`: the shell prompt shows the current folder. A new shell usually opens in your home folder. If you run the command there, uv treats your whole home folder as one project, and every folder inside it becomes part of that project.
+
+If this already happened, delete `pyproject.toml` from your home folder. Then run `uv init --bare` in each project folder that has no `pyproject.toml`.
+```
+
 #### Step 4: Create your first Python file
 
 1. In VSCodium, look at the left sidebar and make sure the **Explorer** tab is selected (folder icon)
