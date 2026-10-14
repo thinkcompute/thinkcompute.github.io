@@ -121,9 +121,24 @@ A **code editor** is a program for writing code. It works like a word processor 
 
 ### Installing VSCodium
 
+````{tab-set}
+```{tab-item} Windows
+1. In the shell, type `$env:PROCESSOR_ARCHITECTURE` and press Enter. The answer is `AMD64` or `ARM64`
+2. Go to the [latest VSCodium release](https://github.com/VSCodium/vscodium/releases/latest) and download the user installer for your PC: `VSCodiumUserSetup-x64-<version>.exe` for `AMD64`, `VSCodiumUserSetup-arm64-<version>.exe` for `ARM64`
+3. Open the downloaded file and install following the default options.
+```
+
+```{tab-item} macOS
+1. In the shell, type `uname -m` and press Enter. The answer is `arm64` on Apple silicon Macs and `x86_64` on Intel Macs
+2. Go to the [latest VSCodium release](https://github.com/VSCodium/vscodium/releases/latest) and download the `.dmg` file for your Mac: `VSCodium.arm64.<version>.dmg` for `arm64`, `VSCodium.x64.<version>.dmg` for `x86_64`
+3. Open the `.dmg` file and drag VSCodium into the **Applications** folder
+```
+
+```{tab-item} Linux
 1. Go to [vscodium.com/install](https://vscodium.com/install)
-2. Download the version for your operating system
-3. Install following the default options
+2. Follow the instructions for your distribution
+```
+````
 
 ### Installing the Python extension
 
