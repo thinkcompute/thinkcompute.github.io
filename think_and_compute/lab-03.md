@@ -35,9 +35,9 @@ By the end of this lab, you will be able to:
 
 ### What is a list?
 
-A **list** is an ordered, mutable collection of items. Lists are one of the most versatile and widely-used data structures in Python. They can contain items of any type (numbers, strings, even other lists), and items can be repeated.
+A **list** is an ordered, mutable collection of items. It can contain items of any type (integers, floats, strings, booleans, even other lists), and items can be repeated.
 
-Think of a list like a bookshelf: books are arranged in a specific order, you can add or remove books, and the same book can appear multiple times.
+Think of a list like a shelf: objects are arranged in a specific order, you can add or remove them, and the same object can appear multiple times. It can also hold different kinds of objects: books can stand next to action figures, just as a list can mix items of different types.
 
 ### Creating lists
 
@@ -47,6 +47,10 @@ There are two main ways to create lists:
 # Method 1: Using the list() constructor
 empty_list = list()
 print(empty_list)  # []
+
+# list() can also build a list from a string, one item per character
+letters = list("Kant")
+print(letters)  # ['K', 'a', 'n', 't']
 ```
 
 ```{code-cell} python
@@ -98,6 +102,8 @@ arguments.remove("fallacy")
 print(arguments)  # ['premise', 'premise', 'conclusion']
 ```
 
+If the value is not in the list, `remove()` raises an error (`ValueError: list.remove(x): x not in list`) and the program stops.
+
 ```{code-cell} python
 # pop() removes and returns the last item (or item at index)
 thinkers = ["Descartes", "Spinoza", "Leibniz"]
@@ -113,6 +119,33 @@ second = thinkers.pop(1)  # Remove item at index 1
 print(f"Removed: {second}")
 print(f"Remaining: {thinkers}")
 ```
+
+`pop()` also raises an error and stops the program in two cases: when the list is empty (`IndexError: pop from empty list`) and when the index does not exist (`IndexError: pop index out of range`).
+
+```{admonition} Exercise: reshape a reading list
+:class: hint
+Start from `reading_list = ["Plato", "Kant", "Hegel", "Marx"]` and turn it into `["Socrates", "Plato", "Hegel", "Nietzsche"]`. Use `append()`, `insert()`, `remove()`, and `pop()` once each, and print the list after every step.
+```
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+reading_list = ["Plato", "Kant", "Hegel", "Marx"]
+
+reading_list.insert(0, "Socrates")
+print(reading_list)  # ['Socrates', 'Plato', 'Kant', 'Hegel', 'Marx']
+
+reading_list.remove("Kant")
+print(reading_list)  # ['Socrates', 'Plato', 'Hegel', 'Marx']
+
+reading_list.pop()
+print(reading_list)  # ['Socrates', 'Plato', 'Hegel']
+
+reading_list.append("Nietzsche")
+print(reading_list)  # ['Socrates', 'Plato', 'Hegel', 'Nietzsche']
+```
+````
 
 ### List length
 
@@ -165,6 +198,11 @@ from_third = philosophers[2:]
 print(from_third)  # ['Anaximenes', 'Heraclitus', 'Parmenides']
 ```
 
+```{admonition} Question
+:class: hint
+When you omit `end`, which index does Python use in its place?
+```
+
 ```{code-cell} python
 # Get middle elements
 middle = philosophers[1:4]
@@ -176,6 +214,36 @@ print(middle)  # ['Anaximander', 'Anaximenes', 'Heraclitus']
 last_two = philosophers[-2:]
 print(last_two)  # ['Heraclitus', 'Parmenides']
 ```
+
+````{admonition} Exercise: predict indexing and slicing
+:class: hint
+
+```python
+philosophers = ["Thales", "Anaximander", "Anaximenes", "Heraclitus", "Parmenides"]
+
+print(philosophers[-1])
+print(philosophers[1:3])
+print(philosophers[:-2])
+print(philosophers[3:10])
+print(philosophers[5])
+```
+````
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+Parmenides
+['Anaximander', 'Anaximenes']
+['Thales', 'Anaximander', 'Anaximenes']
+['Heraclitus', 'Parmenides']
+IndexError: list index out of range
+```
+
+- A negative `end` in a slice counts from the end, just like a negative index: `[:-2]` takes everything except the last two items.
+- A slice can go past the end of the list: `[3:10]` stops at the last item without any error.
+- A single index must exist: the list has five items, at positions 0 to 4, so `[5]` raises an error and stops the program.
+````
 
 ### Other useful list methods
 
@@ -206,6 +274,48 @@ thinkers.reverse()
 print(thinkers)
 ```
 
+```{code-cell} python
+# sorted() returns a new sorted list and leaves the original unchanged
+stoics = ["Seneca", "Epictetus", "Marcus Aurelius"]
+ordered_stoics = sorted(stoics)
+print(ordered_stoics)  # ['Epictetus', 'Marcus Aurelius', 'Seneca']
+print(stoics)  # ['Seneca', 'Epictetus', 'Marcus Aurelius']
+```
+
+```{code-cell} python
+# reverse=True sorts in descending order, with both sort() and sorted()
+print(sorted(stoics, reverse=True))  # ['Seneca', 'Marcus Aurelius', 'Epictetus']
+stoics.sort(reverse=True)
+print(stoics)  # ['Seneca', 'Marcus Aurelius', 'Epictetus']
+```
+
+````{admonition} Exercise: predict the order
+:class: hint
+
+```python
+print(sorted(["plato", "Aristotle", "Zeno", "socrates"]))
+print(sorted([3.14, 1724, -5, 0]))
+print(sorted([True, 2, False, 0.5]))
+print(sorted(["Kant", 1724]))
+```
+````
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+['Aristotle', 'Zeno', 'plato', 'socrates']
+[-5, 0, 3.14, 1724]
+[False, 0.5, True, 2]
+TypeError: '<' not supported between instances of 'int' and 'str'
+```
+
+- Strings are compared character by character, and every uppercase letter comes before every lowercase letter. So `"Zeno"` comes before `"plato"`.
+- Integers and floats are compared by their numeric value.
+- Booleans count as numbers: `False` is `0` and `True` is `1`.
+- Python cannot compare a string with a number, so sorting a list that mixes them raises an error and stops the program.
+````
+
 ### Checking if an item is in a list
 
 ```{code-cell} python
@@ -216,6 +326,35 @@ print("Wisdom" in virtues)        # True
 print("Prudence" in virtues)      # False
 print("Justice" not in virtues)   # False
 ```
+
+````{admonition} Exercise: search a list
+:class: hint
+
+```python
+texts = ["Republic", "Ethics", "Republic", "Meditations"]
+
+print(texts.count("Republic"))
+print(texts.index("Republic"))
+print("Leviathan" in texts)
+print(texts.count("Leviathan"))
+print(texts.index("Leviathan"))
+```
+````
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+2
+0
+False
+0
+ValueError: 'Leviathan' is not in list
+```
+
+- `index()` returns only the position of the first occurrence, even when the value appears more than once.
+- When the value is missing, `count()` returns `0`, while `index()` raises an error and stops the program. Use `in` first if you are not sure the value is there.
+````
 
 ### Nested lists (lists of lists)
 
@@ -252,6 +391,34 @@ When you have a nested list like `films = [["Title", "Director", 2020]]`:
 
 Think of it as: "go to film 0, then get element 1 of that film"
 ```
+
+```{admonition} Exercise: explore the film list
+:class: hint
+Using the `films` list above, write code that:
+1. Prints the director of "The Elephant Man"
+2. Prints the title of the last film, using a negative index
+3. Adds `["Stalker", "Tarkovsky", 1979]` to the end of the list, then prints how many films the list contains
+4. Prints the first two films, using slicing
+```
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+# 1. "The Elephant Man" is the third film (index 2), the director is at index 1
+print(films[2][1])  # Lynch
+
+# 2. -1 is the last film, the title is at index 0
+print(films[-1][0])  # Den Stygge Stesøsteren
+
+# 3. append() adds the whole film as a single item
+films.append(["Stalker", "Tarkovsky", 1979])
+print(len(films))  # 5
+
+# 4. [:2] takes the films at index 0 and 1
+print(films[:2])  # [['Blade Runner', 'Scott', 1982], ['2001: A Space Odyssey', 'Kubrick', 1968]]
+```
+````
 
 ---
 
@@ -739,7 +906,7 @@ In this lab, you learned:
 
 - **Creating and manipulating lists**: `list()`, `[]`, `append()`, `extend()`, `insert()`, `remove()`, `pop()`
 - **Accessing list elements**: indexing `[0]`, negative indices `[-1]`, slicing `[start:end]`
-- **List methods**: `len()`, `count()`, `index()`, `sort()`, `reverse()`
+- **List methods**: `len()`, `count()`, `index()`, `sort()`, `sorted()`, `reverse()`
 - **Nested lists**: creating and accessing lists of lists with double indexing `list[0][1]`
 - **Conditional statements**: `if`, `elif`, `else`
 - **Combining conditions**: `and`, `or`, `not`, `in`
