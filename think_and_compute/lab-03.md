@@ -71,6 +71,23 @@ arguments = ["premise", "premise", "conclusion"]
 print(arguments)
 ```
 
+### Creating lists of numbers with range()
+
+`range()` produces a sequence of whole numbers:
+
+```{code-cell} python
+# range(stop) counts from 0 up to stop
+print(list(range(5)))  # [0, 1, 2, 3, 4]
+
+# range(start, stop) counts from start up to stop
+print(list(range(1, 6)))  # [1, 2, 3, 4, 5]
+```
+
+```{admonition} The stop number is excluded
+:class: note
+`range(1, 6)` stops at 5, one before the stop number. Slicing, which you will meet later in this lab, follows the same rule.
+```
+
 ### Adding elements to lists
 
 ```{code-cell} python
@@ -432,9 +449,9 @@ You learned about `if` and `else` in the lectures. Let's review quickly:
 age = 18
 
 if age >= 18:
-    print("You can vote")
+    print("You can vote in Italy")
 else:
-    print("You cannot vote yet")
+    print("You cannot vote in Italy yet")
 ```
 
 ### Introducing elif
@@ -631,6 +648,33 @@ for film in films:
     year = film[2]
     print(f"{title} by {director} ({year})")
 ```
+
+```{admonition} Exercise: FizzBuzz
+:class: hint
+For each number from 1 to 15, print:
+- `Fizz` if the number is divisible by 3
+- the number itself if it is divisible by neither 3 nor 5
+- `Buzz` if it is divisible by 5
+- `FizzBuzz` if it is divisible by both 3 and 5
+```
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+for number in range(1, 16):
+    if number % 3 == 0 and number % 5 == 0:
+        print("FizzBuzz")
+    elif number % 3 == 0:
+        print("Fizz")
+    elif number % 5 == 0:
+        print("Buzz")
+    else:
+        print(number)
+```
+
+The order of the conditions matters. Python runs only the first branch whose condition is True. Since every number divisible by both 3 and 5 is also divisible by 3, checking `number % 3 == 0` first would make 15 print `Fizz`, and the `FizzBuzz` branch would never run. The most specific condition therefore has to come first.
+````
 
 ---
 
@@ -904,7 +948,7 @@ for book in books_1940s:
 
 In this lab, you learned:
 
-- **Creating and manipulating lists**: `list()`, `[]`, `append()`, `extend()`, `insert()`, `remove()`, `pop()`
+- **Creating and manipulating lists**: `list()`, `[]`, `range()`, `append()`, `extend()`, `insert()`, `remove()`, `pop()`
 - **Accessing list elements**: indexing `[0]`, negative indices `[-1]`, slicing `[start:end]`
 - **List methods**: `len()`, `count()`, `index()`, `sort()`, `sorted()`, `reverse()`
 - **Nested lists**: creating and accessing lists of lists with double indexing `list[0][1]`
