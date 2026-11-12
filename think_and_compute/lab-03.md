@@ -583,6 +583,50 @@ else:
     print("Argument too short")
 ```
 
+```{admonition} Exercise: leap years
+:class: hint
+In the Gregorian calendar, a year is a leap year when it is divisible by 4. Years divisible by 100 are the exception: they are not leap years, unless they are also divisible by 400.
+
+Store a year in a variable and print `Leap year` or `Not a leap year`. Test your code with 2024, 2023, 1900 and 2000.
+```
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+year = 1900
+
+if year % 400 == 0:
+    print("Leap year")
+elif year % 100 == 0:
+    print("Not a leap year")
+elif year % 4 == 0:
+    print("Leap year")
+else:
+    print("Not a leap year")
+```
+
+The checks run from the most specific rule to the most general. If `year % 4 == 0` came first, 1900 would print `Leap year`, because Python would stop at that branch before it reached the exception for centuries.
+
+The same rule also fits in a single condition:
+
+```python
+if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
+    print("Leap year")
+else:
+    print("Not a leap year")
+```
+
+Truthy and falsy values shorten it further. A remainder of `0` is falsy and any other remainder is truthy: `not year % 4` is therefore True when the year is divisible by 4, and `year % 100` alone counts as True when it is not divisible by 100.
+
+```python
+if (not year % 4 and year % 100) or not year % 400:
+    print("Leap year")
+else:
+    print("Not a leap year")
+```
+````
+
 ---
 
 ## Part 3: Iterating with for loops
