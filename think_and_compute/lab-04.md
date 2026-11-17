@@ -810,7 +810,7 @@ In this lab, you learned:
 
 ```{admonition} Next lab
 :class: tip
-In **Lab 05**, you will practice brute-force algorithms like linear search and insertion sort.
+The next lab, {ref}`ch-lab-06`, puts recursion into practice.
 ```
 
 ## Additional resources

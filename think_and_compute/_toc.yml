@@ -35,8 +35,8 @@ parts:
     - file: lab-01
     - file: lab-02
     - file: lab-03
-    - file: lab-04
     - file: lab-05
+    - file: lab-04
     - file: lab-06
   - caption: "Part 4: Additional Algorithmic Techniques and Data Structures"
     numbered: False

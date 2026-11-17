@@ -191,6 +191,44 @@ print(virtues[-1])  # Last element: Justice
 print(virtues[-2])  # Second-to-last: Temperance
 ```
 
+### Changing list elements
+
+Indexing also works on the left of `=`: assigning a value to a position replaces the element stored there.
+
+```{code-cell} python
+virtues = ["Wisdom", "Courage", "Temperance", "Justice"]
+virtues[2] = "Moderation"
+print(virtues)  # ['Wisdom', 'Courage', 'Moderation', 'Justice']
+```
+
+### Swapping two elements
+
+Swapping means exchanging the elements at two positions. Two assignments alone are not enough, because the first one destroys a value:
+
+```{code-cell} python
+virtues = ["Wisdom", "Courage", "Temperance", "Justice"]
+virtues[0] = virtues[1]
+virtues[1] = virtues[0]
+print(virtues)  # ['Courage', 'Courage', 'Temperance', 'Justice']
+```
+
+The first assignment overwrites "Wisdom" before anything has saved it; the second copies "Courage" back to where it already was. Storing one element in a temporary variable first solves the problem:
+
+```{code-cell} python
+virtues = ["Wisdom", "Courage", "Temperance", "Justice"]
+temp = virtues[0]
+virtues[0] = virtues[1]
+virtues[1] = temp
+print(virtues)  # ['Courage', 'Wisdom', 'Temperance', 'Justice']
+```
+
+```{admonition} How the swap works
+:class: note
+1. `temp = virtues[0]` saves "Wisdom"
+2. `virtues[0] = virtues[1]` copies "Courage" to position 0
+3. `virtues[1] = temp` puts the saved "Wisdom" at position 1
+```
+
 ### List slicing
 
 Slicing extracts a portion of a list using `[start:end]` (end is not included):
@@ -662,35 +700,25 @@ for author in authors:
         print(f"Found {author}!")
 ```
 
-### Building new lists with loops
+### Tracking positions with enumerate()
+
+The previous loop tells you that Woolf is in the list, but not where. The `enumerate()` function pairs each element with its position:
 
 ```{code-cell} python
-# Create a new list with uppercase names
-names = ["alice", "bob", "charlie"]
-uppercase_names = []
+authors = ["Austen", "Dickens", "Woolf", "Orwell"]
 
-for name in names:
-    uppercase_names.append(name.upper())
-
-print(uppercase_names)  # ['ALICE', 'BOB', 'CHARLIE']
+for position, author in enumerate(authors):
+    if author == "Woolf":
+        print(f"Found {author} at position {position}!")
 ```
 
-### For loops with nested lists
-
-```{code-cell} python
-# Iterate over a list of films
-films = [
-    ["Blade Runner", "Scott", 1982],
-    ["2001: A Space Odyssey", "Kubrick", 1968],
-    ["The Elephant Man", "Lynch", 1980],
-    ["Den Stygge Stesøsteren", "Blichfeldt", 2025]
-]
-
-for film in films:
-    title = film[0]
-    director = film[1]
-    year = film[2]
-    print(f"{title} by {director} ({year})")
+```{admonition} How enumerate() works
+:class: note
+At each step, `enumerate()` hands the loop two values: the position of the element, counted from 0, and the element itself. The two variables after `for` receive them in that order:
+1. `position = 0`, `author = "Austen"`
+2. `position = 1`, `author = "Dickens"`
+3. `position = 2`, `author = "Woolf"`, prints "Found Woolf at position 2!"
+4. `position = 3`, `author = "Orwell"`
 ```
 
 ```{admonition} Exercise: FizzBuzz
@@ -773,8 +801,8 @@ describe_book("1984", "George Orwell", 1949)
 ```{admonition} Parameter order matters!
 :class: note
 When calling a function, **the order of arguments matters**. Python matches arguments to parameters by position:
-- `describe_book("1984", "George Orwell", 1949)` ✅ Correct
-- `describe_book(1949, "1984", "George Orwell")` ❌ Wrong order!
+- `describe_book("1984", "George Orwell", 1949)` passes the arguments in the correct order
+- `describe_book(1949, "1984", "George Orwell")` passes them in the wrong order
 
 You can avoid order issues by using **named arguments**:
 ```python
@@ -814,47 +842,6 @@ def calculate_years(start_year, end_year):
 
 years = calculate_years(1800, 1850)
 print(f"Period duration: {years} years")
-```
-
-### Functions with conditionals
-
-```{code-cell} python
-def classify_argument(premise_count):
-    if premise_count == 1:
-        return "Simple argument"
-    elif premise_count == 2:
-        return "Syllogism"
-    else:
-        return "Complex argument"
-
-result = classify_argument(2)
-print(result)
-```
-
-### Functions with lists
-
-```{code-cell} python
-def count_items(items):
-    return len(items)
-
-authors = ["Austen", "Dickens", "Woolf"]
-count = count_items(authors)
-print(f"Number of authors: {count}")
-```
-
-### Function with list and conditionals
-
-```{code-cell} python
-def find_item(items, item):
-    if item in items:
-        position = items.index(item)
-        return f"{item} found at position {position}"
-    else:
-        return f"{item} not found in the list"
-
-fruits = ["apple", "banana", "orange"]
-print(find_item(fruits, "banana"))
-print(find_item(fruits, "grape"))
 ```
 
 ### Documenting functions with docstrings
@@ -994,11 +981,12 @@ In this lab, you learned:
 
 - **Creating and manipulating lists**: `list()`, `[]`, `range()`, `append()`, `extend()`, `insert()`, `remove()`, `pop()`
 - **Accessing list elements**: indexing `[0]`, negative indices `[-1]`, slicing `[start:end]`
+- **Changing list elements**: replacing an element with `list[i] = value`, swapping two elements through a temporary variable
 - **List methods**: `len()`, `count()`, `index()`, `sort()`, `sorted()`, `reverse()`
 - **Nested lists**: creating and accessing lists of lists with double indexing `list[0][1]`
 - **Conditional statements**: `if`, `elif`, `else`
 - **Combining conditions**: `and`, `or`, `not`, `in`
-- **For loops**: iterating over lists with `for item in list:`
+- **For loops**: iterating over lists with `for item in list:`, and over positions and items with `for position, item in enumerate(list):`
 - **Loops with conditionals**: combining `for` and `if` to filter and process data
 - **Defining functions**: `def`, parameters, `return`
 - **Functions with lists and loops**: passing lists, iterating, creating new lists
@@ -1006,7 +994,7 @@ In this lab, you learned:
 
 ```{admonition} Next lab
 :class: tip
-In **Lab 04**, you will learn about sets and dictionaries.
+The next lab, {ref}`ch-lab-05`, puts linear search and insertion sort into practice.
 ```
 
 ## Additional resources
