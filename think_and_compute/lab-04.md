@@ -25,7 +25,7 @@ By the end of this lab, you will be able to:
 - Create and manipulate dictionaries in Python
 - Access and modify dictionary values using keys
 - Iterate over dictionaries using loops
-- Choose the appropriate data structure (list, set, or dictionary) for different problems
+- Choose the appropriate data structure (list, tuple, set, or dictionary) for different problems
 - Combine data structures to solve complex problems
 ```
 
@@ -40,7 +40,7 @@ A **set** is an unordered collection of unique items. Unlike lists, sets:
 - Cannot contain duplicate values
 - Do not support indexing (you cannot access items by position)
 
-Think of a set like a bag of unique items: you can add or remove items, check if something is in the bag, but the items have no specific arrangement.
+Think of the members of a sports club. A person either belongs to the club or does not: signing up a second time does not make anyone a member twice. People can join and leave, and you can ask whether someone is a member, but nobody holds a first or last place in the membership.
 
 ### Why use sets?
 
@@ -88,7 +88,7 @@ print(unique_numbers)  # {1, 2, 3, 4}
 
 ```{code-cell} python
 # Sets can contain strings, numbers, and tuples
-mixed_set = {1, "apple", 3.14, True}
+mixed_set = {1, "apple", 3.14, ("Bologna", 1088)}
 print(mixed_set)
 ```
 
@@ -99,6 +99,11 @@ Sets can only contain certain types of values:
 - Not allowed: Lists, sets, or dictionaries
 
 This is because lists, sets, and dictionaries can be modified after creation, which would cause problems for how Python organizes data in sets. You will learn more about mutable and immutable types in {ref}`ch-divide-and-conquer`.
+```
+
+```{admonition} What are tuples?
+:class: note
+A **tuple** is an ordered, immutable collection of items written with parentheses: `(value1, value2, ...)`. You met tuples in {ref}`ch-brute-force`, where `enumerate()` returns them. Think of tuples as lists that cannot be modified after creation.
 ```
 
 ### Adding elements to sets
@@ -151,13 +156,14 @@ print(numbers)  # Still {1, 2, 4, 5}
 ```
 
 ```{admonition} Avoid defensive programming: prefer fail-fast
-:class: warning 
+:class: warning
+:name: fail-fast-principle
 Use `discard()` only when you are **absolutely certain** that an item might not exist. In general, prefer `remove()` over `discard()`. It is better to write code that **fails immediately** when problems occur rather than code that silently hides errors. If your code does not fail when there is a structural problem, it may hide bugs that will be harder to find later. This is known as the [**fail-fast principle**](https://enterprisecraftsmanship.com/posts/fail-fast-principle/): letting bugs emerge immediately rather than being concealed by defensive code. See also: [defensive programming antipatterns](https://medium.com/@ikonst/defensive-programming-anti-patterns-9ae0d6958fe2).
 ```
 
 ```{admonition} discard() only exists for sets
 :class: warning
-The `discard()` method exists only for sets, not for lists. Lists only have the `remove()` method. There is an [ongoing discussion](https://discuss.python.org/t/add-list-discard-and-deque-discard/104330) about potentially adding `discard()` to lists in the future.
+The `discard()` method exists only for sets, not for lists. Lists only have the `remove()` method. A draft proposal, [PEP 851](https://peps.python.org/pep-0851/), suggests adding `discard()` to lists, possibly in Python 3.16.
 ```
 
 ```{code-cell} python
@@ -285,13 +291,38 @@ for color in colors:
 The order in which items appear when iterating over a set is unpredictable and may change between runs. If you need a specific order, convert the set to a sorted list first: `sorted(my_set)`.
 ```
 
+```{admonition} Exercise: remove duplicates and keep the order
+:class: hint
+`set()` removes duplicates from a list, but it loses the order of the items. Write a function `unique_in_order(items)` that returns a new list with each item once, in the order of its first appearance. For example, the authors cited in a bibliography, `["Eco", "Calvino", "Eco", "Levi", "Calvino", "Morante"]`, become `["Eco", "Calvino", "Levi", "Morante"]`.
+```
+
+````{admonition} Solution
+:class: dropdown
+
+```python
+def unique_in_order(items):
+    seen = set()
+    result = []
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+print(unique_in_order(["Eco", "Calvino", "Eco", "Levi", "Calvino", "Morante"]))
+# ['Eco', 'Calvino', 'Levi', 'Morante']
+```
+
+The list keeps the order, while the set remembers which items have already appeared. Checking `item not in result` directly on the list would give the same output. That check, however, scans the list from the start every time, whereas membership testing on a set is fast regardless of its size.
+````
+
 ---
 
 ## Part 2: Dictionaries in Python
 
 ### What is a dictionary?
 
-A **dictionary** is an unordered collection of **key-value pairs**. Each key is associated with a value, like a real dictionary where each word (key) has a definition (value).
+A **dictionary** is a collection of **key-value pairs**. Each key is associated with a value, like a real dictionary where each word (key) has a definition (value). As an abstract data structure, a dictionary has no order, as you saw in {ref}`ch-unordered-structures`; since Python 3.7, however, Python dictionaries keep their keys in insertion order.
 
 Think of a dictionary like a phone book: you look up a name (key) to find a phone number (value).
 
@@ -384,9 +415,9 @@ print(phone_book.get("Orlando", "Not found"))  # Custom default value
 Use `get()` when you are not sure if the key exists. Use direct access `[]` when you expect the key to be there.
 ```
 
-```{admonition} Avoid defensive programming: prefer fail-fast
+```{admonition} Fail-fast, again
 :class: warning
-Use `get()` only when you are **absolutely certain** that a key might not exist. In general, prefer direct access `dict[key]` over `dict.get(key)`. It is better to write code that **fails immediately** when problems occur rather than code that silently hides errors. If your code does not fail when there is a structural problem, it may hide bugs that will be harder to find later. This is known as the [**fail-fast principle**](https://enterprisecraftsmanship.com/posts/fail-fast-principle/): letting bugs emerge immediately rather than being concealed by defensive code. See also: [defensive programming antipatterns](https://medium.com/@ikonst/defensive-programming-anti-patterns-9ae0d6958fe2).
+As with `discard()`, the {ref}`fail-fast principle <fail-fast-principle>` applies here too. Prefer direct access `dict[key]`, and use `dict.get(key)` only when you are **absolutely certain** that a key might not exist. A missing key then raises a `KeyError` at once, while `get()` would silently return `None`.
 ```
 
 ### Adding and updating values
@@ -552,11 +583,6 @@ for key, value in person.items():
     print(f"{key}: {value}")
 ```
 
-```{admonition} What are tuples?
-:class: note
-A **tuple** is an ordered, immutable collection of items written with parentheses: `(value1, value2, ...)`. Think of tuples as lists that cannot be modified after creation.
-```
-
 ```{admonition} Unpacking in loops
 :class: note
 When you write `for key, value in person.items()`, Python automatically **unpacks** each tuple from `items()` into two variables:
@@ -597,91 +623,14 @@ print(letter_counts)
 
 ## Part 3: Choosing the right data structure
 
-Understanding when to use each data structure is crucial for writing clean, efficient code.
-
-### Lists: Ordered collections with duplicates
-
-**Use lists when:**
-- Order matters (first, second, third, etc.)
-- You need to access items by numeric position (index)
-- Duplicates are allowed and meaningful
-- You need to maintain insertion order
-
-**Examples:**
-- Sequence of steps in a recipe
-- History of user actions (chronological order)
-- Student test scores (same student can appear multiple times)
-
-```{code-cell} python
-# Example: List of daily temperatures (order and duplicates matter)
-temperatures = [22, 23, 22, 24, 22, 25, 23]
-print(f"Temperature on day 1: {temperatures[0]}°C")
-print(f"Temperature on day 5: {temperatures[4]}°C")
-```
-
-### Sets: Unique, unordered collections
-
-**Use sets when:**
-- You only care about unique values (no duplicates)
-- Order does not matter
-- You need to perform set operations (union, intersection, difference)
-- You need fast membership testing ("is X in the collection?")
-
-**Examples:**
-- Collecting unique tags or categories
-- Finding common elements between two collections
-- Removing duplicates from a list
-
-```{code-cell} python
-# Example: Unique visitors to a website
-visitors_day1 = {"Nestore", "Adriana", "Orlando"}
-visitors_day2 = {"Adriana", "Beatrice", "Nestore"}
-
-# Who visited both days?
-both_days = visitors_day1.intersection(visitors_day2)
-print(f"Visited both days: {both_days}")
-
-# Who visited at least once?
-total_visitors = visitors_day1.union(visitors_day2)
-print(f"Total unique visitors: {total_visitors}")
-```
-
-### Dictionaries: Key-value associations
-
-**Use dictionaries when:**
-- You need to associate related pieces of information (key → value)
-- You want to look up values by a meaningful identifier (not numeric index)
-- Each key should map to exactly one value
-- You need to count occurrences or group data
-
-**Examples:**
-- Storing configuration settings (setting name → value)
-- Phone book (name → phone number)
-- Counting word frequencies (word → count)
-- Storing structured data with named fields
-
-```{code-cell} python
-# Example: Student grades (name → grade)
-grades = {
-    "Nestore": 28,
-    "Adriana": 30,
-    "Orlando": 25
-}
-
-# Look up by name (not position)
-print(f"Adriana's grade: {grades['Adriana']}")
-```
-
-### Comparison table
-
-| Feature | List | Set | Dictionary |
-|---------|------|-----|------------|
-| Ordered | Yes | No | No (Python 3.7+ maintains insertion order) |
-| Duplicates allowed | Yes | No | No (keys must be unique) |
-| Access by index | Yes `list[0]` | No | No (access by key) |
-| Access by key | No | No | Yes `dict[key]` |
-| Mutable | Yes | Yes | Yes |
-| Syntax | `[1, 2, 3]` | `{1, 2, 3}` | `{"a": 1, "b": 2}` |
+| | List | Tuple | Set | Dictionary |
+|---|---|---|---|---|
+| Keeps order | Yes | Yes | No | Yes, the insertion order of the keys (since Python 3.7) |
+| Allows duplicates | Yes | Yes | No | Values yes, keys no |
+| Access | By index: `my_list[0]` | By index: `my_tuple[0]` | Membership only: `x in my_set` | By key: `my_dict["key"]` |
+| Mutable | Yes | No | Yes | Yes |
+| Can be a set item or a dictionary key | No | Yes | No | No |
+| Syntax | `[1, 2, 3]` | `(1, 2, 3)` | `{1, 2, 3}` | `{"a": 1, "b": 2}` |
 
 ---
 
@@ -804,7 +753,7 @@ In this lab, you learned:
 - **Accessing dictionary values**: `dict[key]`, `dict.get(key)`, `dict.get(key, default)`
 - **Dictionary methods**: `.keys()`, `.values()`, `.items()`
 - **Iterating over dictionaries**: `for key in dict:`, `for key, value in dict.items():`
-- **Choosing the right data structure**: When to use lists, sets, or dictionaries
+- **Choosing the right data structure**: When to use lists, tuples, sets, or dictionaries
 - **Performance considerations**: Fast membership testing with sets and dictionaries
 - **Combining data structures**: Using sets and dictionaries together to solve problems
 
