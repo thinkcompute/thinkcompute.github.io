@@ -21,43 +21,14 @@ kernelspec:
 :class: tip
 By the end of this lab, you will be able to:
 - Better understand the insertion sort algorithm
-- Implement efficient in-place sorting algorithms using swap and shift techniques
+- Implement in-place sorting algorithms using swap and shift techniques
 ```
 
 ---
 
 ## Part 1: Brute-force exercises
 
-In {ref}`ch-brute-force`, you learned about brute-force algorithms that solve problems by examining all possible solutions. The two main algorithms introduced were **linear search** and **insertion sort**. In this section, you will implement efficient variants of insertion sort and solve other problems with the brute-force approach.
-
-### Exercise 1.1: Find elements above threshold
-
-Implement a function `find_above_threshold(values, threshold)` that returns a list of all values greater than the given threshold.
-
-```python
-print(find_above_threshold([15, 22, 8, 31, 17], 20))     # Expected: [22, 31]
-print(find_above_threshold([1, 2, 3, 4, 5], 10))        # Expected: []
-print(find_above_threshold([100, 50, 75, 25], 50))      # Expected: [100, 75]
-```
-
-````{admonition} Solution
-:class: dropdown
-
-```python
-def find_above_threshold(values, threshold):
-    result = []
-    for value in values:
-        if value > threshold:
-            result.append(value)
-    return result
-
-print(find_above_threshold([15, 22, 8, 31, 17], 20))     # [22, 31]
-print(find_above_threshold([1, 2, 3, 4, 5], 10))        # []
-print(find_above_threshold([100, 50, 75, 25], 50))      # [100, 75]
-```
-````
-
----
+In {ref}`ch-brute-force`, you learned about brute-force algorithms that solve problems by examining all possible solutions. The two main algorithms introduced were **linear search** and **insertion sort**. In this section, you will implement in-place variants of insertion sort and solve other problems with the brute-force approach.
 
 ### Reviewing insertion sort
 
@@ -93,19 +64,19 @@ def insertion_sort(input_list):
 print(insertion_sort([5, 3, 8, 1]))  # [1, 3, 5, 8]
 ```
 
-This implementation is intuitive and was useful for introducing several Python features: the `insert()` method, the `range()` function, and the `reversed()` function. However, it has some inefficiencies:
+This implementation is intuitive and was useful for introducing several Python features: the `insert()` method, the `range()` function, and the `reversed()` function. However, it does more work than it needs to:
 
 1. **Extra memory**: It creates a new list (`result`) to store the sorted elements, using additional memory proportional to the input size.
 
-2. **Hidden cost of `insert()`**: The `list.insert()` method looks simple, but internally it must shift all elements after the insertion point to make room for the new element. For a list with many elements, this shifting operation can be expensive.
+2. **Unnecessary comparisons**: The inner loop scans every position of `result`, even after it has found where the item belongs. On a list that is already sorted, each item is still compared with all the items before it.
 
-For example, if we insert an element at position 0 of a list with 100 elements, Python must move all 100 elements one position to the right. This happens "behind the scenes" but still takes time.
+3. **Hidden cost of `insert()`**: The `list.insert()` method looks simple, but internally it must shift all elements after the insertion point to make room for the new element. For example, if we insert an element at position 0 of a list with 100 elements, Python must move all 100 elements one position to the right. This happens "behind the scenes" but still takes time.
 
-In the following exercises, you will implement more efficient versions that modify the list *in place* (without creating a new list) and avoid the hidden cost of `insert()`.
+In the following exercises, you will write versions that sort the list *in place*, without creating a new list, and stop scanning as soon as the item reaches its position. You will also move the elements yourself instead of calling `insert()`. The shifting no longer happens behind the scenes, which lets you see how much it costs and find a way to keep that cost low.
 
 ---
 
-### Exercise 1.2: In-place insertion sort with swap
+### Exercise 1.1: In-place insertion sort with swap
 
 Implement a function `insertion_sort_swap(items)` that sorts a list in place using element swapping.
 
@@ -198,7 +169,7 @@ Note that each swap requires 3 operations.
 
 ---
 
-### Exercise 1.3: In-place insertion sort with shift
+### Exercise 1.2: In-place insertion sort with shift
 
 The swap-based approach works, but each swap requires 3 operations. When moving an element several positions, we can do better.
 
@@ -301,7 +272,7 @@ In both cases, `prev_position + 1` gives the correct insertion position.
 
 ---
 
-### Exercise 1.4: Sort by string length
+### Exercise 1.3: Sort by string length
 
 Modify the insertion sort algorithm to sort strings by their **length** (shortest first) instead of alphabetically.
 
@@ -358,7 +329,7 @@ Result:             ["a", "cat", "elephant"]
 
 ---
 
-### Exercise 1.5: Find second largest
+### Exercise 1.4: Find second largest
 
 Implement a function `find_second_largest(numbers)` that returns the second largest value in a list with at least two distinct elements.
 
