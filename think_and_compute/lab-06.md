@@ -118,23 +118,16 @@ print(sum_list([]))               # 0
 
 ```
 sum_list([3, 1, 4])
-│
-├─▶ sum_list([1, 4])
-│   │
-│   ├─▶ sum_list([4])
-│   │   │
-│   │   ├─▶ sum_list([])
-│   │   │   │
-│   │   │   └── returns 0  [base case]
-│   │   │
-│   │   └── returns 4 + 0 = 4
-│   │
-│   └── returns 1 + 4 = 5
-│
-└── returns 3 + 5 = 8
+= 3 + sum_list([1, 4])
+= 3 + (1 + sum_list([4]))
+= 3 + (1 + (4 + sum_list([])))
+= 3 + (1 + (4 + 0))              ← base case: sum_list([]) returns 0
+= 3 + (1 + 4)
+= 3 + 5
+= 8
 ```
 
-The calls go **down** until we hit the base case, then the results come back **up**.
+The calls go **down** until we hit the base case, then the results come back **up**. Each addition waits inside its parentheses until the call to its right returns.
 
 ---
 
@@ -185,20 +178,13 @@ print(length([]))               # 0
 
 ```
 length([7, 8, 9])
-│
-├─▶ length([8, 9])
-│   │
-│   ├─▶ length([9])
-│   │   │
-│   │   ├─▶ length([])
-│   │   │   │
-│   │   │   └── returns 0  [base case]
-│   │   │
-│   │   └── returns 1 + 0 = 1
-│   │
-│   └── returns 1 + 1 = 2
-│
-└── returns 1 + 2 = 3
+= 1 + length([8, 9])
+= 1 + (1 + length([9]))
+= 1 + (1 + (1 + length([])))
+= 1 + (1 + (1 + 0))              ← base case: length([]) returns 0
+= 1 + (1 + 1)
+= 1 + 2
+= 3
 ```
 ````
 
